@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Liste des boutiques</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)='addStore()'>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let store of storeList | async" (click)="goToStore(store)">
+      <ion-avatar item-left>
+        <img src="{{this.shopPhotoUrl}}" height="30" width="30" alt="{{store.name}}">
+      </ion-avatar>
+      <h2>{{store.name}}</h2>
+      <p>{{store.description}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

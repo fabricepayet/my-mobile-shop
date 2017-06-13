@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Nouveau Produit</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form #registerForm="ngForm" novalidate>
+    <ion-card>
+      <ion-card-content>
+          <ion-item>
+            <ion-label floating>
+              Nom du produit
+            </ion-label>
+            <ion-input type="email" name="name" [(ngModel)]="product.name" #name="ngModel" required></ion-input>
+          </ion-item>
+
+          <div padding *ngIf="name.invalid && name.dirty">
+            <span class="global__input-error">Ce nom de boutique n'est pas valide.</span>
+          </div>
+
+          <ion-item>
+            <ion-label floating>
+              Description
+            </ion-label>
+            <ion-textarea [(ngModel)]="product.description" name="description" #description="ngModel" required>
+            </ion-textarea>
+          </ion-item>
+
+          <div padding *ngIf="description.invalid && description.dirty">
+            <span class="global__input-error">La description de la boutique doit faire minimum 120 caractères.</span>
+          </div>
+
+          <ion-item>
+            <ion-label floating>Prix</ion-label>
+            <ion-input type="price" name="number" [(ngModel)]="product.price" #price="ngModel" required></ion-input>
+          </ion-item>
+        </ion-card-content>
+      <ion-row class="register-form__button">
+        <button ion-button (click)="addProduct()" [disabled]="registerForm.invalid">Ajouter</button>
+      </ion-row>
+    </ion-card>
+  </form>
+</ion-content>
