@@ -35,6 +35,11 @@
             <ion-label floating>Prix</ion-label>
             <ion-input type="price" name="number" [(ngModel)]="product.price" #price="ngModel" required></ion-input>
           </ion-item>
+
+          <ion-item>
+            <button ion-button (click)="takePhoto()" *ngIf="!captureDataUrl">Prendre une photo</button>
+            <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
+          </ion-item>
         </ion-card-content>
       <ion-row class="register-form__button">
         <button ion-button (click)="addProduct()" [disabled]="registerForm.invalid">Ajouter</button>

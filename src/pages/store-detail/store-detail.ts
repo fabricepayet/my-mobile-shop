@@ -24,8 +24,7 @@ export class StoreDetailPage {
     this.productList = this.productService.getProductList(this.store.$key);
     let storage = firebase.storage();
     let storageRef = storage.ref();
-    storageRef.child(`images/${this.store.$key}/banner.jpg`).getDownloadURL().then((url) => {
-      console.log('>>>> url found', url, this);
+    storageRef.child(`images/stores/${this.store.$key}/banner.jpg`).getDownloadURL().then((url) => {
       this.storePhotoUrl = url;
     }).catch((error) => {
       console.error(error);
@@ -39,6 +38,9 @@ export class StoreDetailPage {
   }
 
   goToProduct(product: Product) {
-    this.navCtrl.push('ProductDetailPage', {product});
+    this.navCtrl.push('ProductDetailPage', {
+      product: product,
+      store: this.store
+    });
   }
 }

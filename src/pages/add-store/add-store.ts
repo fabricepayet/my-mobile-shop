@@ -19,7 +19,7 @@ import { LoadingController, Loading } from 'ionic-angular';
 export class AddStorePage {
 
   store = {} as Store;
-  captureDataUrl: string;
+  private captureDataUrl: string;
   private loader: Loading;
 
   constructor(

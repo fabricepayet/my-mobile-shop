@@ -11,7 +11,9 @@ export class StoreService {
 
   async addStore(store: Store, captureData: string) {
     let newStoreKey = this.database.list(`stores`).push(store).key;
-    await this.uploadPhotoForStore(newStoreKey, captureData)
+    if(captureData) {
+      await this.uploadPhotoForStore(newStoreKey, captureData)
+    }
   }
 
   getStoreList(): FirebaseListObservable<Store[]> {
@@ -20,7 +22,7 @@ export class StoreService {
 
   async uploadPhotoForStore(storeKey: string, captureDataUrl: string) {
     let storageRef = firebase.storage().ref();
-    const imageRef = storageRef.child(`images/${storeKey}/banner.jpg`);
+    const imageRef = storageRef.child(`images/stores/${storeKey}/banner.jpg`);
     await imageRef.putString(captureDataUrl, firebase.storage.StringFormat.DATA_URL)
   }
 }
