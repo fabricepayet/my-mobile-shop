@@ -13,8 +13,7 @@
   <ion-grid>
     <ion-row>
       <ion-col col-6 *ngFor="let product of productList | async" (click)="goToProduct(product)">
-        <img [src]="" alt="{{store.name}}">
-        {{product.name}}
+        <img [src]="" alt="{{product.name}}">
       </ion-col>
     </ion-row>
   </ion-grid>

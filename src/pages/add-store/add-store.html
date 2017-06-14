@@ -35,6 +35,17 @@
           </ion-item>
 
           <ion-item>
+            <ion-label>Ville</ion-label>
+            <ion-select [(ngModel)]="store.town" name="town">
+              <ion-option value="Petite-Ile" selected=true>Petite-Ile</ion-option>
+              <ion-option value="Saint-Joseph">Saint-Joseph</ion-option>
+              <ion-option value="Saint-Louis">Saint-Louis</ion-option>
+              <ion-option value="Saint-Pierre">Saint-Pierre</ion-option>
+              <ion-option value="Tampon">Tampon</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
             <button ion-button (click)="takePhoto()" *ngIf="!captureDataUrl">Lets take a picture!</button>
             <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
           </ion-item>

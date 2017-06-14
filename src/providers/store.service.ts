@@ -24,5 +24,6 @@ export class StoreService {
     let storageRef = firebase.storage().ref();
     const imageRef = storageRef.child(`images/stores/${storeKey}/banner.jpg`);
     await imageRef.putString(captureDataUrl, firebase.storage.StringFormat.DATA_URL)
+
   }
 }
