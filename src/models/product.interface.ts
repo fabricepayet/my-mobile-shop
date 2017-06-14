@@ -3,5 +3,6 @@ export interface Product {
   description: string,
   photo: string,
   price: number,
-  $key?: string
+  $key?: string,
+  image?: string
 }

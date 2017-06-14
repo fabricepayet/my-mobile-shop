@@ -7,5 +7,6 @@ export interface Store {
     lng: number
   },
   town?: string,
-  address?: string
+  address?: string,
+  image?: string
 }

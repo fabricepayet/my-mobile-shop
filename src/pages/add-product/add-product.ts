@@ -41,7 +41,7 @@ export class AddProductPage {
 
   async addProduct(storeKey: string) {
     this.loader.present();
-    await this.productService.addProduct(this.store.$key, this.product, this.captureDataUrl);
+    this.productService.addProduct(this.store.$key, this.product, this.captureDataUrl)
     this.loader.dismiss()
     this.navCtrl.push('StoreDetailPage', {store: this.store})
   }

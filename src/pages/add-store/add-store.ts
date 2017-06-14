@@ -33,11 +33,12 @@ export class AddStorePage {
     })
   }
 
-  async addStore() {
+  addStore() {
     this.loader.present();
-    await this.storeService.addStore(this.store, this.captureDataUrl);
-    this.loader.dismiss()
-    this.navCtrl.push('StoreListPage');
+    this.storeService.addStore(this.store, this.captureDataUrl).then(() => {
+      this.loader.dismiss()
+      this.navCtrl.push('StoreListPage');
+    })
   }
 
   takePhoto() {
