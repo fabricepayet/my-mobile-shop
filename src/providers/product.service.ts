@@ -32,6 +32,22 @@ export class ProductService {
     })
   }
 
+  deleteProduct(productKey: string, storeKey: string) {
+    return new Promise((resolve, reject) => {
+      //delete data
+      let removeRef = firebase.database().ref(`products/${storeKey}`).child(productKey);
+      removeRef.remove()
+      // delete image
+      let storageRef = firebase.storage().ref();
+      var imageRef = storageRef.child(`images/stores/${storeKey}/products/${productKey}.jpg`);
+      imageRef.delete().then(function() {
+        resolve(true)
+      }).catch(function(error) {
+        reject(error)
+      });
+    })
+  }
+
   getProductList(storeKey: string): FirebaseListObservable<Product[]> {
     return this.database.list(`products/${storeKey}`)
   }
