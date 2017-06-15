@@ -14,6 +14,7 @@
 <ion-content padding>
   <ion-img width="100%" height="200" [src]="product.image"></ion-img>
   <h2>{{product.name}}</h2>
+  <span>{{product.price}}€</span>
   <p>{{product.description}}</p>
   <button ion-button block (click)="deleteProduct()">Supprimer ce produit</button>
 </ion-content>
