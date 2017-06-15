@@ -16,7 +16,6 @@ export class StoreService {
         this.uploadPhoto(newStoreKey, captureData).then((snapshot: any) => {
           store.image = snapshot.downloadURL;
           this.updateStore(newStoreKey, store).then((data) => {
-            console.log('addStore is resolved!')
             resolve(true);
           })
         })
@@ -30,13 +29,33 @@ export class StoreService {
     return new Promise((resolve) => {
      var updateRef = firebase.database().ref('stores').child(storeKey);
      updateRef.update(store);
-     console.log('Update Store is resolved');
      resolve(true);
    });
   }
 
+  deleteStore(storeKey: string) {
+    return new Promise((resolve, reject) => {
+      // get list of products images
+
+      // delete data
+      let storeRef = firebase.database().ref(`stores`).child(storeKey);
+      storeRef.remove()
+      let productRef = firebase.database().ref(`products`).child(storeKey);
+      productRef.remove()
+      // delete image
+      let storageRef = firebase.storage().ref();
+      // var imageRef = storageRef.child(`images/stores/${storeKey}/products/${productKey}.jpg`);
+      // imageRef.delete().then(function() {
+      //   resolve(true)
+      // }).catch(function(error) {
+      //   reject(error)
+      // });
+      resolve(true);
+    })
+  }
+
   getStoreList(): FirebaseListObservable<Store[]> {
-    return this.database.list(`stores`)
+    return this.database.list('stores')
   }
 
   uploadPhoto(storeKey: string, captureDataUrl: string): Promise<any> {
@@ -50,7 +69,6 @@ export class StoreService {
       }, (_err) => {
         reject(_err);
       }, () => {
-        console.log('uploadPhoto is resolved!');
         resolve(parseUpload.snapshot);
       })
     })

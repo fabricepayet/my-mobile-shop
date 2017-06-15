@@ -1,0 +1,4 @@
+v0.0.2
+- Suppression de produit
+- Affichage image produit / boutique
+- amélioration téléversement des images

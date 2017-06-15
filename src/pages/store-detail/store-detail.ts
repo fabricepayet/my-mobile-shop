@@ -3,7 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { Store } from '../../models/store.interface';
 import { ProductService } from '../../providers/product.service';
+import { StoreService } from '../../providers/store.service';
 import { FirebaseListObservable } from 'angularfire2/database';
+import { LoadingController, Loading } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -14,8 +16,14 @@ export class StoreDetailPage {
   store: Store;
   productList: FirebaseListObservable<Product[]>;
   storePhotoUrl: string;
+  private loader: Loading;
 
-  constructor(private productService: ProductService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private loading: LoadingController,
+    private storeService: StoreService,
+    private productService: ProductService,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
   }
 
   ionViewWillLoad() {
@@ -27,6 +35,17 @@ export class StoreDetailPage {
     this.navCtrl.push('AddProductPage', {
       store: this.store
     });
+  }
+
+  deleteStore() {
+    this.loader = this.loading.create({
+      content: 'Suppression de la boutique...'
+    })
+    this.loader.present();
+    this.storeService.deleteStore(this.store.$key).then(() => {
+      this.loader.dismiss();
+      this.navCtrl.push('StoreListPage');
+    })
   }
 
   goToProduct(product: Product) {
