@@ -4,7 +4,6 @@ import { Product } from '../../models/product.interface';
 import { Store } from '../../models/store.interface';
 import { ProductService } from '../../providers/product.service';
 import { FirebaseListObservable } from 'angularfire2/database';
-import firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -22,13 +21,6 @@ export class StoreDetailPage {
   ionViewWillLoad() {
     this.store = this.navParams.get('store');
     this.productList = this.productService.getProductList(this.store.$key);
-    let storage = firebase.storage();
-    let storageRef = storage.ref();
-    storageRef.child(`images/stores/${this.store.$key}/banner.jpg`).getDownloadURL().then((url) => {
-      this.storePhotoUrl = url;
-    }).catch((error) => {
-      console.error(error);
-    });
   }
 
   addProduct() {

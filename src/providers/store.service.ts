@@ -20,6 +20,8 @@ export class StoreService {
             resolve(true);
           })
         })
+      } else {
+        resolve(true)
       }
     })
   }
