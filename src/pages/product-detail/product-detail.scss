@@ -5,3 +5,20 @@ page-product-detail {
 .product-detail__content_container {
   padding: 12px;
 }
+
+.product-detail__content_header {
+  display: flex;
+}
+
+.product-detail__product_price {
+  flex: none;
+  padding: 6px;
+  font-size: 20px;
+}
+
+.product-detail__product_name {
+  flex: 1 1 auto;
+  padding: 6px;
+  font-size: 22px;
+  font-weight: bold;
+}
