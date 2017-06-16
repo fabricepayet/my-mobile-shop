@@ -46,7 +46,7 @@
           </ion-item>
 
           <ion-item>
-            <button ion-button (click)="takePhoto()" *ngIf="!captureDataUrl">Lets take a picture!</button>
+            <button ion-button (click)="takePhoto()" *ngIf="!captureDataUrl">Ajouter une photo</button>
             <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
           </ion-item>
 
@@ -56,7 +56,7 @@
 
         </ion-card-content>
       <ion-row class="register-form__button">
-        <button ion-button (click)="addStore()" [disabled]="registerForm.invalid">Ajouter</button>
+        <button ion-button right (click)="addStore()" [disabled]="registerForm.invalid">Ajouter</button>
       </ion-row>
     </ion-card>
   </form>

@@ -8,8 +8,11 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { MyApp } from './app.component';
 import { StoreService } from '../providers/store.service';
+import { ImageService } from '../providers/image.service';
 import { ProductService } from '../providers/product.service';
 import { Camera } from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
+import { FilePath } from '@ionic-native/file-path';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { Camera } from '@ionic-native/camera';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StoreService,
     ProductService,
-    Camera
+    Camera,
+    ImageService,
+    FilePath,
+    File
   ]
 })
 export class AppModule {}
