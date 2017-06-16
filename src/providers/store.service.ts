@@ -2,6 +2,7 @@ import  { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Store } from '../models/store.interface';
 import firebase from 'firebase';
+import "rxjs/add/operator/map";
 
 @Injectable()
 export class StoreService {
@@ -55,7 +56,7 @@ export class StoreService {
   }
 
   getStoreList(): FirebaseListObservable<Store[]> {
-    return this.database.list('stores')
+    return this.database.list('stores').map((array) => array.reverse()) as FirebaseListObservable<Store[]>;
   }
 
   uploadPhoto(storeKey: string, captureDataUrl: string): Promise<any> {

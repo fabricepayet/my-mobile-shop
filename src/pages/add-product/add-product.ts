@@ -4,7 +4,7 @@ import { Product } from '../../models/product.interface';
 import { Store } from '../../models/store.interface';
 import { ProductService } from '../../providers/product.service';
 import { LoadingController, Loading } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 import { ImageService } from '../../providers/image.service'
 
 /**
