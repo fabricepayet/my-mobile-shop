@@ -31,6 +31,7 @@ export class AddStorePage {
   }
 
   addStore() {
+    this.navCtrl.setRoot('StoreListPage')
     this.loader.present();
     this.storeService.addStore(this.store, this.captureDataUrl).then(() => {
       this.loader.dismiss()

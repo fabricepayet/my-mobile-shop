@@ -43,6 +43,7 @@ export class AddProductPage {
   }
 
   async addProduct(storeKey: string) {
+    this.navCtrl.setRoot(null)
     this.loader.present();
     this.productService.addProduct(this.store.$key, this.product, this.captureDataUrl).then((data) => {
       this.loader.dismiss()
