@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Boutiques prés de chez vous</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Nos FriendShops</ion-title>
     <ion-buttons right>
       <button ion-button icon-only (click)='addStore()'>
         <ion-icon name="add"></ion-icon>
@@ -10,33 +10,16 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let store of storeList | async" (click)="goToStore(store)">
+  <ion-card *ngFor="let store of storeList | async">
     <ion-item>
       <h2 class="store-list__title">{{store.name | uppercase}}</h2>
-      <h3>{{store.town}}</h3>
+      <h3><ion-icon name="home"></ion-icon> {{store.town}}</h3>
     </ion-item>
     <img src="{{store.image}}"/>
     <ion-card-content>
-      <!-- <ion-card-title>
-        {{store.name | uppercase}}
-      </ion-card-title> -->
-      <p>
-        {{store.description}}
-      </p>
+      <div class="store-list__action_block">
+        <button ion-button (click)="goToStore(store)">Accèder à la vitrine</button>
+      </div>
     </ion-card-content>
-    <ion-row>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>12 Loves</div>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>4 Avis</div>
-      </button>
-    </ion-col>
-  </ion-row>
   </ion-card>
 </ion-content>

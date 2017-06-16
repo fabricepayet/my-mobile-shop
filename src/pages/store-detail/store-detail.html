@@ -1,13 +1,12 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Détail de la boutique</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{store.name | uppercase}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-img width="100%" height="200" [src]="store.image"></ion-img>
-  <h2 class="store-detail__name">{{store.name}}</h2>
-  <p><span class="store-detail__town">{{store.town}}</span> {{store.address}}</p>
+  <p><ion-icon name="home"></ion-icon> <span class="store-detail__town">{{store.town}}</span> {{store.address}}</p>
   <br>
   <p>{{store.description}}</p>
   <ion-grid>
