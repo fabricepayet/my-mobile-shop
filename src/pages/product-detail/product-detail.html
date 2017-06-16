@@ -5,17 +5,19 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{product.name}}</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{store.name | uppercase}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
   <ion-img width="100%" height="200" [src]="product.image"></ion-img>
-  <h2>{{product.name}}</h2>
-  <span>{{product.price}}€</span>
-  <p>{{product.description}}</p>
-  <button ion-button block>Réserver ce produit</button>
-  <button ion-button block (click)="deleteProduct()" color="danger">Supprimer ce produit</button>
+  <div class="product-detail__content_container">
+    <h2>{{product.name}}</h2>
+    <span>{{product.price}}€</span>
+    <p>{{product.description}}</p>
+    <button ion-button block>Réserver ce produit</button>
+    <button ion-button block (click)="deleteProduct()" color="danger">Supprimer ce produit</button>
+  </div>
 </ion-content>

@@ -6,24 +6,27 @@
 
 <ion-content padding>
   <ion-img width="100%" height="200" [src]="store.image"></ion-img>
-  <p><ion-icon name="home"></ion-icon> <span class="store-detail__town">{{store.town}}</span> {{store.address}}</p>
-  <br>
-  <p>{{store.description}}</p>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-6 *ngFor="let product of productList | async" (click)="goToProduct(product)">
-        <img [src]="product.image" alt="{{product.name}}">
-        <span>{{product.name}}</span>
-        <span class="store-list__product_price" right>{{product.price}} €</span>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="store-detail__content_container">
+    <p><ion-icon name="home"></ion-icon> <span class="store-detail__town">{{store.town}}</span> {{store.address}}</p>
+    <br>
+    <p>{{store.description}}</p>
+    <h3>Offres spéciales</h3>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor="let product of productList | async" (click)="goToProduct(product)">
+          <img [src]="product.image" alt="{{product.name}}">
+          <span>{{product.name}}</span>
+          <span class="store-list__product_price" right>{{product.price}} €</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 
   <!-- <button ion-button block (click)="deleteStore()">Supprimer cette boutique</button> -->
 
   <ion-fab bottom right>
-    <button ion-fab (click)="addProduct(store)">
-      <ion-icon name="add"></ion-icon>
+    <button ion-fab (click)="addProduct(store)" color="secondary">
+      <ion-icon name="heart"></ion-icon>
     </button>
   </ion-fab>
 </ion-content>

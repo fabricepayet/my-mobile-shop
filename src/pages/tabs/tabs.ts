@@ -20,8 +20,8 @@ export class TabsPage {
 
   constructor() {
     this.tab1Root = 'StoreListPage';
-    this.tab2Root = 'AddProductPage';
-    this.tab3Root = 'ProfilePage';
+    this.tab2Root = 'ProductListPage';
+    this.tab3Root = 'BasketPage';
   }
 
 }
