@@ -11,8 +11,6 @@ import { StoreService } from '../providers/store.service';
 import { ImageService } from '../providers/image.service';
 import { ProductService } from '../providers/product.service';
 import { Camera } from '@ionic-native/camera';
-import { File } from '@ionic-native/file';
-import { FilePath } from '@ionic-native/file-path';
 
 @NgModule({
   declarations: [
@@ -35,9 +33,7 @@ import { FilePath } from '@ionic-native/file-path';
     StoreService,
     ProductService,
     Camera,
-    ImageService,
-    FilePath,
-    File
+    ImageService
   ]
 })
 export class AppModule {}

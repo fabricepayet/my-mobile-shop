@@ -22,11 +22,11 @@
     <div class="product-detail__content_header">
       <div class="product-detail__product_name_container">
         <div class="product-detail__product_name">{{product.name}}</div>
-        <div class="product-detail__product_store"><ion-icon name="home"></ion-icon> {{store.name | uppercase}}, {{store.town}}</div>
+        <div class="product-detail__product_store" (click)="visitStore()"><ion-icon name="home"></ion-icon> {{store.name | uppercase}}, {{store.town}}</div>
       </div>
       <div class="product-detail__product_price">{{product.price}}€</div>
     </div>
     <div class="product-detail__product_description">{{product.description}}</div>
-    <button class="product-detail__product_reserve_button" ion-button block (click)="reserve()">Réserver ce produit</button>
+    <button class="product-detail__product_reserve_button" ion-button block (click)="reserve()">Réserver cet article</button>
   </div>
 </ion-content>

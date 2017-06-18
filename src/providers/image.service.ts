@@ -1,14 +1,9 @@
 import  { Injectable } from '@angular/core';
-import { File } from '@ionic-native/file';
-import { FilePath } from '@ionic-native/file-path';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { Platform, ToastController} from 'ionic-angular';
 
 @Injectable()
 export class ImageService {
-  constructor(private filePath: FilePath, private camera: Camera,
-  public platform: Platform,
-  private toastController: ToastController) {
+  constructor(private camera: Camera) {
 
   }
 
