@@ -28,6 +28,7 @@ export class StoreDetailPage {
 
   ionViewWillLoad() {
     this.store = this.navParams.get('store');
+    console.log('ThisSTore from stor detail', this.store);
     this.productList = this.productService.getProductList(this.store.$key);
   }
 

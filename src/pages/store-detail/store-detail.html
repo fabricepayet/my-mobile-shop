@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>{{store.name | uppercase}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="addProduct(store)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -10,7 +15,7 @@
     <p><ion-icon name="home"></ion-icon> <span class="store-detail__town">{{store.town}}</span> {{store.address}}</p>
     <br>
     <p>{{store.description}}</p>
-    <!-- <h3 class="store-detail__title">Les produits</h3> -->
+    <h3 class="store-detail__title">Offres</h3>
     <ion-grid>
       <ion-row>
         <ion-col col-6 *ngFor="let product of productList | async" (click)="goToProduct(product)">
@@ -25,7 +30,7 @@
   <!-- <button ion-button block (click)="deleteStore()">Supprimer cette boutique</button> -->
 
   <ion-fab bottom right>
-    <button ion-fab (click)="addProduct(store)" color="secondary">
+    <button ion-fab color="secondary">
       <ion-icon name="heart"></ion-icon>
     </button>
   </ion-fab>

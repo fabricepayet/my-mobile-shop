@@ -48,7 +48,7 @@ export class StoreService {
       let productRef = firebase.database().ref(`products`).child(storeKey);
       productRef.remove()
       // delete image
-      let storageRef = firebase.storage().ref();
+      // let storageRef = firebase.storage().ref();
       // var imageRef = storageRef.child(`images/stores/${storeKey}/products/${productKey}.jpg`);
       // imageRef.delete().then(function() {
       //   resolve(true)
@@ -56,6 +56,18 @@ export class StoreService {
       //   reject(error)
       // });
       resolve(true);
+    })
+  }
+
+  getStore(storeKey) {
+    return new Promise((resolve, reject) => {
+      firebase.database().ref('/stores/' + storeKey).once('value').then((snapshot) => {
+        let store = snapshot.val()
+        store.$key = snapshot.key
+        resolve(store)
+      }, (err) => {
+        reject(err);
+      })
     })
   }
 

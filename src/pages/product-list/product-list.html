@@ -12,5 +12,29 @@
 
 
 <ion-content padding>
-
+  <ion-card *ngFor="let product of productList | async">
+    <!-- <ion-item>
+      <h2 class="product-list__product_name">{{product.name | uppercase}}</h2>
+      <h3><ion-icon name="home"></ion-icon> {{product.town}}</h3>
+    </ion-item> -->
+    <ion-card-content>
+      <div *ngIf="product.store" class="product-list__store_container" (click)="gotoStore(product)">
+        <img height="40px" width="50px" [src]="product.store.image" alt="{{product.store.name}}" class="product-list__store_image">
+        <div class="product-list__store_info">
+          <div class="product-list__store_name">
+            {{product.store.name | uppercase}}
+          </div>
+          <div class="product-list__store_town">
+            <ion-icon name="home"></ion-icon> {{product.store.town}}
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+    <div class="">
+      <div class="product-list__product_price_container" text-right>
+        <span class="product-list__product_price">{{product.price}}€</span>
+      </div>
+      <img src="{{product.image}}" class="product-list__product_image" (click)="gotoProduct(product)"/>
+    </div>
+  </ion-card>
 </ion-content>

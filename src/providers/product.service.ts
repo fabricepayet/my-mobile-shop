@@ -9,8 +9,9 @@ export class ProductService {
   }
 
   addProduct(storeKey: string, product: Product, captureData: string): Promise<any> {
+    product.timestamp = Date.now();
     return new Promise ((resolve, reject) => {
-      let productKey = this.database.list(`/products/${storeKey}`).push(product).key;
+      let productKey = this.database.list(`/products/${storeKey}`).push({}).key;
       if(captureData) {
         this.uploadPhoto(storeKey, productKey, captureData).then((snapshot: any) => {
           product.image = snapshot.downloadURL;
@@ -29,11 +30,16 @@ export class ProductService {
   }
 
   updateProduct(storeKey: string, productKey: string, product: Product) {
-    return new Promise((resolve, reject) => {
-      let updateRef = firebase.database().ref(`products/${storeKey}`).child(productKey);
-      updateRef.update(product);
-      resolve(true)
-    })
+    var updates = {};
+    updates['/products/' + storeKey + '/' + productKey] = product;
+    let recentProduct = product;
+    return firebase.database().ref('/stores/' + storeKey).once('value').then(function(snapshot) {
+      recentProduct.store = snapshot.val();
+      recentProduct.storeKey = storeKey;
+      updates['/recent-products/' + productKey] = recentProduct;
+      return firebase.database().ref().update(updates);
+    });
+
   }
 
   deleteProduct(productKey: string, storeKey: string) {
@@ -55,6 +61,22 @@ export class ProductService {
   getProductList(storeKey: string): FirebaseListObservable<Product[]> {
     return this.database.list(`products/${storeKey}`)
   }
+
+  getProducts(): FirebaseListObservable<any> {
+    return this.database.list('recent-products');
+  }
+
+  // getProduct(productKey): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     firebase.database().ref('/stores/' + productKey).once('value').then((snapshot) => {
+  //       let store = snapshot.val()
+  //       store.$key = snapshot.key
+  //       resolve(store)
+  //     }, (err) => {
+  //       reject(err);
+  //     })
+  //   })
+  // }
 
   uploadPhoto(storeKey: string, productKey: string, captureDataUrl: string) {
     return new Promise((resolve, reject) => {

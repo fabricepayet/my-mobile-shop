@@ -1,3 +1,42 @@
-page-product-list {
+.product-list__store_container {
+  display: flex;
+}
 
+.product-list__store_image {
+  flex: none;
+  width: 50px;
+  padding-right: 12px;
+}
+
+.product-list__store_info {
+  flex: 1 1 auto;
+}
+
+.product-list__store_name {
+  font-weight: bold;
+}
+
+.product-list__store_town {
+  color: #bbb;
+  font-size: 12px;
+}
+
+.product-list__product_image {
+  padding: 6px;
+}
+
+.product-list__product_price {
+  background-color: red;
+  position: relative;
+  right: 18px;
+  top: 170px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: color($colors, secondary, base);
+  color: white;
+  font-size: 18px;
+}
+
+.product-list__product_price_container {
+  height: 0;
 }
