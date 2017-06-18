@@ -21,7 +21,6 @@ export class ProductService {
         })
       } else {
         product.image = 'http://lorempixel.com/800/533/';
-        // resolve(true)
         this.updateProduct(storeKey, productKey, product).then((data) => {
           resolve(true);
         })
@@ -62,8 +61,8 @@ export class ProductService {
     return this.database.list(`products/${storeKey}`)
   }
 
-  getProducts(): FirebaseListObservable<any> {
-    return this.database.list('recent-products');
+  getProducts(): FirebaseListObservable<Product[]> {
+    return this.database.list('recent-products').map((array) => array.reverse()) as FirebaseListObservable<Product[]>
   }
 
   // getProduct(productKey): Promise<any> {
