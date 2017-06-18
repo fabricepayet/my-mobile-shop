@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { Store } from '../../models/store.interface';
 import { ProductService } from '../../providers/product.service';
-import { LoadingController, Loading } from 'ionic-angular';
+import { LoadingController, Loading, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the ProductDetailPage page.
@@ -25,22 +25,65 @@ export class ProductDetailPage {
     private loading: LoadingController,
     private productService: ProductService,
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    private alertController: AlertController) {
   }
 
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     this.store = this.navParams.get('store');
+    console.log('ionViewWillLoad store', this.store);
+    console.log('ionViewWillLoad product', this.product);
   }
 
   deleteProduct() {
-    this.loader = this.loading.create({
-      content: 'Suppression du produit...'
-    })
-    this.loader.present();
-    this.productService.deleteProduct(this.product.$key, this.store.$key).then(() => {
-      this.loader.dismiss()
-      this.navCtrl.push('StoreDetailPage', {store: this.store})
-    })
+    let confirm = this.alertController.create({
+      title: 'Suppression article',
+      message: 'Êtes-vous sûr de vouloir supprimer cet article ?',
+      buttons: [
+        {
+          text: 'Annuler',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Supprimer',
+          handler: () => {
+            this.loader = this.loading.create({
+              content: 'Suppression du produit...'
+            })
+            this.loader.present();
+            this.productService.deleteProduct(this.product.$key, this.store.$key).then(() => {
+              this.loader.dismiss()
+              this.navCtrl.push('StoreDetailPage', {store: this.store})
+            })
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  reserve() {
+    let confirm = this.alertController.create({
+      title: 'Réservation article',
+      message: 'Êtes-vous sûr de vouloir réserver cet article ?',
+      buttons: [
+        {
+          text: 'Annuler',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Réserver',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 }

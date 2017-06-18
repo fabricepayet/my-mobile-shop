@@ -8,17 +8,36 @@ page-product-detail {
 
 .product-detail__content_header {
   display: flex;
+  align-items: center;
 }
 
 .product-detail__product_price {
   flex: none;
   padding: 6px;
   font-size: 20px;
+  background-color: color($colors, secondary, base);
+  color: white;
+  border-radius: 50%;
 }
 
 .product-detail__product_name {
-  flex: 1 1 auto;
-  padding: 6px;
   font-size: 22px;
   font-weight: bold;
+}
+
+.product-detail__product_name_container {
+  padding: 6px;
+  flex: 1 1 auto;
+}
+
+.product-detail__product_reserve_button {
+  margin-top: 12px;
+}
+
+.product-detail__product_store {
+  color: #69717d;
+}
+
+.product-detail__product_description {
+  padding-top: 12px;
 }

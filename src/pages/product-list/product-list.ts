@@ -43,8 +43,8 @@ export class ProductListPage {
     console.log('goto product', product);
     let store = product.store
     store.$key = product.storeKey
-    delete product.store
-    delete product.storeKey
+    // delete product.store
+    // delete product.storeKey
     this.navCtrl.push('ProductDetailPage', {
       store,
       product
