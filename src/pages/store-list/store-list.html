@@ -10,16 +10,15 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let store of storeList | async">
-    <ion-item>
-      <h2 class="store-list__title">{{store.name | uppercase}}</h2>
-      <h3><ion-icon name="home"></ion-icon> {{store.town}}</h3>
-    </ion-item>
-    <img src="{{store.image}}"/>
-    <ion-card-content>
-      <div class="store-list__action_block">
-        <button ion-button (click)="goToStore(store)" color="dark">Visitez la boutique</button>
+  <ion-list>
+    <ion-item *ngFor="let store of storeList | async" (click)="goToStore(store)">
+      <div item-start class="store-list__store_logo">
+        <img src="assets/icon/default-store.png" class="store-list__store_logo">
       </div>
-    </ion-card-content>
-  </ion-card>
+      <div class="store-list__store_name">{{store.name | uppercase}}</div>
+      <p class="store-list__store_town"><ion-icon name="home"></ion-icon>  {{store.town}}</p>
+      <p class="store-list__store_description">{{store.description}}</p>
+      <!-- <button ion-button clear item-end>Vitrine</button> -->
+    </ion-item>
+  </ion-list>
 </ion-content>

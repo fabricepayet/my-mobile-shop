@@ -10,18 +10,23 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-img width="100%" height="200" [src]="store.image"></ion-img>
+  <ion-img width="100%" height="200" [src]="store.image" class="store-detail__store_image"></ion-img>
+  <div class="store-detail__name_container">
+    <img class="store-detail__store_logo" src="assets/icon/default-store.png" alt="{{store.name}} logo">
+    <div class="store-detail__store_name">{{store.name | uppercase}}</div>
+  </div>
   <div class="store-detail__content_container">
-    <p><ion-icon name="home"></ion-icon> <span class="store-detail__town">{{store.town}}</span> {{store.address}}</p>
-    <br>
-    <p>{{store.description}}</p>
-    <h3 class="store-detail__title">Offres</h3>
     <ion-grid>
       <ion-row>
-        <ion-col col-6 *ngFor="let product of productList | async" (click)="goToProduct(product)">
-          <img [src]="product.image" alt="{{product.name}}">
-          <span>{{product.name}}</span>
-          <span class="store-list__product_price" right>{{product.price}} €</span>
+        <ion-col col-6 *ngFor="let product of productList | async" (click)="goToProduct(product)"
+        class="store-detail__product_container">
+          <div class="store-detail__product_inner">
+            <img [src]="product.image" alt="{{product.name}}" class="store-detail__product_image">
+            <div class="store-detail__product_name">
+              {{product.name}}
+            </div>
+            <div class="store-list__product_price" right>{{product.price}} €</div>
+          </div>
         </ion-col>
       </ion-row>
     </ion-grid>

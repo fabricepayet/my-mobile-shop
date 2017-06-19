@@ -15,7 +15,7 @@
   <ion-card *ngFor="let product of productList | async">
     <ion-card-content>
       <div *ngIf="product.store" class="product-list__store_container" (click)="gotoStore(product)">
-        <img height="40px" width="50px" [src]="product.store.image" alt="{{product.store.name}}" class="product-list__store_image">
+        <img class="product-list__store_logo" src="assets/icon/default-store.png" alt="{{product.store.name}}">
         <div class="product-list__store_info">
           <div class="product-list__store_name">
             {{product.store.name | uppercase}}

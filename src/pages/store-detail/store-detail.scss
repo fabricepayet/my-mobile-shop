@@ -15,19 +15,50 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
 }
 
 .store-list__product_price {
-  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
 }
 
 .store-detail__content_container {
   padding: 12px;
 }
 
-.store-detail__offers {
-
-}
-
 .store-detail__title {
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.store-detail__product_inner {
+  border: 1px solid #eaeaea;
+}
+
+.store-detail__name_container {
+  width: 148px;
+  height: 80px;
+  margin: auto;
+  position: relative;
+  bottom: 80px;
+  background-color: white;
+  text-align: center;
+  padding: 12px;
+}
+
+.store-detail__store_name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.store-detail__store_image {
+  height: 200px;
+  width: 100%;
+}
+
+.store-detail__product_image {
+  width: 100%;
+  min-height: 106px;
+}
+
+.store-detail__product_name {
+  text-align: center;
 }
