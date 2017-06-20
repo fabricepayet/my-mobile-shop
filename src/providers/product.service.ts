@@ -20,7 +20,6 @@ export class ProductService {
           })
         })
       } else {
-        product.image = 'http://lorempixel.com/800/533/';
         this.updateProduct(storeKey, productKey, product).then((data) => {
           resolve(true);
         })

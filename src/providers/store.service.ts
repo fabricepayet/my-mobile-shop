@@ -21,8 +21,6 @@ export class StoreService {
           })
         })
       } else {
-        store.image = 'http://lorempixel.com/800/533/';
-        // resolve(true)
         this.updateStore(newStoreKey, store).then((data) => {
           resolve(true);
         })
