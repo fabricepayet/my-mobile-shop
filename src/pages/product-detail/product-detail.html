@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>{{product.name | uppercase}}</ion-title>
+    <ion-title>{{store.name | uppercase}}: {{product.name | uppercase}}</ion-title>
     <ion-buttons right>
       <button ion-button icon-only (click)="deleteProduct()">
         <ion-icon name="ios-trash-outline"></ion-icon>
@@ -17,7 +17,9 @@
 
 
 <ion-content padding>
-  <ion-img width="100%" height="200" [src]="product.image"></ion-img>
+  <div class="product-detail__product_image_container">
+    <img class="product-detail__product_image" [src]="product.image"/>
+  </div>
   <div class="product-detail__content_container">
     <div class="product-detail__content_header">
       <div class="product-detail__product_name_container">

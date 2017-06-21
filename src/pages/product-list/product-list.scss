@@ -26,15 +26,16 @@
 }
 
 .product-list__product_image {
-  padding: 6px 12px;
   height: 220px;
+  margin: auto;
+  width: auto;
 }
 
 .product-list__product_price {
   background-color: red;
   position: relative;
-  right: 18px;
-  top: 156px;
+  right: 20px;
+  top: 180px;
   padding: 6px 12px;
   border-radius: 50%;
   background-color: color($colors, secondary, base);
@@ -44,4 +45,10 @@
 
 .product-list__product_price_container {
   height: 0;
+}
+
+.product-list__product_image_container {
+  background-color: #eaeaea;
+  padding: 6px 12px;
+  margin: 6px;
 }

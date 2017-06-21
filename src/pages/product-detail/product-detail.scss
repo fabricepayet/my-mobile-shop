@@ -41,3 +41,12 @@ page-product-detail {
 .product-detail__product_description {
   padding-top: 12px;
 }
+
+.product-detail__product_image {
+  max-height: 360px;
+}
+
+.product-detail__product_image_container {
+  background-color: #eaeaea;
+  text-align: center;
+}
