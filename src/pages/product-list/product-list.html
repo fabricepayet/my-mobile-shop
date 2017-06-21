@@ -25,14 +25,14 @@
           </div>
         </div>
       </div>
+      <div class="">
+        <div class="product-list__product_price_container" text-right>
+          <span class="product-list__product_price">{{product.price}}€</span>
+        </div>
+        <div class="product-list__product_image_container">
+          <img src="{{product.image}}" class="product-list__product_image" (click)="gotoProduct(product)"/>
+        </div>
+      </div>
     </ion-card-content>
-    <div class="">
-      <div class="product-list__product_price_container" text-right>
-        <span class="product-list__product_price">{{product.price}}€</span>
-      </div>
-      <div class="product-list__product_image_container">
-        <img src="{{product.image}}" class="product-list__product_image" (click)="gotoProduct(product)"/>
-      </div>
-    </div>
   </ion-card>
 </ion-content>
