@@ -14,7 +14,8 @@ import { LoadingController, Loading } from 'ionic-angular';
 export class AddStorePage {
 
   store = {} as Store;
-  private captureDataUrl: string;
+  private bannerData: string;
+  private logoData: string;
   private loader: Loading;
 
   constructor(
@@ -33,9 +34,15 @@ export class AddStorePage {
   addStore() {
     this.navCtrl.setRoot('StoreListPage')
     this.loader.present();
-    this.storeService.addStore(this.store, this.captureDataUrl).then(() => {
+    this.storeService.addStore(this.store, this.bannerData, this.logoData).then(() => {
       this.loader.dismiss()
       this.navCtrl.push('StoreListPage');
+    })
+  }
+
+  loadLogo() {
+    this.imageService.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY).then((imageData) => {
+      this.logoData = imageData;
     })
   }
 
@@ -47,7 +54,7 @@ export class AddStorePage {
           text: 'Depuis la Gallerie',
           handler: () => {
             this.imageService.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY).then((imageData) => {
-              this.captureDataUrl = imageData;
+              this.bannerData = imageData;
             })
           }
         },
@@ -55,7 +62,7 @@ export class AddStorePage {
           text: 'Utiliser la Camera',
           handler: () => {
             this.imageService.takePicture(this.camera.PictureSourceType.CAMERA).then((imageData) => {
-              this.captureDataUrl = imageData;
+              this.bannerData = imageData;
             })
           }
         },

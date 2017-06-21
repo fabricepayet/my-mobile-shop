@@ -30,9 +30,11 @@
               Description
             </ion-label>
             <ion-textarea [(ngModel)]="store.description" name="description" #description="ngModel" required>
-
             </ion-textarea>
           </ion-item>
+          <div padding *ngIf="description.invalid && description.dirty">
+            <span class="global__input-error">La description de la boutique doit faire minimum 120 caractères.</span>
+          </div>
 
           <ion-item>
             <ion-label>Ville</ion-label>
@@ -46,13 +48,14 @@
           </ion-item>
 
           <ion-item>
-            <button ion-button (click)="takePhoto()" *ngIf="!captureDataUrl">Ajouter une photo</button>
-            <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
+            <button ion-button (click)="takePhoto()" *ngIf="!bannerData">Ajouter une bannière</button>
+            <img [src]="bannerData" *ngIf="bannerData"/>
           </ion-item>
 
-          <div padding *ngIf="description.invalid && description.dirty">
-            <span class="global__input-error">La description de la boutique doit faire minimum 120 caractères.</span>
-          </div>
+          <ion-item>
+            <button ion-button (click)="loadLogo()" *ngIf="!logoData">Charger logo</button>
+            <img [src]="logoData" *ngIf="logoData"/>
+          </ion-item>
 
         </ion-card-content>
       <ion-row class="register-form__button">

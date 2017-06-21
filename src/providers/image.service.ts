@@ -29,17 +29,21 @@ export class ImageService {
     })
   }
 
-  uploadImage(imageStr: string, captureDataUrl: string): Promise<any> {
+  uploadImage(imageStr: string, imageData: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      let storageRef = firebase.storage().ref();
-      const imageRef = storageRef.child(imageStr);
-      let parseUpload = imageRef.putString(captureDataUrl, firebase.storage.StringFormat.DATA_URL);
-      parseUpload.on('state_changed', (_snapshot) => {
-      }, (err) => {
-        reject(err);
-      }, () => {
-        resolve(parseUpload.snapshot);
-      })
+      if(imageData) {
+        let storageRef = firebase.storage().ref();
+        const imageRef = storageRef.child(imageStr);
+        let parseUpload = imageRef.putString(imageData, firebase.storage.StringFormat.DATA_URL);
+        parseUpload.on('state_changed', (_snapshot) => {
+        }, (err) => {
+          reject(err);
+        }, () => {
+          resolve(parseUpload.snapshot);
+        })
+      } else {
+        resolve();
+      }
     })
   }
 }

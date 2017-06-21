@@ -8,5 +8,6 @@ export interface Store {
   },
   town?: string,
   address?: string,
-  image?: string
+  image?: string,
+  logo?: string
 }

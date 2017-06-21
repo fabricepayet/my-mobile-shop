@@ -11,22 +11,24 @@ export class StoreService {
 
   }
 
-  addStore(store: Store, captureData: string): Promise<any> {
+  addStore(store: Store, bannerData: string, logoData: string): Promise<any> {
     return new Promise((resolve, reject) => {
       let newStoreKey = this.database.list(`stores`).push({}).key;
-      if(captureData) {
-        let imgSrc = `images/stores/${newStoreKey}/${Date.now()}.jpg`;
-        this.imageService.uploadImage(imgSrc, captureData).then((snapshot: any) => {
+      let bannerSrc = `images/stores/${newStoreKey}/banner.jpg`;
+      this.imageService.uploadImage(bannerSrc, bannerData).then((snapshot: any) => {
+        if (snapshot) {
           store.image = snapshot.downloadURL;
+        }
+        let logoSrc = `images/stores/${newStoreKey}/logo.jpg`;
+        this.imageService.uploadImage(logoSrc, logoData).then((snapshot: any) => {
+          if (snapshot) {
+            store.logo = snapshot.downloadURL;
+          }
           this.updateStore(newStoreKey, store).then((data) => {
             resolve(true);
           })
         })
-      } else {
-        this.updateStore(newStoreKey, store).then((data) => {
-          resolve(true);
-        })
-      }
+      })
     })
   }
 

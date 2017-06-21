@@ -12,7 +12,8 @@
 <ion-content padding>
   <ion-img width="100%" height="200" [src]="store.image" class="store-detail__store_image"></ion-img>
   <div class="store-detail__name_container">
-    <img class="store-detail__store_logo" src="assets/icon/default-store.png" alt="{{store.name}} logo">
+    <img class="store-detail__store_logo" *ngIf="!store.logo" src="assets/icon/default-store.png" alt="{{store.name}} logo">
+    <img class="store-detail__store_logo" *ngIf="store.logo" [src]="store.logo" alt="{{store.name}} logo">
     <div class="store-detail__store_name">{{store.name | uppercase}}</div>
   </div>
   <div class="store-detail__content_container">
