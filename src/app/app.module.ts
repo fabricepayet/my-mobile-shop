@@ -9,7 +9,9 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 import { MyApp } from './app.component';
 import { StoreService } from '../providers/store.service';
 import { ImageService } from '../providers/image.service';
+import { AuthService } from '../providers/auth.service';
 import { ProductService } from '../providers/product.service';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Camera } from '@ionic-native/camera';
 
 @NgModule({
@@ -20,6 +22,7 @@ import { Camera } from '@ionic-native/camera';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
@@ -33,7 +36,8 @@ import { Camera } from '@ionic-native/camera';
     StoreService,
     ProductService,
     Camera,
-    ImageService
+    ImageService,
+    AuthService
   ]
 })
 export class AppModule {}
