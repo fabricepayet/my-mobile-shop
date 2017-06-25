@@ -35,19 +35,13 @@ export class ProductListPage {
     let store = product.store
     store.$key = product.storeKey
     this.navCtrl.push('StoreDetailPage', {store})
-    // this.storeService.getStore(storeKey).then((store) => {
-    // })
   }
 
   gotoProduct(product) {
-    console.log('goto product', product);
     let store = product.store
-    store.$key = product.storeKey
-    // delete product.store
-    // delete product.storeKey
+    delete product.store;
     this.navCtrl.push('ProductDetailPage', {
-      store,
-      product
+      store, product
     })
   }
 }

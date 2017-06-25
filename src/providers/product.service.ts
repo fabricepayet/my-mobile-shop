@@ -10,6 +10,7 @@ export class ProductService {
   }
 
   addProduct(storeKey: string, product: Product, captureData: string): Promise<any> {
+    console.log('addProduct', storeKey, product);
     product.timestamp = Date.now();
     return new Promise ((resolve, reject) => {
       let productKey = this.database.list(`/products/${storeKey}`).push({}).key;
@@ -32,11 +33,12 @@ export class ProductService {
   updateProduct(storeKey: string, productKey: string, product: Product) {
     var updates = {};
     updates['/products/' + storeKey + '/' + productKey] = product;
-    let recentProduct = product;
+    product.storeKey = storeKey;
+    let updatedProduct = product;
     return firebase.database().ref('/stores/' + storeKey).once('value').then(function(snapshot) {
-      recentProduct.store = snapshot.val();
-      recentProduct.storeKey = storeKey;
-      updates['/recent-products/' + productKey] = recentProduct;
+      // updatedProduct.$key = productKey;
+      updatedProduct.store = snapshot.val();
+      updates['/recent-products/' + productKey] = updatedProduct;
       return firebase.database().ref().update(updates);
     });
 

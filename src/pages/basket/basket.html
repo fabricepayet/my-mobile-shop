@@ -10,10 +10,19 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <div class="basket__backet_container">
     <div class="basket__title">Articles réservés</div>
-    Vous n'avez pas encore de réservation.
+    <ion-list>
+      <ion-item *ngFor='let reservation of reservationList | async' (click)="gotoProduct(reservation.product)">
+        <div item-start>
+          <img src="{{reservation.product.image}}" height="80px" width="80px">
+        </div>
+        <div>{{reservation.product.name}}</div>
+      </ion-item>
+    </ion-list>
+    <span *ngIf='(reservationList | async)?.length === 0'>
+      Vous n'avez pas encore de réservation.
+    </span>
   </div>
 </ion-content>

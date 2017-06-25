@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ReservationService } from '../../providers/reservation.service';
+import { FirebaseListObservable } from 'angularfire2/database';
+import { Reservation } from '../../models/reservation.interface';
+import { AuthService } from '../../providers/auth.service';
 
 /**
  * Generated class for the BasketPage page.
@@ -14,11 +18,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class BasketPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private reservationList: FirebaseListObservable<Reservation[]>;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private reservationService: ReservationService,
+    private authService: AuthService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BasketPage');
+  ionViewWillLoad() {
+    this.authService.getAuthentificateUser().subscribe((user) => {
+      this.reservationList = this.reservationService.getReservationsForUser(user.uid);
+    })
   }
 
 }

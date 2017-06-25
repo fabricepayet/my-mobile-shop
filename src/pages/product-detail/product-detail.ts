@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { Store } from '../../models/store.interface';
 import { ProductService } from '../../providers/product.service';
+import { ReservationService } from '../../providers/reservation.service';
 import { LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
 
 /**
@@ -27,14 +28,13 @@ export class ProductDetailPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private alertController: AlertController,
-    private toastController: ToastController) {
+    private toastController: ToastController,
+    private reservationService: ReservationService) {
   }
 
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     this.store = this.navParams.get('store');
-    console.log('ionViewWillLoad store', this.store);
-    console.log('ionViewWillLoad product', this.product);
   }
 
   deleteProduct() {
@@ -80,10 +80,14 @@ export class ProductDetailPage {
         {
           text: 'Réserver',
           handler: () => {
-            this.toastController.create({
-              message: 'Super ! Votre réservation a bien été enregistrée.',
-              duration: 3000
-            }).present()
+            this.reservationService.createReservation(this.store, this.product)
+            .then(() => {
+              this.toastController.create({
+                message: 'Super ! Votre réservation a bien été enregistrée.',
+                duration: 3000
+              }).present()
+              this.navCtrl.push('BasketPage');
+            })
           }
         }
       ]

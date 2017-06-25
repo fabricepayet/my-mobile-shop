@@ -8,6 +8,6 @@ export interface Product {
   $key?: string,
   image?: string,
   timestamp?: number,
-  storeKey: string,
-  store?: Store
+  store?: Store,
+  storeKey?: string
 }

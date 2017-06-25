@@ -11,6 +11,7 @@ import { StoreService } from '../providers/store.service';
 import { ImageService } from '../providers/image.service';
 import { AuthService } from '../providers/auth.service';
 import { ProductService } from '../providers/product.service';
+import { ReservationService } from '../providers/reservation.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Camera } from '@ionic-native/camera';
 
@@ -37,7 +38,8 @@ import { Camera } from '@ionic-native/camera';
     ProductService,
     Camera,
     ImageService,
-    AuthService
+    AuthService,
+    ReservationService
   ]
 })
 export class AppModule {}
