@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>FriendShop</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="reservation__backet_container">
+    <div class="reservation__title">Réservations en cours ({{(reservationList | async)?.length}}) </div>
+    <ion-list>
+      <ion-item *ngFor='let reservation of reservationList | async' (click)="gotoProduct(reservation.product, reservation.store)">
+        <div item-start class="reservation__image_container">
+          <img class="reservation__image" src="{{reservation.product.image}}">
+        </div>
+        <div class="reservation__product_name">{{reservation.product.name}}</div>
+        <div class="reservation__store_info">
+          <ion-icon name="home"></ion-icon> <span class="reservation__store_name">{{reservation.store.name}}</span>, {{reservation.store.town}}
+        </div>
+        <div>
+          {{reservation.product.price}}€
+        </div>
+      </ion-item>
+    </ion-list>
+    <span *ngIf='(reservationList | async)?.length === 0'>
+      Vous n'avez pas encore de réservation.
+    </span>
+  </div>
+</ion-content>

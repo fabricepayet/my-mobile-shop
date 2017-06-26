@@ -5,6 +5,7 @@ import { FirebaseListObservable } from 'angularfire2/database';
 import { Store } from '../models/store.interface';
 import { Product } from '../models/product.interface';
 import { Reservation } from '../models/reservation.interface';
+import firebase from 'firebase';
 
 @Injectable()
 export class ReservationService {
@@ -33,5 +34,14 @@ export class ReservationService {
 
   getReservationsForUser(userUid): FirebaseListObservable<Reservation[]> {
     return this.database.list(`/user-reservations/${userUid}/`);
+  }
+
+  getReservationForProductForCurrentUser(productUid) {
+    var userId = firebase.auth().currentUser.uid;
+    console.log('getReservationForProductForCurrentUser', userId, productUid);
+    return firebase.database().ref(`/user-reservations/${userId}/${productUid}`)
+    .once('value').then(function(snapshot) {
+      console.log('Snapshot', snapshot.val())
+    });
   }
 }

@@ -1,0 +1,36 @@
+.reservation__backet_container {
+  padding: 12px;
+}
+
+.reservation__title {
+  margin: 12px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.reservation__product_name {
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+.reservation__image {
+  max-width: 80px;
+  max-height: 80px;
+  margin: auto;
+}
+
+.reservation__store_info {
+  color: color($colors, town, base);
+}
+
+.reservation__store_name {
+  text-transform: uppercase;
+}
+
+.reservation__image_container {
+  width: 80px;
+  background-color: #eaeaea;
+  text-align: center;
+  vertical-align: baseline;
+}

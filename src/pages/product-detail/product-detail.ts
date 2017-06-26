@@ -21,6 +21,7 @@ export class ProductDetailPage {
   product: Product;
   store: Store;
   private loader: Loading;
+  private isReserved: string;
 
   constructor(
     private loading: LoadingController,
@@ -35,6 +36,9 @@ export class ProductDetailPage {
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     this.store = this.navParams.get('store');
+    this.reservationService.getReservationForProductForCurrentUser(this.product.$key).then((isReserved) => {
+      this.isReserved = isReserved;
+    })
   }
 
   deleteProduct() {
@@ -86,7 +90,7 @@ export class ProductDetailPage {
                 message: 'Super ! Votre réservation a bien été enregistrée.',
                 duration: 3000
               }).present()
-              this.navCtrl.push('BasketPage');
+              this.navCtrl.push('ReservationPage');
             })
           }
         }

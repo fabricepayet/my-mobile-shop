@@ -5,18 +5,12 @@ import { FirebaseListObservable } from 'angularfire2/database';
 import { Reservation } from '../../models/reservation.interface';
 import { AuthService } from '../../providers/auth.service';
 
-/**
- * Generated class for the BasketPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
-  selector: 'page-basket',
-  templateUrl: 'basket.html',
+  selector: 'page-reservation',
+  templateUrl: 'reservation.html',
 })
-export class BasketPage {
+export class ReservationPage {
 
   private reservationList: FirebaseListObservable<Reservation[]>;
 
@@ -30,6 +24,12 @@ export class BasketPage {
   ionViewWillLoad() {
     this.authService.getAuthentificateUser().subscribe((user) => {
       this.reservationList = this.reservationService.getReservationsForUser(user.uid);
+    })
+  }
+
+  gotoProduct(product, store) {
+    this.navCtrl.push('ProductDetailPage', {
+      store, product
     })
   }
 
