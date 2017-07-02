@@ -24,12 +24,13 @@ export class ReservationPage {
   ionViewWillLoad() {
     this.authService.getAuthentificateUser().subscribe((user) => {
       this.reservationList = this.reservationService.getReservationsForUser(user.uid);
+      console.log('this.reservationList', this.reservationList)
     })
   }
 
-  gotoProduct(product, store) {
+  gotoProduct(productId, product, store) {
     this.navCtrl.push('ProductDetailPage', {
-      store, product
+      productId, store, product
     })
   }
 

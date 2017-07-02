@@ -6,6 +6,9 @@
 -->
 <ion-header>
   <ion-navbar color="primary">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
     <ion-title>{{store.name | uppercase}}: {{product.name | uppercase}}</ion-title>
     <ion-buttons right>
       <button ion-button icon-only (click)="deleteProduct()">
@@ -29,6 +32,9 @@
       <div class="product-detail__product_price">{{product.price}}€</div>
     </div>
     <div class="product-detail__product_description">{{product.description}}</div>
-    <button class="product-detail__product_reserve_button" ion-button block (click)="reserve()">Réserver cet article</button>
+    <button *ngIf="!currentReservation" class="product-detail__product_reserve_button" ion-button block (click)="reserve()">Réserver cet article</button>
+    <div *ngIf="currentReservation" class="product-detail__is_reserved">
+      <span>Vous avez réservé cet article</span>
+    </div>
   </div>
 </ion-content>

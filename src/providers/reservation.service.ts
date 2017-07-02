@@ -1,7 +1,7 @@
 import  { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from './auth.service';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Store } from '../models/store.interface';
 import { Product } from '../models/product.interface';
 import { Reservation } from '../models/reservation.interface';
@@ -38,10 +38,11 @@ export class ReservationService {
 
   getReservationForProductForCurrentUser(productUid) {
     var userId = firebase.auth().currentUser.uid;
-    console.log('getReservationForProductForCurrentUser', userId, productUid);
-    return firebase.database().ref(`/user-reservations/${userId}/${productUid}`)
-    .once('value').then(function(snapshot) {
-      console.log('Snapshot', snapshot.val())
-    });
+    console.log('userId', userId);
+    console.log('productUid', productUid);
+    this.database.object(`/user-reservations/${userId}/${productUid}`, {preserveSnapshot: true})
+    .subscribe(snapshot => {
+      console.log('snapshot', snapshot.val())
+    })
   }
 }

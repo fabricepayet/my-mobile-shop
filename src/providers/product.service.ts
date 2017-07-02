@@ -31,12 +31,13 @@ export class ProductService {
   }
 
   updateProduct(storeKey: string, productKey: string, product: Product) {
+    console.log('updateProduct', storeKey, productKey, product);
     var updates = {};
     updates['/products/' + storeKey + '/' + productKey] = product;
     product.storeKey = storeKey;
     let updatedProduct = product;
     return firebase.database().ref('/stores/' + storeKey).once('value').then(function(snapshot) {
-      // updatedProduct.$key = productKey;
+      updatedProduct.$key = productKey;
       updatedProduct.store = snapshot.val();
       updates['/recent-products/' + productKey] = updatedProduct;
       return firebase.database().ref().update(updates);

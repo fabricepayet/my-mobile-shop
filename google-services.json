@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "863575710520",
+    "firebase_url": "https://instashop-38538.firebaseio.com",
+    "project_id": "instashop-38538",
+    "storage_bucket": "instashop-38538.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863575710520:android:d3be84613ef8f0ba",
+        "android_client_info": {
+          "package_name": "com.friendshop.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863575710520-7e79nkhk3375dn64acamgn51do302us3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_dp6DsZkTPevhuP0DX3JS2-FfjuP74v4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

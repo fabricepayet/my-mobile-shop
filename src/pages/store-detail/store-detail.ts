@@ -50,7 +50,6 @@ export class StoreDetailPage {
   }
 
   goToProduct(product: Product) {
-    console.log('goToProduct storeUid', this.store.$key)
     this.navCtrl.push('ProductDetailPage', {
       product: product,
       store: this.store

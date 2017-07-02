@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../providers/auth.service';
@@ -10,8 +10,15 @@ import { AuthService } from '../providers/auth.service';
 export class MyApp {
   rootPage:string = 'LoginPage';
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private auth: AuthService) {
-    this.auth.getAuthentificateUser().subscribe(auth => {
+  constructor(
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    private authService: AuthService,
+    private menuController: MenuController
+  ) {
+    this.authService.getAuthentificateUser().subscribe(auth => {
+      console.debug('>>>>>>>>>>>>>>>>>>AUTH', auth);
       !auth ? this.rootPage = 'LoginPage' : this.rootPage = 'TabsPage';
     })
     platform.ready().then(() => {
@@ -20,5 +27,20 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+  openPage(page) {
+    // console.log('OpenPage!!');
+    // close the menu when clicking a link from the menu
+    this.menuController.close();
+    // this.navController.push(page.component)
+    // navigate to the new page if it is not the current page
+    // let nav = this.app.get('nav');
+    // nav.setRoot(page.component);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.menuController.close();
   }
 }

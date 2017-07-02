@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { Store } from '../../models/store.interface';
+import { FirebaseObjectObservable } from 'angularfire2/database';
+import { Reservation } from '../../models/reservation.interface';
 import { ProductService } from '../../providers/product.service';
 import { ReservationService } from '../../providers/reservation.service';
 import { LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
@@ -21,7 +23,7 @@ export class ProductDetailPage {
   product: Product;
   store: Store;
   private loader: Loading;
-  private isReserved: string;
+  private currentReservation: FirebaseObjectObservable<Reservation>;
 
   constructor(
     private loading: LoadingController,
@@ -36,9 +38,12 @@ export class ProductDetailPage {
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     this.store = this.navParams.get('store');
-    this.reservationService.getReservationForProductForCurrentUser(this.product.$key).then((isReserved) => {
-      this.isReserved = isReserved;
-    })
+    this.reservationService.getReservationForProductForCurrentUser(this.product.$key)
+    // .subscribe(snapshot => {
+    //   console.log('snapshot.val()', snapshot.val())
+    //   this.currentReservation = snapshot.val()
+    //   console.log('currentReservation', this.currentReservation);
+    // });
   }
 
   deleteProduct() {

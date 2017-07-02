@@ -1,12 +1,15 @@
 <ion-header>
   <ion-navbar color="primary">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
     <ion-title>FriendShop</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div class="reservation__backet_container">
-    <div class="reservation__title">Réservations en cours ({{(reservationList | async)?.length}}) </div>
+    <div class="reservation__title">Réservations en cours</div>
     <ion-list>
       <ion-item *ngFor='let reservation of reservationList | async' (click)="gotoProduct(reservation.product, reservation.store)">
         <div item-start class="reservation__image_container">

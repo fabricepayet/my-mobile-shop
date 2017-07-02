@@ -1,1 +1,25 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="openPage(homePage)">
+        Home
+      </button>
+      <button ion-item (click)="openPage(friendsPage)">
+        Friends
+      </button>
+      <button ion-item (click)="logout()">
+        Se déconnecter
+      </button>
+      <button ion-item (click)="closeMenu()">
+        Fermer le menu
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
