@@ -9,24 +9,24 @@ import firebase from 'firebase';
 
 @Injectable()
 export class ReservationService {
-  currentUser = null;
-
   constructor(
     private database: AngularFireDatabase,
     private authService: AuthService) {
   }
 
-  async createReservation(product: Product, store: Store) {
-      this.authService.getAuthentificateUser().subscribe((user) => {
+  async createUserReservation(product: Product) {
+    var userId = firebase.auth().currentUser.uid;
+    this.database.object(`/stores/${product.storeRef}`, {preserveSnapshot: true})
+    .subscribe(snapshot => {
       let reservation = {
-        user: user.uid,
+        user: userId,
         product: product,
-        store: store,
+        store: snapshot.val(),
         state: 'pending',
         productRef: product.$key,
-        storeRef: store.$key
+        storeRef: product.storeRef
       }
-      this.database.object(`/user-reservations/${user.uid}/${product.$key}`)
+      this.database.object(`/user-reservations/${userId}/${product.$key}`)
       .set(reservation)
     })
   }

@@ -9,7 +9,7 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>{{store.name | uppercase}}: {{product.name | uppercase}}</ion-title>
+    <ion-title>{{(store | async)?.name | uppercase}}: {{product.name | uppercase}}</ion-title>
     <ion-buttons right>
       <button ion-button icon-only (click)="deleteProduct()">
         <ion-icon name="ios-trash-outline"></ion-icon>
@@ -27,7 +27,7 @@
       <div class="product-detail__product_name_container">
         <div class="product-detail__product_name">{{product.name}}</div>
         <div class="product-detail__product_store" (click)="visitStore()">
-          <ion-icon name="home"></ion-icon> {{store.name | uppercase}}, {{store.town}}
+          <ion-icon name="home"></ion-icon> {{(store | async)?.name | uppercase}}, {{(store | async)?.town}}
         </div>
       </div>
       <div class="product-detail__product_price">{{product.price}}€</div>

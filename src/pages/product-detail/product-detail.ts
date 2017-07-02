@@ -21,7 +21,7 @@ import { LoadingController, Loading, AlertController, ToastController } from 'io
 })
 export class ProductDetailPage {
   product: Product;
-  store: Store;
+  store: FirebaseObjectObservable<Store>;
   private loader: Loading;
   private currentReservation: FirebaseObjectObservable<Reservation>;
 
@@ -37,7 +37,7 @@ export class ProductDetailPage {
 
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
-    this.store = this.navParams.get('store');
+    this.store = this.productService.getRelatedStore(this.product);
     this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
   }
 
@@ -59,7 +59,7 @@ export class ProductDetailPage {
               content: 'Suppression du produit...'
             })
             this.loader.present();
-            this.productService.deleteProduct(this.product.$key, this.store.$key).then(() => {
+            this.productService.deleteProduct(this.product).then(() => {
               this.loader.dismiss()
               this.navCtrl.push('StoreDetailPage', {store: this.store})
             })
@@ -84,7 +84,7 @@ export class ProductDetailPage {
         {
           text: 'Réserver',
           handler: () => {
-            this.reservationService.createReservation(this.product, this.store)
+            this.reservationService.createUserReservation(this.product)
             .then(() => {
               this.toastController.create({
                 message: 'Super ! Votre réservation a bien été enregistrée.',

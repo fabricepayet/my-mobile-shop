@@ -10,48 +10,32 @@ export class ProductService {
   }
 
   addProduct(storeKey: string, product: Product, captureData: string): Promise<any> {
-    console.log('addProduct', storeKey, product);
     product.timestamp = Date.now();
-    return new Promise ((resolve, reject) => {
-      let productKey = this.database.list(`/products/${storeKey}`).push({}).key;
-      if(captureData) {
-        let imgSrc = `images/stores/${storeKey}/products/${productKey}/${Date.now()}.jpg`;
-        this.imageService.uploadImage(imgSrc, captureData).then((snapshot: any) => {
-          product.image = snapshot.downloadURL;
-          this.updateProduct(storeKey, productKey, product).then((data) => {
-            resolve(true);
-          })
-        })
-      } else {
-        this.updateProduct(storeKey, productKey, product).then((data) => {
-          resolve(true);
-        })
-      }
-    })
+    let productKey = this.database.list(`/products/${storeKey}`).push({}).key;
+    if(captureData) {
+      let imgSrc = `images/stores/${storeKey}/products/${productKey}/${Date.now()}.jpg`;
+      this.imageService.uploadImage(imgSrc, captureData).then((snapshot: any) => {
+        product.image = snapshot.downloadURL;
+        return this.updateProduct(storeKey, productKey, product)
+      })
+    } else {
+      return this.updateProduct(storeKey, productKey, product)
+    }
   }
 
-  updateProduct(storeKey: string, productKey: string, product: Product) {
-    console.log('updateProduct', storeKey, productKey, product);
-    var updates = {};
-    updates['/products/' + storeKey + '/' + productKey] = product;
+  updateProduct(storeKey: string, productKey: string, product: Product): Promise<void> {
     product.storeRef = storeKey;
-    let updatedProduct = product;
-    return firebase.database().ref('/stores/' + storeKey).once('value').then(function(snapshot) {
-      updatedProduct.store = snapshot.val();
-      updates['/recent-products/' + productKey] = updatedProduct;
-      return firebase.database().ref().update(updates);
-    });
-
+    return this.database.object(`/products/${storeKey}/${productKey}`).set(product) as Promise<void>
   }
 
-  deleteProduct(productKey: string, storeKey: string) {
+  deleteProduct(product: Product) {
     return new Promise((resolve, reject) => {
       //delete data
-      let removeRef = firebase.database().ref(`products/${storeKey}`).child(productKey);
+      let removeRef = firebase.database().ref(`products/${product.storeRef}`).child(product.$key);
       removeRef.remove()
       // delete image
       let storageRef = firebase.storage().ref();
-      var imageRef = storageRef.child(`images/stores/${storeKey}/products/${productKey}.jpg`);
+      var imageRef = storageRef.child(`images/stores/${product.storeRef}/products/${product.$key}.jpg`);
       imageRef.delete().then(function() {
         resolve(true)
       }).catch(function(error) {
@@ -66,5 +50,9 @@ export class ProductService {
 
   getProducts(): FirebaseListObservable<Product[]> {
     return this.database.list('recent-products').map((array) => array.reverse()) as FirebaseListObservable<Product[]>
+  }
+
+  getRelatedStore(product) {
+    return this.database.object(`/stores/${product.storeRef}`)
   }
 }
