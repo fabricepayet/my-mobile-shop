@@ -9,5 +9,5 @@ export interface Product {
   image?: string,
   timestamp?: number,
   store?: Store,
-  storeKey?: string
+  storeRef: string
 }

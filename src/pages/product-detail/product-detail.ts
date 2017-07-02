@@ -38,12 +38,7 @@ export class ProductDetailPage {
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     this.store = this.navParams.get('store');
-    this.reservationService.getReservationForProductForCurrentUser(this.product.$key)
-    // .subscribe(snapshot => {
-    //   console.log('snapshot.val()', snapshot.val())
-    //   this.currentReservation = snapshot.val()
-    //   console.log('currentReservation', this.currentReservation);
-    // });
+    this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
   }
 
   deleteProduct() {
@@ -89,7 +84,7 @@ export class ProductDetailPage {
         {
           text: 'Réserver',
           handler: () => {
-            this.reservationService.createReservation(this.store, this.product)
+            this.reservationService.createReservation(this.product, this.store)
             .then(() => {
               this.toastController.create({
                 message: 'Super ! Votre réservation a bien été enregistrée.',

@@ -4,5 +4,8 @@ import { Product } from './product.interface';
 export interface Reservation {
   user_uid: string,
   product: Product,
-  store: Store
+  store: Store,
+  state?: string
+  productRef: string,
+  storeRef: string
 }

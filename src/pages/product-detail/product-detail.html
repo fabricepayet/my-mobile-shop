@@ -18,7 +18,6 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <div class="product-detail__product_image_container">
     <img class="product-detail__product_image" [src]="product.image"/>
@@ -27,13 +26,15 @@
     <div class="product-detail__content_header">
       <div class="product-detail__product_name_container">
         <div class="product-detail__product_name">{{product.name}}</div>
-        <div class="product-detail__product_store" (click)="visitStore()"><ion-icon name="home"></ion-icon> {{store.name | uppercase}}, {{store.town}}</div>
+        <div class="product-detail__product_store" (click)="visitStore()">
+          <ion-icon name="home"></ion-icon> {{store.name | uppercase}}, {{store.town}}
+        </div>
       </div>
       <div class="product-detail__product_price">{{product.price}}€</div>
     </div>
     <div class="product-detail__product_description">{{product.description}}</div>
-    <button *ngIf="!currentReservation" class="product-detail__product_reserve_button" ion-button block (click)="reserve()">Réserver cet article</button>
-    <div *ngIf="currentReservation" class="product-detail__is_reserved">
+    <button *ngIf="!(currentReservation | async)?.productRef" class="product-detail__product_reserve_button" ion-button block (click)="reserve()">Réserver cet article</button>
+    <div *ngIf="(currentReservation | async)?.productRef" class="product-detail__is_reserved">
       <span>Vous avez réservé cet article</span>
     </div>
   </div>

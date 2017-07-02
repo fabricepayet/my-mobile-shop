@@ -11,7 +11,7 @@
   <div class="reservation__backet_container">
     <div class="reservation__title">Réservations en cours</div>
     <ion-list>
-      <ion-item *ngFor='let reservation of reservationList | async' (click)="gotoProduct(reservation.product, reservation.store)">
+      <ion-item *ngFor='let reservation of reservationList | async' (click)="gotoProduct(reservation)">
         <div item-start class="reservation__image_container">
           <img class="reservation__image" src="{{reservation.product.image}}">
         </div>

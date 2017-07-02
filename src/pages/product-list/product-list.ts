@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Product } from '../../models/product.interface';
+import { Store } from '../../models/store.interface';
 import { ProductService } from '../../providers/product.service';
 import { StoreService } from '../../providers/store.service';
 
@@ -32,8 +33,8 @@ export class ProductListPage {
   }
 
   gotoStore(product) {
-    let store = product.store
-    store.$key = product.storeKey
+    let store: Store = product.store
+    store.$key = product.storeRef
     this.navCtrl.push('StoreDetailPage', {store})
   }
 

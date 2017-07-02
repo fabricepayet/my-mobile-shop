@@ -16,33 +16,28 @@ export class ReservationService {
     private authService: AuthService) {
   }
 
-  async createReservation(store: Store, product: Product): Promise<any> {
-    return new Promise((resolve, reject) => {
+  async createReservation(product: Product, store: Store) {
       this.authService.getAuthentificateUser().subscribe((user) => {
-        let reservation = {
-          user: user.uid,
-          product: product,
-          store: store
-        }
-        this.database.list(`/user-reservations/${user.uid}/`).push(reservation)
-        this.database.list(`/reservations/${product.$key}/current/`).push(reservation)
-        this.database.list(`/reservations/${product.$key}/all/`).push(reservation)
-        resolve()
-      })
+      let reservation = {
+        user: user.uid,
+        product: product,
+        store: store,
+        state: 'pending',
+        productRef: product.$key,
+        storeRef: store.$key
+      }
+      this.database.object(`/user-reservations/${user.uid}/${product.$key}`)
+      .set(reservation)
     })
   }
 
-  getReservationsForUser(userUid): FirebaseListObservable<Reservation[]> {
-    return this.database.list(`/user-reservations/${userUid}/`);
-  }
-
-  getReservationForProductForCurrentUser(productUid) {
+  getReservationsForCurrentUser(): FirebaseListObservable<Reservation[]> {
     var userId = firebase.auth().currentUser.uid;
-    console.log('userId', userId);
-    console.log('productUid', productUid);
-    this.database.object(`/user-reservations/${userId}/${productUid}`, {preserveSnapshot: true})
-    .subscribe(snapshot => {
-      console.log('snapshot', snapshot.val())
-    })
+    return this.database.list(`/user-reservations/${userId}/`);
+  }
+
+  getReservationForProductForCurrentUser(product) {
+    var userId = firebase.auth().currentUser.uid;
+    return this.database.object(`/user-reservations/${userId}/${product.$key}/`)
   }
 }
