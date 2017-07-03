@@ -23,15 +23,15 @@
           </div>
 
           <ion-item>
-            <ion-label floating>
-              Description
-            </ion-label>
-            <ion-textarea [(ngModel)]="shop.description" name="description" #description="ngModel" required>
-            </ion-textarea>
+            <ion-label>Secteur</ion-label>
+            <ion-select [(ngModel)]="shop.activity" name="activity">
+              <ion-option value="Vêtement de soirée" selected=true>Vêtement de soirée</ion-option>
+              <ion-option value="Vêtement de ville">Vêtement de ville</ion-option>
+              <ion-option value="Chaussures">Chaussures</ion-option>
+              <ion-option value="Bijoux">Bijoux</ion-option>
+              <ion-option value="Maroquinerie">Maroquinerie</ion-option>
+            </ion-select>
           </ion-item>
-          <div padding *ngIf="description.invalid && description.dirty">
-            <span class="global__input-error">La description de la boutique doit faire minimum 120 caractères.</span>
-          </div>
 
           <ion-item>
             <ion-label>Ville</ion-label>

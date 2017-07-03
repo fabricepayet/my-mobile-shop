@@ -9,7 +9,7 @@ export class ProductService {
   constructor(private database: AngularFireDatabase, private imageService: ImageService) {
   }
 
-  addProduct(product: Product, captureData: string) {
+  async addProduct(product: Product, captureData: string) {
     product.timestamp = Date.now();
     let nextProductKey = this.database.list(`/products/${product.shopRef}`).push({}).key;
     if(captureData) {

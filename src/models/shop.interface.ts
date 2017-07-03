@@ -1,7 +1,7 @@
 export interface Shop {
   $key?: string,
   name: string,
-  description: string,
+  activity: string,
   localisation?: {
     lat: number,
     lng: number
