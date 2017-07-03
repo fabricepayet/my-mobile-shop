@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Product } from '../../models/product.interface';
-import { Store } from '../../models/store.interface';
+import { Shop } from '../../models/shop.interface';
 import { ProductService } from '../../providers/product.service';
-import { StoreService } from '../../providers/store.service';
+import { ShopService } from '../../providers/shop.service';
 
 /**
  * Generated class for the ProductListPage page.
@@ -25,24 +25,24 @@ export class ProductListPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private productService: ProductService,
-    private storeService: StoreService) {
+    private shopService: ShopService) {
   }
 
   ionViewWillLoad() {
     this.productList = this.productService.getProducts()
   }
 
-  gotoStore(product) {
-    let store: Store = product.store
-    store.$key = product.storeRef
-    this.navCtrl.push('StoreDetailPage', {store})
+  gotoShop(product) {
+    let shop: Shop = product.shop
+    shop.$key = product.shopRef
+    this.navCtrl.push('ShopDetailPage', {shop})
   }
 
   gotoProduct(product) {
-    let store = product.store
-    delete product.store;
+    let shop = product.shop
+    delete product.shop;
     this.navCtrl.push('ProductDetailPage', {
-      store, product
+      shop, product
     })
   }
 }

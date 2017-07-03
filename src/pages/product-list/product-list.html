@@ -16,14 +16,14 @@
 <ion-content padding>
   <ion-card *ngFor="let product of productList | async">
     <ion-card-content>
-      <div *ngIf="product.store" class="product-list__store_container" (click)="gotoStore(product)">
-        <img class="product-list__store_logo" src="assets/icon/default-store.png" alt="{{product.store.name}}">
-        <div class="product-list__store_info">
-          <div class="product-list__store_name">
-            {{product.store.name | uppercase}}
+      <div *ngIf="product.shop" class="product-list__shop_container" (click)="gotoShop(product)">
+        <img class="product-list__shop_logo" src="assets/icon/default-shop.png" alt="{{product.shop.name}}">
+        <div class="product-list__shop_info">
+          <div class="product-list__shop_name">
+            {{product.shop.name | uppercase}}
           </div>
-          <div class="product-list__store_town">
-            <ion-icon name="home"></ion-icon> {{product.store.town}}
+          <div class="product-list__shop_town">
+            <ion-icon name="home"></ion-icon> {{product.shop.town}}
           </div>
         </div>
       </div>

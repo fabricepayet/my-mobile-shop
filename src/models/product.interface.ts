@@ -1,4 +1,4 @@
-import { Store } from './store.interface';
+import { Shop } from './shop.interface';
 
 export interface Product {
   name: string,
@@ -8,6 +8,6 @@ export interface Product {
   $key?: string,
   image?: string,
   timestamp?: number,
-  store?: Store,
-  storeRef: string
+  shop?: Shop,
+  shopRef: string
 }

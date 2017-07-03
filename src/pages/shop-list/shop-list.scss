@@ -1,0 +1,23 @@
+.shop-list__shop_town {
+  font-size: 12px;
+  color: color($colors, town, base) !important;
+  margin-bottom: 6px;
+}
+
+.shop-list__shop_logo {
+  border-radius: none;
+  height: 40px;
+  width: 40px;
+}
+
+.shop-list__shop_name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.shop-list__shop_logo {
+  margin-top: 0 !important;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0 !important;
+}

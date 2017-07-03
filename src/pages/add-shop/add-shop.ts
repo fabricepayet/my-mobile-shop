@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
-import { Store } from '../../models/store.interface';
+import { Shop } from '../../models/shop.interface';
 import { Camera } from '@ionic-native/camera';
-import { StoreService } from '../../providers/store.service';
+import { ShopService } from '../../providers/shop.service';
 import { ImageService } from '../../providers/image.service';
 import { LoadingController, Loading } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-add-store',
-  templateUrl: 'add-store.html',
+  selector: 'page-add-shop',
+  templateUrl: 'add-shop.html',
 })
-export class AddStorePage {
+export class AddShopPage {
 
-  store = {} as Store;
+  shop = {} as Shop;
   private bannerData: string;
   private logoData: string;
   private loader: Loading;
 
   constructor(
-  private storeService: StoreService,
+  private shopService: ShopService,
   private imageService: ImageService,
   public navCtrl: NavController,
   private camera: Camera,
@@ -31,12 +31,12 @@ export class AddStorePage {
     })
   }
 
-  addStore() {
-    this.navCtrl.setRoot('StoreListPage')
+  addShop() {
+    this.navCtrl.setRoot('ShopListPage')
     this.loader.present();
-    this.storeService.addStore(this.store, this.bannerData, this.logoData).then(() => {
+    this.shopService.addShop(this.shop, this.bannerData, this.logoData).then(() => {
       this.loader.dismiss()
-      this.navCtrl.push('StoreListPage');
+      this.navCtrl.push('ShopListPage');
     })
   }
 

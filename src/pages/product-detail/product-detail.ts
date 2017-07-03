@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
-import { Store } from '../../models/store.interface';
+import { Shop } from '../../models/shop.interface';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { Reservation } from '../../models/reservation.interface';
 import { ProductService } from '../../providers/product.service';
@@ -21,7 +21,7 @@ import { LoadingController, Loading, AlertController, ToastController } from 'io
 })
 export class ProductDetailPage {
   product: Product;
-  store: FirebaseObjectObservable<Store>;
+  shop: FirebaseObjectObservable<Shop>;
   private loader: Loading;
   private currentReservation: FirebaseObjectObservable<Reservation>;
 
@@ -37,7 +37,7 @@ export class ProductDetailPage {
 
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
-    this.store = this.productService.getRelatedStore(this.product);
+    this.shop = this.productService.getRelatedShop(this.product);
     this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
   }
 
@@ -61,7 +61,7 @@ export class ProductDetailPage {
             this.loader.present();
             this.productService.deleteProduct(this.product).then(() => {
               this.loader.dismiss()
-              this.navCtrl.push('StoreDetailPage', {store: this.store})
+              this.navCtrl.push('ShopDetailPage', {shop: this.shop})
             })
           }
         }
@@ -99,7 +99,7 @@ export class ProductDetailPage {
     confirm.present();
   }
 
-  visitStore() {
-    this.navCtrl.push('StoreDetailPage', {store: this.store});
+  visitShop() {
+    this.navCtrl.push('ShopDetailPage', {shop: this.shop});
   }
 }

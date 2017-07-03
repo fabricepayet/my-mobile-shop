@@ -1,26 +1,26 @@
-.product-list__store_container {
+.product-list__shop_container {
   display: flex;
 }
 
-.product-list__store_logo {
+.product-list__shop_logo {
   flex: none;
   width: 40px;
   height: 40px;
   margin-right: 12px;
 }
 
-.product-list__store_info {
+.product-list__shop_info {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.product-list__store_name {
+.product-list__shop_name {
   font-weight: bold;
 }
 
-.product-list__store_town {
+.product-list__shop_town {
   color: color($colors, town, base);
   font-size: 12px;
 }

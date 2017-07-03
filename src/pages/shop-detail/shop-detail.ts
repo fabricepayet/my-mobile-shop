@@ -1,26 +1,26 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
-import { Store } from '../../models/store.interface';
+import { Shop } from '../../models/shop.interface';
 import { ProductService } from '../../providers/product.service';
-import { StoreService } from '../../providers/store.service';
+import { ShopService } from '../../providers/shop.service';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { LoadingController, Loading, ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-store-detail',
-  templateUrl: 'store-detail.html',
+  selector: 'page-shop-detail',
+  templateUrl: 'shop-detail.html',
 })
-export class StoreDetailPage {
-  store: Store;
+export class ShopDetailPage {
+  shop: Shop;
   productList: FirebaseListObservable<Product[]>;
-  storePhotoUrl: string;
+  shopPhotoUrl: string;
   private loader: Loading;
 
   constructor(
     private loading: LoadingController,
-    private storeService: StoreService,
+    private shopService: ShopService,
     private productService: ProductService,
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,39 +28,31 @@ export class StoreDetailPage {
   }
 
   ionViewWillLoad() {
-    this.store = this.navParams.get('store');
-    this.productList = this.productService.getProductList(this.store.$key);
+    this.shop = this.navParams.get('shop');
+    this.productList = this.productService.getProductList(this.shop.$key);
   }
 
   addProduct() {
     this.navCtrl.push('AddProductPage', {
-      store: this.store
+      shop: this.shop
     });
   }
 
-  deleteStore() {
+  deleteShop() {
     this.loader = this.loading.create({
       content: 'Suppression de la boutique...'
     })
     this.loader.present();
-    this.storeService.deleteStore(this.store.$key).then(() => {
+    this.shopService.deleteShop(this.shop.$key).then(() => {
       this.loader.dismiss();
-      this.navCtrl.push('StoreListPage');
+      this.navCtrl.push('ShopListPage');
     })
   }
 
   goToProduct(product: Product) {
     this.navCtrl.push('ProductDetailPage', {
       product: product,
-      store: this.store
+      shop: this.shop
     });
-  }
-
-  likeStore() {
-    let toast = this.toastController.create({
-      message: 'Hey! I love you too <3',
-      duration: 3000
-    });
-    toast.present();
   }
 }

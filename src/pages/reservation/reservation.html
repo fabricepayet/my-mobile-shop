@@ -16,12 +16,10 @@
           <img class="reservation__image" src="{{reservation.product.image}}">
         </div>
         <div class="reservation__product_name">{{reservation.product.name}}</div>
-        <div class="reservation__store_info">
-          <ion-icon name="home"></ion-icon> <span class="reservation__store_name">{{reservation.store.name}}</span>, {{reservation.store.town}}
+        <div class="reservation__shop_info">
+          <ion-icon name="home"></ion-icon> <span class="reservation__shop_name">{{reservation.shop.name}}</span>, {{reservation.shop.town}}
         </div>
-        <div>
-          {{reservation.product.price}}€
-        </div>
+        <div>{{reservation.product.price}}€</div>
       </ion-item>
     </ion-list>
     <span *ngIf='(reservationList | async)?.length === 0'>

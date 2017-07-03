@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>FriendShop</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)='addShop()'>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let shop of shopList | async" (click)="goToShop(shop)">
+      <div item-start class="shop-list__shop_logo">
+        <img *ngIf="!shop.logo" src="assets/icon/default-shop.png" class="shop-list__shop_logo">
+        <img *ngIf="shop.logo" [src]="shop.logo" class="shop-list__shop_logo">
+      </div>
+      <div class="shop-list__shop_name">{{shop.name | uppercase}}</div>
+      <p class="shop-list__shop_town"><ion-icon name="home"></ion-icon>  {{shop.town}}</p>
+      <p class="shop-list__shop_description">{{shop.description}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -7,7 +7,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { MyApp } from './app.component';
-import { StoreService } from '../providers/store.service';
+import { ShopService } from '../providers/shop.service';
 import { ImageService } from '../providers/image.service';
 import { AuthService } from '../providers/auth.service';
 import { ProductService } from '../providers/product.service';
@@ -34,7 +34,7 @@ import { Camera } from '@ionic-native/camera';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StoreService,
+    ShopService,
     ProductService,
     Camera,
     ImageService,

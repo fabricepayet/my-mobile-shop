@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
-import { Store } from '../../models/store.interface';
+import { Shop } from '../../models/shop.interface';
 import { ProductService } from '../../providers/product.service';
 import { LoadingController, Loading } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
@@ -21,7 +21,7 @@ import { ImageService } from '../../providers/image.service'
 export class AddProductPage {
 
   product = {} as Product;
-  store: Store;
+  shop: Shop;
   private captureDataUrl: string;
   private loader: Loading;
 
@@ -39,15 +39,15 @@ export class AddProductPage {
   }
 
   ionViewWillLoad() {
-    this.store = this.navParams.get('store');
+    this.shop = this.navParams.get('shop');
   }
 
-  async addProduct(storeKey: string) {
-    this.navCtrl.setRoot('StoreListPage')
+  async addProduct(shopKey: string) {
+    this.navCtrl.setRoot('ShopListPage')
     this.loader.present();
-    this.productService.addProduct(this.store.$key, this.product, this.captureDataUrl).then((data) => {
+    this.productService.addProduct(this.shop.$key, this.product, this.captureDataUrl).then((data) => {
       this.loader.dismiss()
-      this.navCtrl.push('StoreDetailPage', {store: this.store})
+      this.navCtrl.push('ShopDetailPage', {shop: this.shop})
     })
   }
 

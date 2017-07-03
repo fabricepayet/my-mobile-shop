@@ -26,12 +26,12 @@ export class ReservationPage {
   }
 
   gotoProduct(reservation: Reservation) {
-    let store = reservation.store
+    let shop = reservation.shop
     let product = reservation.product
-    store.$key = reservation.storeRef
+    shop.$key = reservation.shopRef
     product.$key = reservation.productRef
     this.navCtrl.push('ProductDetailPage', {
-      store,
+      shop,
       product
     })
   }

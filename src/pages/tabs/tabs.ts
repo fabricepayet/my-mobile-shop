@@ -19,13 +19,13 @@ export class TabsPage {
   tab3Root: string;
 
   constructor() {
-    this.tab1Root = 'StoreListPage';
+    this.tab1Root = 'ShopListPage';
     this.tab2Root = 'ProductListPage';
     this.tab3Root = 'ReservationPage';
   }
 
   tabChanged($ev){
-    console.log('tab switch', $ev)
+    // console.log('tab switch', $ev)
     // $ev.setRoot($ev.root)
   }
 }

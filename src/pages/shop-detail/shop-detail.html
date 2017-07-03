@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>{{shop.name | uppercase}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="addProduct(shop)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-img width="100%" height="200" [src]="shop.image" class="shop-detail__shop_image"></ion-img>
+  <div class="shop-detail__name_container">
+    <img class="shop-detail__shop_logo" *ngIf="!shop.logo" src="assets/icon/default-shop.png" alt="{{shop.name}} logo">
+    <img class="shop-detail__shop_logo" *ngIf="shop.logo" [src]="shop.logo" alt="{{shop.name}} logo">
+    <div class="shop-detail__shop_name">{{shop.name | uppercase}}</div>
+  </div>
+  <div class="shop-detail__content_container">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor="let product of productList | async" (click)="goToProduct(product)"
+        class="shop-detail__product_container">
+          <div class="shop-detail__product_inner">
+            <img [src]="product.image" alt="{{product.name}}" class="shop-detail__product_image">
+            <div class="shop-detail__product_name">
+              {{product.name}}
+            </div>
+            <div class="shop-list__product_price" right>{{product.price}} €</div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

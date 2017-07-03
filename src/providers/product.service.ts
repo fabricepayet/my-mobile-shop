@@ -9,33 +9,33 @@ export class ProductService {
   constructor(private database: AngularFireDatabase, private imageService: ImageService) {
   }
 
-  addProduct(storeKey: string, product: Product, captureData: string): Promise<any> {
+  addProduct(shopKey: string, product: Product, captureData: string): Promise<any> {
     product.timestamp = Date.now();
-    let productKey = this.database.list(`/products/${storeKey}`).push({}).key;
+    let productKey = this.database.list(`/products/${shopKey}`).push({}).key;
     if(captureData) {
-      let imgSrc = `images/stores/${storeKey}/products/${productKey}/${Date.now()}.jpg`;
+      let imgSrc = `images/shops/${shopKey}/products/${productKey}/${Date.now()}.jpg`;
       this.imageService.uploadImage(imgSrc, captureData).then((snapshot: any) => {
         product.image = snapshot.downloadURL;
-        return this.updateProduct(storeKey, productKey, product)
+        return this.updateProduct(shopKey, productKey, product)
       })
     } else {
-      return this.updateProduct(storeKey, productKey, product)
+      return this.updateProduct(shopKey, productKey, product)
     }
   }
 
-  updateProduct(storeKey: string, productKey: string, product: Product): Promise<void> {
-    product.storeRef = storeKey;
-    return this.database.object(`/products/${storeKey}/${productKey}`).set(product) as Promise<void>
+  updateProduct(shopKey: string, productKey: string, product: Product): Promise<void> {
+    product.shopRef = shopKey;
+    return this.database.object(`/products/${shopKey}/${productKey}`).set(product) as Promise<void>
   }
 
   deleteProduct(product: Product) {
     return new Promise((resolve, reject) => {
       //delete data
-      let removeRef = firebase.database().ref(`products/${product.storeRef}`).child(product.$key);
+      let removeRef = firebase.database().ref(`products/${product.shopRef}`).child(product.$key);
       removeRef.remove()
       // delete image
       let storageRef = firebase.storage().ref();
-      var imageRef = storageRef.child(`images/stores/${product.storeRef}/products/${product.$key}.jpg`);
+      var imageRef = storageRef.child(`images/shops/${product.shopRef}/products/${product.$key}.jpg`);
       imageRef.delete().then(function() {
         resolve(true)
       }).catch(function(error) {
@@ -44,15 +44,15 @@ export class ProductService {
     })
   }
 
-  getProductList(storeKey: string): FirebaseListObservable<Product[]> {
-    return this.database.list(`products/${storeKey}`)
+  getProductList(shopKey: string): FirebaseListObservable<Product[]> {
+    return this.database.list(`products/${shopKey}`)
   }
 
   getProducts(): FirebaseListObservable<Product[]> {
     return this.database.list('recent-products').map((array) => array.reverse()) as FirebaseListObservable<Product[]>
   }
 
-  getRelatedStore(product) {
-    return this.database.object(`/stores/${product.storeRef}`)
+  getRelatedShop(product) {
+    return this.database.object(`/shops/${product.shopRef}`)
   }
 }
