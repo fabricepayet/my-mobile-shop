@@ -23,4 +23,9 @@ export class TabsPage {
     this.tab2Root = 'ProductListPage';
     this.tab3Root = 'ReservationPage';
   }
+
+  tabChanged($ev){
+    console.log('tab switch', $ev)
+    // $ev.setRoot($ev.root)
+  }
 }

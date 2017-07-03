@@ -18,7 +18,6 @@ export class MyApp {
     private menuController: MenuController
   ) {
     this.authService.getAuthentificateUser().subscribe(auth => {
-      console.debug('>>>>>>>>>>>>>>>>>>AUTH', auth);
       !auth ? this.rootPage = 'LoginPage' : this.rootPage = 'TabsPage';
     })
     platform.ready().then(() => {
@@ -37,6 +36,10 @@ export class MyApp {
     // navigate to the new page if it is not the current page
     // let nav = this.app.get('nav');
     // nav.setRoot(page.component);
+  }
+
+  closeMenu() {
+    this.menuController.close();
   }
 
   logout() {
