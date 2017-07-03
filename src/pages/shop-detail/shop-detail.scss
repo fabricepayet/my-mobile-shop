@@ -38,12 +38,7 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
   bottom: 80px;
   background-color: white;
   text-align: center;
-  padding: 12px;
-}
-
-.shop-detail__shop_name {
-  font-weight: bold;
-  font-size: 16px;
+  padding: 0;
 }
 
 .shop-detail__shop_image {
@@ -58,4 +53,9 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
 
 .shop-detail__product_name {
   text-align: center;
+}
+
+.shop-detail__shop_logo {
+  height: calc(100% * 2);
+  width: 100%;
 }

@@ -17,7 +17,6 @@
   <div class="shop-detail__name_container">
     <img class="shop-detail__shop_logo" *ngIf="!shop.logo" src="assets/icon/default-shop.png" alt="{{shop.name}} logo">
     <img class="shop-detail__shop_logo" *ngIf="shop.logo" [src]="shop.logo" alt="{{shop.name}} logo">
-    <div class="shop-detail__shop_name">{{shop.name | uppercase}}</div>
   </div>
   <div class="shop-detail__content_container">
     <ion-grid>
