@@ -9,23 +9,18 @@ export class ProductService {
   constructor(private database: AngularFireDatabase, private imageService: ImageService) {
   }
 
-  addProduct(shopKey: string, product: Product, captureData: string): Promise<any> {
+  addProduct(product: Product, captureData: string) {
     product.timestamp = Date.now();
-    let productKey = this.database.list(`/products/${shopKey}`).push({}).key;
+    let nextProductKey = this.database.list(`/products/${product.shopRef}`).push({}).key;
     if(captureData) {
-      let imgSrc = `images/shops/${shopKey}/products/${productKey}/${Date.now()}.jpg`;
+      let imgSrc = `images/shops/${product.shopRef}/products/${nextProductKey}/${Date.now()}.jpg`;
       this.imageService.uploadImage(imgSrc, captureData).then((snapshot: any) => {
         product.image = snapshot.downloadURL;
-        return this.updateProduct(shopKey, productKey, product)
+        this.database.object(`/products/${product.shopRef}/${nextProductKey}`).set(product)
       })
     } else {
-      return this.updateProduct(shopKey, productKey, product)
+      this.database.object(`/products/${product.shopRef}/${nextProductKey}`).set(product)
     }
-  }
-
-  updateProduct(shopKey: string, productKey: string, product: Product): Promise<void> {
-    product.shopRef = shopKey;
-    return this.database.object(`/products/${shopKey}/${productKey}`).set(product) as Promise<void>
   }
 
   deleteProduct(product: Product) {

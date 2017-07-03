@@ -45,10 +45,14 @@ export class AddProductPage {
   async addProduct(shopKey: string) {
     this.navCtrl.setRoot('ShopListPage')
     this.loader.present();
-    this.productService.addProduct(this.shop.$key, this.product, this.captureDataUrl).then((data) => {
+    this.product.shopRef = this.shop.$key;
+    try {
+      await this.productService.addProduct(this.product, this.captureDataUrl)
       this.loader.dismiss()
       this.navCtrl.push('ShopDetailPage', {shop: this.shop})
-    })
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   takePhoto() {
