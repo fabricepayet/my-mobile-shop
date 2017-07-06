@@ -6,11 +6,11 @@ admin.initializeApp(functions.config().firebase)
 exports.addReservations = functions.database.ref(`/user-reservations/{userId}/{productId}`)
 .onWrite(event => {
   const reservationValue = event.data.val()
-  admin.database().ref(`/reservations/${reservationValue.storeRef}/${reservationValue.productRef}`)
+  admin.database().ref(`/reservations/${reservationValue.shopRef}/${reservationValue.productRef}`)
   .set(reservationValue)
 })
 
-exports.addRecentProducts = functions.database.ref(`/products/{storeId}/{productId}`)
+exports.addRecentProducts = functions.database.ref(`/products/{shopId}/{productId}`)
 .onWrite(event => {
   const productValue = event.data.val()
   const productKey = event.data.key
