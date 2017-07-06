@@ -12,8 +12,11 @@ import { ImageService } from '../providers/image.service';
 import { AuthService } from '../providers/auth.service';
 import { ProductService } from '../providers/product.service';
 import { ReservationService } from '../providers/reservation.service';
+import { GeolocService } from '../providers/geoloc.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Camera } from '@ionic-native/camera';
+import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { Camera } from '@ionic-native/camera';
     Camera,
     ImageService,
     AuthService,
-    ReservationService
+    ReservationService,
+    GeolocService,
+    Geolocation,
+    GoogleMaps
   ]
 })
 export class AppModule {}

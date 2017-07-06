@@ -4,7 +4,9 @@ import { Shop } from '../../models/shop.interface';
 import { Camera } from '@ionic-native/camera';
 import { ShopService } from '../../providers/shop.service';
 import { ImageService } from '../../providers/image.service';
-import { LoadingController, Loading } from 'ionic-angular';
+import { LoadingController, Loading, ToastController } from 'ionic-angular';
+import { GeolocService } from '../../providers/geoloc.service';
+import { Coordinates } from '@ionic-native/geolocation';
 
 @IonicPage()
 @Component({
@@ -25,15 +27,31 @@ export class AddShopPage {
   private camera: Camera,
   private loading: LoadingController,
   public navParams: NavParams,
-  public actionSheetCtrl: ActionSheetController) {
+  public actionSheetCtrl: ActionSheetController,
+  private geolocService: GeolocService,
+  private toastController: ToastController) {
     this.loader = this.loading.create({
       content: 'Création de la boutique...'
+    })
+  }
+
+  ionViewWillLoad() {
+    this.geolocService.getCurrentPosition().then((coords: Coordinates) => {
+      this.shop.longitude = coords.longitude;
+      this.shop.latitude = coords.latitude;
+    }).catch(error => {
+      console.error(error)
+      this.toastController.create({
+        message: error.message,
+        duration: 3000
+      }).present()
     })
   }
 
   addShop() {
     this.navCtrl.setRoot('ShopListPage')
     this.loader.present();
+    console.log('adding shop', this.shop)
     this.shopService.addShop(this.shop, this.bannerData, this.logoData).then(() => {
       this.loader.dismiss()
       this.navCtrl.push('ShopListPage');
@@ -73,5 +91,17 @@ export class AddShopPage {
       ]
     });
     actionSheet.present();
+  }
+
+  getPosition() {
+    this.geolocService.getCurrentPosition().then((coords: Coordinates) => {
+      this.shop.longitude = coords.longitude;
+      this.shop.latitude = coords.latitude;
+    }).catch(error => {
+      this.toastController.create({
+        message: error.message,
+        duration: 3000
+      }).present()
+    })
   }
 }

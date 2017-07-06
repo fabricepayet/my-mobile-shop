@@ -27,6 +27,12 @@ export class ShopDetailPage {
     private toastController: ToastController) {
   }
 
+  shopMap() {
+    this.navCtrl.push('ShopMapPage', {
+      shop: this.shop
+    })
+  }
+
   ionViewWillLoad() {
     this.shop = this.navParams.get('shop');
     this.productList = this.productService.getProductList(this.shop.$key);

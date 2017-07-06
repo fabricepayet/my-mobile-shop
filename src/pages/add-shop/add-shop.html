@@ -54,6 +54,13 @@
             <img [src]="logoData" *ngIf="logoData"/>
           </ion-item>
 
+          <ion-item>
+            <div class="" *ngIf="!shop.latitude || !shop.longitude">
+              Impossible de récupérer la position du magasin <br>
+              <button ion-button (click)="getPosition()">Réessayez</button>
+            </div>
+          </ion-item>
+
         </ion-card-content>
       <ion-row class="register-form__button">
         <button ion-button right (click)="addShop()" [disabled]="registerForm.invalid">Ajouter</button>

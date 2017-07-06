@@ -25,20 +25,11 @@ export class ShopService {
           if (snapshot) {
             shop.logo = snapshot.downloadURL;
           }
-          this.updateShop(newShopKey, shop).then((data) => {
-            resolve(true);
-          })
+          this.database.object(`/shops/${newShopKey}`).set(shop)
+          resolve(true)
         })
       })
     })
-  }
-
-  updateShop(shopKey: string, shop: Shop) {
-    return new Promise((resolve) => {
-     var updateRef = firebase.database().ref('shops').child(shopKey);
-     updateRef.update(shop);
-     resolve(true);
-   });
   }
 
   deleteShop(shopKey: string) {
