@@ -4,12 +4,6 @@
   margin-bottom: 6px;
 }
 
-.shop-list__shop_logo {
-  border-radius: none;
-  height: 40px;
-  width: 40px;
-}
-
 .shop-list__shop_name {
   font-weight: bold;
   font-size: 18px;
@@ -20,4 +14,10 @@
   width: 60px;
   height: 60px;
   margin-bottom: 0 !important;
+  text-align: center;
+
+  img {
+    max-width: 60px;
+    height: 60px;
+  }
 }

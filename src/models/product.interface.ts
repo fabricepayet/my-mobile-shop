@@ -9,5 +9,7 @@ export interface Product {
   image?: string,
   timestamp?: number,
   shop?: Shop,
-  shopRef: string
+  shopRef: string,
+  shopTown?: string,
+  shopName?: string
 }

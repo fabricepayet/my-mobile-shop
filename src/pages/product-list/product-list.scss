@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-weight: normal;
 }
 
 .product-list__shop_name {
@@ -32,23 +33,56 @@
 }
 
 .product-list__product_price {
-  background-color: red;
-  position: relative;
-  right: 20px;
-  top: 180px;
-  padding: 6px 12px;
-  border-radius: 50%;
   background-color: color($colors, secondary, base);
   color: white;
+  font-weight: normal;
   font-size: 20px;
-}
-
-.product-list__product_price_container {
-  height: 0;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-list__product_image_container {
-  background-color: #eaeaea;
-  padding: 6px 12px;
-  margin: 6px;
+  background-color: #efeded;
+}
+
+.product-list__shop_card {
+  ion-card-content {
+    padding: 0;
+  }
+
+  ion-card-title {
+    padding-left: 12px;
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.product-list__shop_info {
+  color: color($colors, town, base);
+
+  ion-icon {
+    display: inline-block;
+  }
+}
+
+.product-list__card_footer {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  padding: 12px;
+}
+
+.product-list__product_info {
+  flex: 1 1 auto;
+
+  ion-card-title {
+    // color: color($colors, dark, base);
+    margin: 0;
+    padding: 6px 0 0 0;
+  }
 }

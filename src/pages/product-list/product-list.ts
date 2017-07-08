@@ -45,4 +45,19 @@ export class ProductListPage {
       shop, product
     })
   }
+
+  filterTypeChanged(event) {
+    console.log(event);
+  }
+
+  filterTownChanged(town) {
+    if (town === 'all') {
+      this.productList = this.productService.getProducts({})
+    } else {
+      this.productList = this.productService.getProducts({
+        orderByChild: 'shopTown',
+        equalTo: town
+      })
+    }
+  }
 }

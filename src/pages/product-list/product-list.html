@@ -14,7 +14,29 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let product of productList | async">
+  <ion-list>
+    <ion-item>
+      <ion-label>Ville</ion-label>
+      <ion-select [(ngModel)]="selectorTown" placeholder="Tout" (ionChange)="filterTownChanged($event)">
+        <ion-option value="Petite-Ile">Petite-Ile</ion-option>
+        <ion-option value="Saint-Joseph">Saint-Joseph</ion-option>
+        <ion-option value="Saint-Louis">Saint-Louis</ion-option>
+        <ion-option value="Saint-Pierre">Saint-Pierre</ion-option>
+        <ion-option value="Tampon">Tampon</ion-option>
+        <ion-option value="all">Tout</ion-option>
+      </ion-select>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select [(ngModel)]="selectorType" placeholder="Tout" (ionChange)="filterTownChanged($event)">
+        <ion-option value="petite-ile">Chaussures</ion-option>
+        <ion-option value="saint-joseph">Ceinture</ion-option>
+        <ion-option value="tampon">Jupe</ion-option>
+        <ion-option value="saint-pierre">Robe de soirée</ion-option>
+      </ion-select>
+    </ion-item> -->
+  </ion-list>
+  <ion-card *ngFor="let product of productList | async"  class="product-list__shop_card">
     <ion-card-content>
       <div *ngIf="product.shop" class="product-list__shop_container" (click)="gotoShop(product)">
         <img class="product-list__shop_logo" src="assets/icon/default-shop.png" alt="{{product.shop.name}}">
@@ -27,12 +49,18 @@
           </div>
         </div>
       </div>
-      <div class="">
-        <div class="product-list__product_price_container" text-right>
-          <span class="product-list__product_price">{{product.price}}€</span>
+      <div class="product-list__product_image_container">
+        <img src="{{product.image}}" class="product-list__product_image" (click)="gotoProduct(product)"/>
+      </div>
+      <div class="product-list__card_footer">
+        <div class="product-list__product_info">
+          <ion-card-title>{{product.name}}</ion-card-title>
+          <div class="product-list__shop_info">
+            <span><ion-icon name="home"></ion-icon> {{product.shopName | uppercase}}, {{product.shopTown}}</span>  
+          </div>
         </div>
-        <div class="product-list__product_image_container">
-          <img src="{{product.image}}" class="product-list__product_image" (click)="gotoProduct(product)"/>
+        <div class="product-list__product_price">
+          {{product.price}}€
         </div>
       </div>
     </ion-card-content>

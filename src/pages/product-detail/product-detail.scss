@@ -12,12 +12,17 @@ page-product-detail {
 }
 
 .product-detail__product_price {
-  flex: none;
-  padding: 6px;
-  font-size: 20px;
   background-color: color($colors, secondary, base);
   color: white;
+  font-weight: normal;
+  font-size: 20px;
   border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
 }
 
 .product-detail__product_name {

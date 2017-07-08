@@ -46,6 +46,8 @@ export class AddProductPage {
     this.navCtrl.setRoot('ShopListPage')
     this.loader.present();
     this.product.shopRef = this.shop.$key;
+    this.product.shopTown = this.shop.town;
+    this.product.shopName = this.shop.name;
     try {
       await this.productService.addProduct(this.product, this.captureDataUrl)
       this.loader.dismiss()
