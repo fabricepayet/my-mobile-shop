@@ -25,17 +25,21 @@
         class="shop-detail__product_container">
           <div class="shop-detail__product_inner">
             <img [src]="product.image" alt="{{product.name}}" class="shop-detail__product_image">
-            <div class="shop-detail__product_name">
-              {{product.name}}
+            <div class="shop-detail__product_info">
+              <div class="shop-detail__product_name">{{product.name}}</div>
+              <div class="shop-list__product_price" right>{{product.price}} €</div>
             </div>
-            <div class="shop-list__product_price" right>{{product.price}} €</div>
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 
-  <button ion-button block (click)="shopMap()">
-    <ion-icon name="map"></ion-icon>&nbsp;Voir la boutique sur la carte
-  </button>
+  <div class="shop-detail__shop_buttons">
+    <button ion-button round (click)="shopMap()">
+      <ion-icon name="map"></ion-icon>&nbsp;
+      Voir le magasin sur la carte
+    </button>
+  </div>
+
 </ion-content>

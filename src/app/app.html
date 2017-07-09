@@ -2,7 +2,7 @@
 
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -10,9 +10,6 @@
     <ion-list>
       <button ion-item (click)="openPage(homePage)">
         Accueil
-      </button>
-      <button ion-item (click)="openPage(friendsPage)">
-        Mes amis
       </button>
       <button ion-item>Recommander l'application</button>
       <button ion-item (click)="logout()">
