@@ -3,11 +3,12 @@
     <name>FriendShop</name>
     <description>Discover local friend and their best offers.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Fabrice Payet</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.108:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="http://169.254.3.149:8100" />
     <allow-navigation href="http://192.168.1.108:8100" />
+    <allow-navigation href="http://192.168.33.1:8100" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

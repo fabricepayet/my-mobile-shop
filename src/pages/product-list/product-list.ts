@@ -28,14 +28,22 @@ export class ProductListPage {
     private shopService: ShopService) {
   }
 
+  ionViewDidLoad() {
+		document.getElementsByTagName('html')[0].className += 'ion-tabs-fix';
+	}
+
+	ionViewWillLeave() {
+		document.getElementsByTagName('html')[0].className = '';
+	}
+
   ionViewWillLoad() {
     this.productList = this.productService.getProducts()
   }
 
   gotoShop(product) {
-    let shop: Shop = product.shop
-    shop.$key = product.shopRef
-    this.navCtrl.push('ShopDetailPage', {shop})
+    this.shopService.getShop(product.shopRef).then(shop => {
+      this.navCtrl.push('ShopDetailPage', {shop})
+    })
   }
 
   gotoProduct(product) {
@@ -44,10 +52,6 @@ export class ProductListPage {
     this.navCtrl.push('ProductDetailPage', {
       shop, product
     })
-  }
-
-  filterTypeChanged(event) {
-    console.log(event);
   }
 
   filterTownChanged(town) {

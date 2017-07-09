@@ -26,15 +26,6 @@
         <ion-option value="all">Tout</ion-option>
       </ion-select>
     </ion-item>
-    <!-- <ion-item>
-      <ion-label>Type</ion-label>
-      <ion-select [(ngModel)]="selectorType" placeholder="Tout" (ionChange)="filterTownChanged($event)">
-        <ion-option value="petite-ile">Chaussures</ion-option>
-        <ion-option value="saint-joseph">Ceinture</ion-option>
-        <ion-option value="tampon">Jupe</ion-option>
-        <ion-option value="saint-pierre">Robe de soirée</ion-option>
-      </ion-select>
-    </ion-item> -->
   </ion-list>
   <ion-card *ngFor="let product of productList | async"  class="product-list__shop_card">
     <ion-card-content>
@@ -54,9 +45,9 @@
       </div>
       <div class="product-list__card_footer">
         <div class="product-list__product_info">
-          <ion-card-title>{{product.name}}</ion-card-title>
-          <div class="product-list__shop_info">
-            <span><ion-icon name="home"></ion-icon> {{product.shopName | uppercase}}, {{product.shopTown}}</span>  
+          <ion-card-title (click)="gotoShop(product)">{{product.name}}</ion-card-title>
+          <div class="product-list__shop_info" (click)="gotoShop(product)">
+            <span><ion-icon name="home"></ion-icon> {{product.shopName | uppercase}}, {{product.shopTown}}</span>
           </div>
         </div>
         <div class="product-list__product_price">

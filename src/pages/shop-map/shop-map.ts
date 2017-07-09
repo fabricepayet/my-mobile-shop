@@ -61,17 +61,13 @@ export class ShopMapPage {
     this.shop = this.navParams.get('shop');
   }
 
-  ionViewWillLeave() {
-    if (this.topBarElement) {
-      this.topBarElement.style.display = 'flex';
-    }
-  }
+  ionViewDidLoad() {
+		document.getElementsByTagName('html')[0].className += 'ion-tabs-fix';
+	}
 
-  ionViewWillEnter() {
-    if (this.topBarElement) {
-      this.topBarElement.style.display = 'none';
-    }
-  }
+	ionViewWillLeave() {
+		document.getElementsByTagName('html')[0].className = '';
+	}
 
   // Load map only after view is initialized
   ngAfterViewInit() {

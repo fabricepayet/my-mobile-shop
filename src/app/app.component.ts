@@ -8,6 +8,7 @@ import { AuthService } from '../providers/auth.service';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  // rootPage:string = 'TabsPage';
   rootPage:string = 'LoginPage';
 
   constructor(
