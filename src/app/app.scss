@@ -14,3 +14,18 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.price {
+  .cents {
+    font-size: 0.8em;
+    position: relative;
+    bottom: 0.1em;
+    left: 0.1em;
+  }
+}
+
+// .ion-tabs-fix {
+// 	ion-tabs {
+// 		height: calc(100vh + 56px) !important;
+// 	}
+// }

@@ -5,6 +5,9 @@
     </button>
     <ion-title>{{shop.name | uppercase}}</ion-title>
     <ion-buttons right>
+      <button ion-button icon-only (click)="editShop(shop)">
+        <ion-icon name="create"></ion-icon>
+      </button>
       <button ion-button icon-only (click)="addProduct(shop)">
         <ion-icon name="add"></ion-icon>
       </button>
@@ -27,7 +30,7 @@
             <img [src]="product.image" alt="{{product.name}}" class="shop-detail__product_image">
             <div class="shop-detail__product_info">
               <div class="shop-detail__product_name">{{product.name}}</div>
-              <div class="shop-list__product_price" right>{{product.price}} €</div>
+              <div class="shop-list__product_price" right [innerHtml]="product.price | price"></div>
             </div>
           </div>
         </ion-col>

@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { AddShopPage } from './add-shop';
+import { EditShopPage } from './edit-shop';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
-    AddShopPage,
+    EditShopPage,
   ],
   imports: [
-    IonicPageModule.forChild(AddShopPage),
+    IonicPageModule.forChild(EditShopPage),
     ComponentsModule
   ],
   exports: [
-    AddShopPage
+    EditShopPage
   ]
 })
-export class AddShopPageModule {}
+export class EditShopPageModule {}

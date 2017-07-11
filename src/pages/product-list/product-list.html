@@ -50,8 +50,7 @@
             <span><ion-icon name="home"></ion-icon> {{product.shopName | uppercase}}, {{product.shopTown}}</span>
           </div>
         </div>
-        <div class="product-list__product_price">
-          {{product.price}}€
+        <div class="product-list__product_price" [innerHtml]="product.price | price">
         </div>
       </div>
     </ion-card-content>

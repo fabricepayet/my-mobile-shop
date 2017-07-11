@@ -49,7 +49,7 @@ page-product-detail {
 }
 
 .product-detail__product_image {
-  max-height: 360px;
+  max-height: 420px;
 }
 
 .product-detail__product_image_container {
@@ -64,4 +64,12 @@ page-product-detail {
   padding: 6px 0;
   color: white;
   font-size: 16px;
+}
+
+.product-detail__product_thumbnails {
+  display: flex;
+
+  img {
+    height: 80px;
+  }
 }

@@ -32,6 +32,11 @@ export class ShopService {
     })
   }
 
+  editShop(shopRef: string, shop: Object) {
+    const shops = this.database.list('/shops')
+    shops.update(shopRef, shop)
+  }
+
   deleteShop(shopKey: string) {
     return new Promise((resolve, reject) => {
       // get list of products images

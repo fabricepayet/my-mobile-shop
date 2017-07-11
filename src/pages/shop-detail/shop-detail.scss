@@ -69,10 +69,7 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
   text-transform: capitalize;
   display: flex;
   align-items: center;
-  color: white;
   padding-left: 6px;
-  // border-radius: 0 6px 6px 0;
-  // background-color: color($colors, primary, base);
 }
 
 .shop-detail__shop_logo {
@@ -86,7 +83,7 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
   position: absolute;
   bottom: 4px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .shop-detail__shop_buttons {

@@ -61,4 +61,8 @@ export class ShopDetailPage {
       shop: this.shop
     });
   }
+
+  editShop(shop) {
+    this.navCtrl.push('EditShopPage', {shop})
+  }
 }
