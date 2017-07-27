@@ -102,4 +102,8 @@ export class ProductDetailPage {
   visitShop() {
     this.navCtrl.push('ShopDetailPage', {shop: this.shop});
   }
+
+  editShop() {
+    
+  }
 }
