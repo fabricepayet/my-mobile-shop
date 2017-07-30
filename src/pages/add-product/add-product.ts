@@ -50,8 +50,8 @@ export class AddProductPage {
     this.product.shopName = this.shop.name;
     try {
       await this.productService.addProduct(this.product, this.captureDataUrl)
-      this.loader.dismiss()
-      this.navCtrl.push('ShopDetailPage', {shop: this.shop})
+      this.loader.dismiss();
+      this.navCtrl.pop();
     } catch (e) {
       console.error(e);
     }

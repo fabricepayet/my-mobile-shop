@@ -51,10 +51,9 @@ export class AddShopPage {
   addShop() {
     this.navCtrl.setRoot('ShopListPage')
     this.loader.present();
-    console.log('adding shop', this.shop)
     this.shopService.addShop(this.shop, this.bannerData, this.logoData).then(() => {
       this.loader.dismiss()
-      this.navCtrl.push('ShopListPage');
+      this.navCtrl.pop();
     })
   }
 

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform, MenuController, IonicApp } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, MenuController, IonicApp, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../providers/auth.service';
@@ -8,9 +8,12 @@ import { AuthService } from '../providers/auth.service';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild('myNav') nav: NavController;
   // rootPage:string = 'TabsPage';
   // rootPage:string = 'LoginPage';
   rootPage:string = 'ProductListPage';
+  private homePage;
+  private loginPage;
 
   constructor(
     platform: Platform,
@@ -20,6 +23,8 @@ export class MyApp {
     private authService: AuthService,
     private menuController: MenuController
   ) {
+    this.homePage = 'ProductListPage';
+    this.loginPage = 'LoginPage';
     // this.authService.getAuthentificateUser().subscribe(auth => {
     //   !auth ? this.rootPage = 'LoginPage' : this.rootPage = 'TabsPage';
     // })
@@ -33,12 +38,8 @@ export class MyApp {
 
   openPage(page) {
     this.menuController.close();
-    // console.log('thisNav', this.nav)
-    // let nav = this.app.getElementRef(this.nav);
-    // nav.setRoot(page.component);
-    // nav.push(page);
-    // nav.push(page);
-    // this.navCtrl.push(page)
+    // this.rootPage = page;
+    this.nav.push(page);
   }
 
   closeMenu() {

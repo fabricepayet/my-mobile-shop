@@ -38,7 +38,7 @@ export class ProductDetailPage {
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     this.shop = this.productService.getRelatedShop(this.product);
-    this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
+    // this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
   }
 
   deleteProduct() {
@@ -104,6 +104,6 @@ export class ProductDetailPage {
   }
 
   editShop() {
-    
+
   }
 }

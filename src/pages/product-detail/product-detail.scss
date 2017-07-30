@@ -50,6 +50,7 @@ page-product-detail {
 
 .product-detail__product_image {
   max-height: 420px;
+  min-height: 300px;
 }
 
 .product-detail__product_image_container {
@@ -72,4 +73,10 @@ page-product-detail {
   img {
     height: 80px;
   }
+}
+
+.product-detail__product_expiration_date {
+  text-align: center;
+  color: color($colors, secondary, base);
+  margin: 24px;
 }

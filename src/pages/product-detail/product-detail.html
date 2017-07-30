@@ -40,16 +40,9 @@
         </div>
       </div>
       <div class="product-detail__product_description">{{product.description}}</div>
-      <button *ngIf="!(currentReservation | async)?.productRef" class="product-detail__product_reserve_button" ion-button block (click)="reserve()">Réserver cet article</button>
-      <div *ngIf="(currentReservation | async)?.productRef" class="product-detail__is_reserved">
-        <span>Vous avez réservé cet article</span>
+      <div class="product-detail__product_expiration_date">
+        Il reste 2j 10h 52min
       </div>
     </div>
-
-    <ion-fab right>
-       <button ion-fab color="secondary" (click)="editShop()">
-         <ion-icon right name="add"></ion-icon>
-       </button>
-     </ion-fab>
   </div>
 </ion-content>
