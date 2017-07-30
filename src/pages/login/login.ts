@@ -8,6 +8,8 @@ import { AuthService } from '../../providers/auth.service'
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  private account = {};
+
   constructor(private authService: AuthService, private navCtrl: NavController) {
   }
 

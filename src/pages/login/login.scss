@@ -2,3 +2,39 @@
   margin: 0 auto;
   display: block;
 }
+
+.login-page__register {
+  margin: 12px;
+  flex: none;
+}
+
+.login-page__form  {
+  flex: 1 1 auto;
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.login-page__facebook_button {
+  margin-top: 48px;
+  background-color: #3b5998;
+  color: white;
+  height: 48px;
+
+  ion-icon {
+    font-size: 24px;
+    margin-right: 6px;
+  }
+}
+
+.login-page__connect_button {
+  margin-top: 12px;
+  height: 48px;
+}
+
+.login-page__register_button {
+  height: 48px;
+}

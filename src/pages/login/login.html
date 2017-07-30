@@ -1,9 +1,45 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Authentification requise</ion-title>
+    <ion-title>NamanaShop Connexion</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content padding>
-  <button ion-button ion-block (click)="loginWithFacebook()">Se connecter avec Facebook</button>
+  <div class="login-page">
+    <div class="" style="text-align:center; margin:24px;">
+      <img src="" alt="" style="height:100px; width:100px; margin:auto">
+    </div>
+    <form #loginForm="ngForm" novalidate style="margin:0 12px;" class="login-page__form">
+      <ion-item>
+        <ion-label floating>
+          Adresse email
+        </ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="account.email" #email="ngModel" required pattern="[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,4}"></ion-input>
+      </ion-item>
+
+      <div padding *ngIf="email.invalid && email.dirty">
+        <span class="global__input-error">Email address is not valid.</span>
+      </div>
+
+      <ion-item>
+        <ion-label floating>
+          Mot de passe
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="account.password" name="password" #password="ngModel" required pattern=".{6,}">
+
+        </ion-input>
+      </ion-item>
+
+      <div padding *ngIf="password.invalid && password.dirty">
+        <span class="global__input-error">Votre mot de passe doit avoir au moins 6 caractères.</span>
+      </div>
+      <button ion-button block (click)="login()" color="primary" [disabled]="loginForm.invalid" class="login-page__connect_button">Se connecter</button>
+      <button ion-button block (click)="loginWithFacebook()" class="login-page__facebook_button">
+        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>&nbsp;Se connecter avec Facebook</button>
+    </form>
+
+    <div class="login-page__register">
+      <button ion-button block (click)="navigateToRegisterPage()" color="secondary" class="login-page__register_button">Pas encore de compte ?</button>
+    </div>
+  </div>
 </ion-content>
