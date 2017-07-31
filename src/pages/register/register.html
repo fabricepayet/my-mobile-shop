@@ -1,11 +1,5 @@
-<!-- <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>NamanaShop Connexion</ion-title>
-  </ion-navbar>
-</ion-header> -->
-
 <ion-content padding>
-  <div class="login-page">
+  <div class="register-page">
     <div class="" style="text-align:center; margin:24px;">
       <img src="" alt="" style="height:100px; width:100px; margin:auto">
     </div>
@@ -18,7 +12,7 @@
       </ion-item>
 
       <div padding *ngIf="email.invalid && email.dirty">
-        <span class="global__input-error">Email address is not valid.</span>
+        <span class="global__input-error">L'adresse e-mail n'est pas valide.</span>
       </div>
 
       <ion-item>
@@ -33,17 +27,17 @@
       <div padding *ngIf="password.invalid && password.dirty">
         <span class="global__input-error">Votre mot de passe doit avoir au moins 6 caractères.</span>
       </div>
-      <button ion-button block (click)="login()" color="primary" [disabled]="loginForm.invalid" class="login-page__connect_button">Se connecter</button>
-      <div class="login-page__error">
-        {{errorMessage}}
-      </div>
+      <button ion-button block (click)="register()" color="primary" [disabled]="loginForm.invalid" class="login-page__connect_button">S'inscrire</button>
 
+      <div *ngIf="error">
+        {{error}}
+      </div>
       <button ion-button block (click)="loginWithFacebook()" class="login-page__facebook_button">
-        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>&nbsp;Se connecter avec Facebook</button>
+        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>&nbsp;S'inscrire avec Facebook</button>
     </form>
 
     <div class="login-page__register">
-      <button ion-button block (click)="navigateToRegisterPage()" color="secondary" class="login-page__register_button">Pas encore de compte ?</button>
+      <button ion-button block (click)="navigateToRegisterPage()" color="secondary" class="login-page__register_button">Se connecter</button>
     </div>
   </div>
 </ion-content>

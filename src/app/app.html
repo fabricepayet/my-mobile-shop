@@ -9,11 +9,10 @@
   <ion-content>
     <ion-list>
       <button ion-item (click)="openPage(homePage)">
-        Nouveautés
+        Liste des produits
       </button>
-      <button ion-item (click)="openPage(loginPage)">Se connecter</button>
-      <button ion-item>Recommander l'application</button>
-      <button ion-item (click)="logout()">
+      <button ion-item (click)="openPage(loginPage)" *ngIf="!auth">Se connecter</button>
+      <button ion-item (click)="logout()" *ngIf="auth">
         Se déconnecter
       </button>
       <button ion-item (click)="closeMenu()">

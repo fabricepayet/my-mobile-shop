@@ -9,11 +9,10 @@ import { AuthService } from '../providers/auth.service';
 })
 export class MyApp {
   @ViewChild('myNav') nav: NavController;
-  // rootPage:string = 'TabsPage';
-  // rootPage:string = 'LoginPage';
   rootPage:string = 'ProductListPage';
   private homePage;
   private loginPage;
+  private auth;
 
   constructor(
     platform: Platform,
@@ -25,9 +24,9 @@ export class MyApp {
   ) {
     this.homePage = 'ProductListPage';
     this.loginPage = 'LoginPage';
-    // this.authService.getAuthentificateUser().subscribe(auth => {
-    //   !auth ? this.rootPage = 'LoginPage' : this.rootPage = 'TabsPage';
-    // })
+    this.authService.getAuthentificateUser().subscribe(auth => {
+      this.auth = auth;
+    })
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -38,7 +37,9 @@ export class MyApp {
 
   openPage(page) {
     this.menuController.close();
-    // this.rootPage = page;
+    if (page === this.homePage) {
+      this.nav.setRoot(page);
+    }
     this.nav.push(page);
   }
 
