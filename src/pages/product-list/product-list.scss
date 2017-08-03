@@ -91,3 +91,22 @@
     padding: 6px 0 0 0;
   }
 }
+
+.product-list__filter {
+  position: fixed;
+  top: 56px;
+  z-index: 8000;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 0;
+  background-color: transparent;
+
+  .item-block {
+    background: transparent;
+  }
+}
+
+.product-list__content {
+  // margin-top: 40px;
+  // padding-top: 50px !important;
+}

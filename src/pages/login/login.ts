@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../providers/auth.service';
 
 import { Account } from '../../models/account.interface';
@@ -12,13 +12,18 @@ import { Account } from '../../models/account.interface';
 export class LoginPage {
   private account = {} as Account;
   private errorMessage: string;
+  private message: string;
+  private onLogin: Function;
 
-  constructor(private authService: AuthService, private navCtrl: NavController) {
+  constructor(
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private navParams: NavParams) {
   }
 
   async loginWithFacebook() {
     this.authService.loginWithFacebook().then(() => {
-      this.navCtrl.push('TabsPage');
+      this.navCtrl.pop();
     }).catch((error: any) => {
       var errorCode = error.code;
       this.errorMessage = error.message;
@@ -35,17 +40,18 @@ export class LoginPage {
   async login() {
     const result = await this.authService.signInWithEmailAndPassword(this.account);
     if (!result.error) {
-      this.navCtrl.pop();
+      if(this.onLogin) {
+        this.onLogin()
+      } else {
+        this.navCtrl.pop();
+      }
     } else {
       this.errorMessage = result.error.message;
     }
   }
 
-  // ionViewDidLoad() {
-  //   this.authService.getAuthentificateUser().subscribe(auth => {
-  //     if (auth) {
-  //       this.navCtrl.pop();
-  //     }
-  //   })
-  // }
+  ionViewWillLoad() {
+    this.message = this.navParams.get('message');
+    this.onLogin = this.navParams.get('onLogin');
+  }
 }

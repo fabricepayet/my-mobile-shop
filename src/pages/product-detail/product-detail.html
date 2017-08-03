@@ -11,8 +11,8 @@
     </button>
     <ion-title>{{(shop | async)?.name | uppercase}}: {{product.name | uppercase}}</ion-title>
     <ion-buttons right>
-      <button ion-button icon-only (click)="deleteProduct()">
-        <ion-icon name="ios-trash-outline"></ion-icon>
+      <button ion-button icon-only (click)="navigateToReservationPage()">
+        <ion-icon name="cart"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -43,6 +43,10 @@
       <div class="product-detail__product_expiration_date">
         Il reste 2j 10h 52min
       </div>
+    </div>
+
+    <div>
+      <button ion-button block (click)="reserveThisProduct()">Réserver ce produit</button>
     </div>
   </div>
 </ion-content>

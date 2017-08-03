@@ -10,13 +10,18 @@
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>Namana Shop</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="navigateToReservationPage()">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
+<ion-content padding class="product-list__content">
+  <ion-list class="product-list__filter">
     <ion-item>
-      <ion-label>Ville</ion-label>
+      <ion-label text-right>Filter par ville</ion-label>
       <ion-select [(ngModel)]="selectorTown" placeholder="Tout" (ionChange)="filterTownChanged($event)">
         <ion-option value="Petite-Ile">Petite-Ile</ion-option>
         <ion-option value="Saint-Joseph">Saint-Joseph</ion-option>

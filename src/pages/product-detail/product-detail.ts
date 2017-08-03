@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { Shop } from '../../models/shop.interface';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { Reservation } from '../../models/reservation.interface';
 import { ProductService } from '../../providers/product.service';
 import { ReservationService } from '../../providers/reservation.service';
+import { AuthService } from '../../providers/auth.service';
 import { LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
 
 /**
@@ -32,7 +33,9 @@ export class ProductDetailPage {
     public navParams: NavParams,
     private alertController: AlertController,
     private toastController: ToastController,
-    private reservationService: ReservationService) {
+    private reservationService: ReservationService,
+    private authService: AuthService,
+    private modalController: ModalController) {
   }
 
   ionViewWillLoad() {
@@ -99,11 +102,55 @@ export class ProductDetailPage {
     confirm.present();
   }
 
+  openReservationModal() {
+    this.modalController.create('ReservationModalPage', { product: this.product }).present()
+  }
+
+  openReservationConfirmbox() {
+    let confirm = this.alertController.create({
+      title: 'Réservation',
+      message: 'Êtes-vous sûr de vouloir réserver cet article ?',
+      buttons: [
+        {
+          text: 'Annuler'
+        },
+        {
+          text: 'Réserver',
+          handler: () => {
+            this.reservationService.createUserReservation(this.product)
+            .then(() => {
+              this.toastController.create({
+                message: 'Super ! Votre réservation a bien été enregistrée.',
+                duration: 3000
+              }).present()
+              this.navCtrl.push('ReservationPage');
+            })
+          }
+        }
+      ]
+    }).present();
+  }
+
+  reserveThisProduct() {
+    const authObserver = this.authService.getAuthentificateUser().subscribe(auth => {
+      if (!auth) {
+        this.modalController.create('LoginPage', {
+          message: 'Une authentification est requise',
+          onLogin: this.openReservationModal.bind(this)
+        }).present();
+        authObserver.unsubscribe();
+      } else {
+        this.openReservationConfirmbox()
+        authObserver.unsubscribe()
+      }
+    })
+  }
+
   visitShop() {
     this.navCtrl.push('ShopDetailPage', {shop: this.shop});
   }
 
-  editShop() {
-
+  navigateToReservationPage() {
+    this.navCtrl.push('ReservationPage')
   }
 }

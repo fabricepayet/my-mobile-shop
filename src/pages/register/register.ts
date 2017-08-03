@@ -18,21 +18,32 @@ import { LoginResponse } from '../../models/login-response.interface';
 export class RegisterPage {
 
   account = {} as Account;
-  error: string;
+  errorMessage: string;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private auth: AuthService) {
+    private authService: AuthService) {
+  }
+
+  async loginWithFacebook() {
+    this.authService.loginWithFacebook().then(() => {
+      this.navCtrl.pop();
+    }).catch((error: any) => {
+      var errorCode = error.code;
+      this.errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      console.error('Error when logging with facebook:', errorCode, this.errorMessage, email);
+    })
   }
 
   async register() {
-    const result: LoginResponse = await this.auth.createUserWithEmailAndPassword(this.account);
-    console.log('Register result', result);
+    const result: LoginResponse = await this.authService.createUserWithEmailAndPassword(this.account);
     if (!result.error) {
       this.navCtrl.push('ProductListPage');
     } else {
-      this.error = result.error.message;
+      this.errorMessage = result.error.message;
     }
   }
 }

@@ -30,7 +30,7 @@
       <button ion-button block (click)="register()" color="primary" [disabled]="loginForm.invalid" class="login-page__connect_button">S'inscrire</button>
 
       <div *ngIf="error">
-        {{error}}
+        {{errorMessage}}
       </div>
       <button ion-button block (click)="loginWithFacebook()" class="login-page__facebook_button">
         <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>&nbsp;S'inscrire avec Facebook</button>

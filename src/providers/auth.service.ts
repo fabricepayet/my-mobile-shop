@@ -29,10 +29,6 @@ export class AuthService {
     this.afAuth.auth.signOut();
   }
 
-  getCurrentUser() {
-    return this.afAuth.authState;
-  }
-
   async createUserWithEmailAndPassword(account: Account) {
     try {
       return  <LoginResponse> {
