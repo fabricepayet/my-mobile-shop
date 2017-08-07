@@ -11,8 +11,9 @@ import { ShopService } from '../../providers/shop.service';
   templateUrl: 'product-list.html',
 })
 export class ProductListPage {
-
-  private productList: FirebaseListObservable<Product[]>;
+  productList: Product[] = [];
+  lastKey: number;
+  private a = 3;
 
   constructor(
     public navCtrl: NavController,
@@ -21,16 +22,28 @@ export class ProductListPage {
     private shopService: ShopService) {
   }
 
-  ionViewDidLoad() {
-		document.getElementsByTagName('html')[0].className += 'ion-tabs-fix';
-	}
+  addProduct(products) {
+    console.log(' je rajoute product', products.length);
+    products.forEach(product => {
+      this.productList.push(product);
+      this.lastKey = product.timestamp;
+      console.log('timestamp', product.timestamp);
+    })
+    console.log('last timestamp is', this.lastKey);
+  }
 
-	ionViewWillLeave() {
-		document.getElementsByTagName('html')[0].className = '';
-	}
+  loadRecentProducts(lastKey: number = null) {
+    let query: any = {};
+    if (lastKey) {
+      query.endAt = lastKey - 1;
+    }
+    this.productService.getProducts(query).subscribe(snapshots => {
+      this.addProduct(snapshots);
+    })
+  }
 
   ionViewWillLoad() {
-    this.productList = this.productService.getProducts()
+    this.loadRecentProducts(this.lastKey);
   }
 
   gotoShop(product) {
@@ -48,17 +61,25 @@ export class ProductListPage {
   }
 
   filterTownChanged(town) {
-    if (town === 'all') {
-      this.productList = this.productService.getProducts({})
-    } else {
-      this.productList = this.productService.getProducts({
-        orderByChild: 'shopTown',
-        equalTo: town
-      })
-    }
+    // if (town === 'all') {
+    //   this.productList = this.productService.getProducts({})
+    // } else {
+    //   this.productList = this.productService.getProducts({
+    //     orderByChild: 'shopTown',
+    //     equalTo: town
+    //   })
+    // }
   }
 
   navigateToReservationPage() {
     this.navCtrl.push('ReservationPage')
+  }
+
+  doInfinite(infiniteScroll) {
+    this.loadRecentProducts(this.lastKey);
+    setTimeout(() => {
+      this.a += 1;
+      infiniteScroll.complete();
+    }, 500);
   }
 }
