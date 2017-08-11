@@ -78,5 +78,15 @@ page-product-detail {
 .product-detail__product_expiration_date {
   text-align: center;
   color: color($colors, secondary, base);
-  margin: 24px;
+  margin: 12px;
+}
+
+.product-detail__button {
+  margin: 12px auto;
+  width: 92%;
+}
+
+.product-detail__button--cta1 {
+  height: 52px;
+  font-size: 1.2em;
 }
