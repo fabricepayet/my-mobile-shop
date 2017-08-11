@@ -14,6 +14,7 @@ export class ProductListPage {
   productList: Product[] = [];
   lastKey: number;
   private a = 3;
+  private townFilter: string;
 
   constructor(
     public navCtrl: NavController,
@@ -22,28 +23,29 @@ export class ProductListPage {
     private shopService: ShopService) {
   }
 
+  ionViewWillLoad() {
+    this.loadRecentProducts(this.lastKey);
+  }
+
   addProduct(products) {
-    console.log(' je rajoute product', products.length);
     products.forEach(product => {
       this.productList.push(product);
       this.lastKey = product.timestamp;
-      console.log('timestamp', product.timestamp);
     })
-    console.log('last timestamp is', this.lastKey);
   }
 
   loadRecentProducts(lastKey: number = null) {
     let query: any = {};
+    if (this.townFilter) {
+      query.orderByChild = 'shopTown';
+      query.equalTo = this.townFilter;
+    }
     if (lastKey) {
       query.endAt = lastKey - 1;
     }
     this.productService.getProducts(query).subscribe(snapshots => {
       this.addProduct(snapshots);
     })
-  }
-
-  ionViewWillLoad() {
-    this.loadRecentProducts(this.lastKey);
   }
 
   gotoShop(product) {
@@ -61,14 +63,18 @@ export class ProductListPage {
   }
 
   filterTownChanged(town) {
-    // if (town === 'all') {
-    //   this.productList = this.productService.getProducts({})
-    // } else {
-    //   this.productList = this.productService.getProducts({
-    //     orderByChild: 'shopTown',
-    //     equalTo: town
-    //   })
-    // }
+    let query: any = {};
+    if (town === 'all') {
+      this.townFilter = null;
+    } else {
+      this.townFilter = town;
+      query.orderByChild = 'shopTown';
+      query.equalTo = town;
+    }
+
+    this.productService.getProducts(query).subscribe(snapshots => {
+      this.productList = snapshots;
+    })
   }
 
   navigateToReservationPage() {

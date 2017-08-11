@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.namanashop.app" version="0.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.namanashop.app" version="0.2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>NamanaShop</name>
     <description>Les meilleures offres des magasins de proximité</description>
     <author email="payet.fab@gmail.com">Fabrice Payet</author>
-    <content original-src="index.html" src="http://192.168.1.108:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="http://169.254.3.149:8100" />

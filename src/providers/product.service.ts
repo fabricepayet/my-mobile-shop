@@ -9,7 +9,6 @@ export class ProductService {
   constructor(private database: AngularFireDatabase, private imageService: ImageService) {
   }
 
-
   async addProduct(product: Product, captureData: string) {
     product.timestamp = Date.now();
     let nextProductKey = this.database.list(`/products/${product.shopRef}`).push({}).key;
@@ -44,11 +43,6 @@ export class ProductService {
     return this.database.list(`products/${shopKey}`);
   }
 
-
-  getProducts2(number): any {
-    return firebase.database().ref('recent-products').limitToLast(number);
-  }
-
   getProducts(query = {} as any): any {
     let queryOpts: any = {
       preserveSnapshot: true,
@@ -58,18 +52,12 @@ export class ProductService {
     if (query.endAt) {
       queryOpts.endAt = query.endAt;
     }
+    if (query.equalTo) {
+      queryOpts.equalTo = query.equalTo;
+    }
     console.log('>> getProduct', queryOpts)
     let list = this.database.list('recent-products', {query: queryOpts})
-    // return list
     return list.map((array) => array.reverse()) as FirebaseListObservable<Product[]>
-  }
-
-  getProduct3(number): FirebaseListObservable<Product[]> {
-    return this.database.list('recent-products', { query: {limitToLast: number} })
-  }
-
-  updateSubscriptionProduct(number) {
-
   }
 
   getRelatedShop(product) {
