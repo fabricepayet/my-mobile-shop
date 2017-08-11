@@ -10,8 +10,9 @@ import { AuthService } from '../providers/auth.service';
 export class MyApp {
   @ViewChild('myNav') nav: NavController;
   rootPage:string = 'ProductListPage';
-  private homePage;
+  private productPage;
   private loginPage;
+  private shopPage;
   private auth;
 
   constructor(
@@ -22,8 +23,9 @@ export class MyApp {
     private authService: AuthService,
     private menuController: MenuController
   ) {
-    this.homePage = 'ProductListPage';
+    this.productPage = 'ProductListPage';
     this.loginPage = 'LoginPage';
+    this.shopPage = 'ShopListPage';
     this.authService.getAuthentificateUser().subscribe(auth => {
       this.auth = auth;
     })
@@ -37,8 +39,8 @@ export class MyApp {
 
   openPage(page) {
     this.menuController.close();
-    if (page === this.homePage) {
-      this.nav.setRoot(page);
+    if (page === this.productPage || page === this.shopPage) {
+      return this.nav.setRoot(page);
     }
     this.nav.push(page);
   }
