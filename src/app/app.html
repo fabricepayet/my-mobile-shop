@@ -15,6 +15,9 @@
         Liste des boutiques
       </button>
       <button ion-item (click)="openPage(loginPage)" *ngIf="!auth">Se connecter</button>
+      <button ion-item (click)="openPage(reservationPage)" *ngIf="auth">
+        Mes réservations
+      </button>
       <button ion-item (click)="logout()" *ngIf="auth">
         Se déconnecter
       </button>

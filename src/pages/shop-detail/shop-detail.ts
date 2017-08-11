@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { Shop } from '../../models/shop.interface';
+import { Profile } from '../../models/profile.interface';
 import { ProductService } from '../../providers/product.service';
 import { ShopService } from '../../providers/shop.service';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { LoadingController, Loading, ToastController } from 'ionic-angular';
 
 @IonicPage()
@@ -17,6 +18,7 @@ export class ShopDetailPage {
   productList: FirebaseListObservable<Product[]>;
   shopPhotoUrl: string;
   private loader: Loading;
+  private profile: Profile;
 
   constructor(
     private loading: LoadingController,
@@ -35,6 +37,12 @@ export class ShopDetailPage {
 
   ionViewWillLoad() {
     this.shop = this.navParams.get('shop');
+    if (!this.shop) {
+      console.log('redirection sur ShopListPage')
+      return this.navCtrl.setRoot('ShopListPage')
+    }
+    this.profile = this.navParams.get('profile');
+    console.log('this.profile', this.profile);
     this.productList = this.productService.getProductList(this.shop.$key);
   }
 
@@ -42,6 +50,10 @@ export class ShopDetailPage {
     this.navCtrl.push('AddProductPage', {
       shop: this.shop
     });
+  }
+
+  navigateToReservationPage() {
+    this.navCtrl.push('ReservationPage')
   }
 
   deleteShop() {

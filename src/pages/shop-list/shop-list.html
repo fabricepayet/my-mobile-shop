@@ -3,9 +3,12 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>FriendShop</ion-title>
+    <ion-title>NamanaShop</ion-title>
     <ion-buttons right>
-      <button ion-button icon-only (click)='addShop()'>
+      <button ion-button icon-only (click)="navigateToReservationPage()">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)='addShop()' *ngIf="(profile | async)?.role == 'admin'">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>

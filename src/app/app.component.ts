@@ -10,10 +10,11 @@ import { AuthService } from '../providers/auth.service';
 export class MyApp {
   @ViewChild('myNav') nav: NavController;
   rootPage:string = 'ProductListPage';
+  private auth;
   private productPage;
   private loginPage;
   private shopPage;
-  private auth;
+  private reservationPage;
 
   constructor(
     platform: Platform,
@@ -26,6 +27,7 @@ export class MyApp {
     this.productPage = 'ProductListPage';
     this.loginPage = 'LoginPage';
     this.shopPage = 'ShopListPage';
+    this.reservationPage = 'ReservationPage';
     this.authService.getAuthentificateUser().subscribe(auth => {
       this.auth = auth;
     })

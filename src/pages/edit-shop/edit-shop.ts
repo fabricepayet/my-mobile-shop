@@ -18,9 +18,11 @@ export class EditShopPage {
 
   shop: Shop;
 
-  constructor(public navCtrl: NavController,
-  public navParams: NavParams,
-  private shopService: ShopService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private shopService: ShopService
+  ) {
     this.shop = this.navParams.get('shop');
   }
 
@@ -30,6 +32,6 @@ export class EditShopPage {
       activity: this.shop.activity,
       town: this.shop.town
     })
-    this.navCtrl.push('ShopDetailPage', {shop: this.shop})
+    this.navCtrl.pop()
   }
 }
