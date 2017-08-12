@@ -9,12 +9,6 @@ import { ReservationService } from '../../providers/reservation.service';
 import { AuthService } from '../../providers/auth.service';
 import { LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
 
-/**
- * Generated class for the ProductDetailPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-product-detail',
@@ -25,6 +19,7 @@ export class ProductDetailPage {
   shop: FirebaseObjectObservable<Shop>;
   private loader: Loading;
   private currentReservation: FirebaseObjectObservable<Reservation>;
+  private countdown: number;
 
   constructor(
     private loading: LoadingController,
@@ -35,13 +30,26 @@ export class ProductDetailPage {
     private toastController: ToastController,
     private reservationService: ReservationService,
     private authService: AuthService,
-    private modalController: ModalController) {
+    private modalController: ModalController
+  ) {
+      this.countdown = 10000;
+      let countdownCount = setInterval(() => {
+        if (this.countdown > 0) {
+          this.countdown = this.countdown - 1
+        } else {
+          clearInterval(countdownCount);
+        }
+      }, 1000);
   }
 
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     this.shop = this.productService.getRelatedShop(this.product);
     // this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
+  }
+
+  ionViewDidLoad() {
+
   }
 
   deleteProduct() {

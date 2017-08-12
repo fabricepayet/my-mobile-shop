@@ -32,11 +32,9 @@
   width: auto;
 }
 
-.product-list__product_image_container {
-  background-color: #efeded;
-}
-
 .product-list__shop_card {
+  padding: 12px;
+
   ion-card-content {
     padding: 0;
     position: relative;
@@ -63,11 +61,7 @@
   align-items: center;
   font-weight: bold;
   padding: 6px 12px;
-  position: absolute;
-  z-index: 50;
-  bottom: 0;
   width: 100%;
-  background-color: rgba(255,255,255,0.8);
 }
 
 .product-list__product_info {
@@ -94,6 +88,5 @@
 }
 
 .product-list__content {
-  // margin-top: 40px;
-  // padding-top: 50px !important;
+  background-color: #d1d1d1;
 }

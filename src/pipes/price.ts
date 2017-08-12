@@ -1,25 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { _ } from 'underscore';
 
-/**
- * Generated class for the PricePipe pipe.
- *
- * See https://angular.io/docs/ts/latest/guide/pipes.html for more info on
- * Angular Pipes.
- */
 @Pipe({
   name: 'price',
 })
 export class PricePipe implements PipeTransform {
   transform(value: any, ...args) {
-    console.log('value', typeof(value), value);
     if (typeof(value) === 'number') {
       value = value.toString();
     }
     let values = value.split('.')
     let res = '<span class="price">' + _.escape(values[0])
-    if (values[1]) {
-      res +=  '<span class="cents">,' + _.escape(values[1]) + '€</span>'
+    let cents = values[1]
+    if (cents) {
+      if (cents.length == 1) {
+        cents += '0'
+      }
+      res +=  '<span class="cents">,' + _.escape(cents) + '€</span>'
     } else {
       res += '<span class="cents">€</span>'
     }

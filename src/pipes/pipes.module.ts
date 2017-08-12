@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
-import { PricePipe } from "./price/price";
+import { PricePipe } from "./price";
+import { CountdownPipe } from "./countdown";
 
 @NgModule({
     declarations: [
-        PricePipe
+      PricePipe,
+      CountdownPipe
     ],
     imports: [
 
     ],
     exports: [
-        PricePipe
+      PricePipe,
+      CountdownPipe
     ]
 })
 export class PipesModule {}

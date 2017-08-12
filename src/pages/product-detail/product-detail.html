@@ -28,6 +28,9 @@
       <img class="product-detail__product_thumbnail" [src]="product.image"/>
       <img class="product-detail__product_thumbnail" [src]="product.image"/>
     </div> -->
+    <div class="product-detail__expiration_container">
+      Cette vente se termine dans <span class="product-detail__product_expiration_date">{{countdown | countdowntimer}}</span>
+    </div>
     <div class="product-detail__content_container">
       <div class="product-detail__content_header">
         <div class="product-detail__product_name_container">
@@ -38,14 +41,13 @@
         </div>
         <price-component [product]="product"></price-component>
       </div>
-      <div class="product-detail__product_description">{{product.description}}</div>
-      <div class="product-detail__product_expiration_date">
-        Il reste 2j 10h 52min
+      <div class="product-detail__product_reservation">
+        Réservez aujourd'hui et économisez 8€ sur votre achat en magasin.
       </div>
     </div>
 
     <div>
-      <button ion-button block (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1">Réserver ce produit</button>
+      <button ion-button block (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1">Réserver maintenant</button>
       <button ion-button block (click)="visitShop()" color="light" class="product-detail__button product-detail__button--cta2">Voir la boutique</button>
     </div>
   </div>

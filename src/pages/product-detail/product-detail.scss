@@ -53,12 +53,12 @@ page-product-detail {
 }
 
 .product-detail__product_image {
-  max-height: 420px;
-  min-height: 300px;
+  max-height: 280px;
+  min-height: 200px;
 }
 
 .product-detail__product_image_container {
-  background-color: #eaeaea;
+  background-color: #dcdcdc;
   text-align: center;
 }
 
@@ -80,9 +80,7 @@ page-product-detail {
 }
 
 .product-detail__product_expiration_date {
-  text-align: center;
   color: color($colors, secondary, base);
-  margin: 12px;
 }
 
 .product-detail__button {
@@ -93,4 +91,17 @@ page-product-detail {
 .product-detail__button--cta1 {
   height: 52px;
   font-size: 1.2em;
+}
+
+.product-detail__product_reservation {
+  color: color($colors, dark, base);
+  font-size: 1.1em;
+  padding: 12px 0;
+}
+
+.product-detail__expiration_container {
+  background-color: #ebebeb;
+  padding: 12px 24px;
+  color: #898B92;
+  font-size: 1.1em;
 }
