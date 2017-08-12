@@ -41,8 +41,8 @@
         </div>
         <price-component [product]="product"></price-component>
       </div>
-      <div class="product-detail__product_reservation">
-        Réservez aujourd'hui et économisez 8€ sur votre achat en magasin.
+      <div class="product-detail__product_reservation" *ngIf="product.finalPrice">
+        Réservez aujourd'hui et économisez <span [innerHtml]="calculReduction() | price"></span> sur votre achat en magasin.
       </div>
     </div>
 

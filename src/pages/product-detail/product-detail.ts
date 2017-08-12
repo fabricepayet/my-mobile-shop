@@ -161,4 +161,8 @@ export class ProductDetailPage {
   navigateToReservationPage() {
     this.navCtrl.push('ReservationPage')
   }
+
+  calculReduction() {
+    return this.product.price - this.product.finalPrice;
+  }
 }
