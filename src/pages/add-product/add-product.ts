@@ -7,12 +7,6 @@ import { LoadingController, Loading } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { ImageService } from '../../providers/image.service'
 
-/**
- * Generated class for the AddProductPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-add-product',
@@ -38,6 +32,14 @@ export class AddProductPage {
       })
   }
 
+  priceDisplayed() {
+    if (!this.product.discount) {
+      return this.product.price
+    }
+    let newPrice = this.product.price - (this.product.price * this.product.discount / 100)
+    return Math.round(newPrice * 100) / 100
+  }
+
   ionViewWillLoad() {
     this.shop = this.navParams.get('shop');
   }
@@ -48,6 +50,7 @@ export class AddProductPage {
     this.product.shopRef = this.shop.$key;
     this.product.shopTown = this.shop.town;
     this.product.shopName = this.shop.name;
+    this.product.finalPrice = this.priceDisplayed();
     try {
       await this.productService.addProduct(this.product, this.captureDataUrl)
       this.loader.dismiss();

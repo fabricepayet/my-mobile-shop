@@ -11,7 +11,7 @@
       <button ion-button icon-only (click)="editShop(shop)" *ngIf="(profile | async)?.role == 'admin'">
         <ion-icon name="create"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="addProduct(shop)" *ngIf="(profile | async)?.role == 'admin'">
+      <button ion-button icon-only (click)="openAddProductModal(shop)" *ngIf="(profile | async)?.role == 'admin'">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -33,7 +33,8 @@
             <img [src]="product.image" alt="{{product.name}}" class="shop-detail__product_image">
             <div class="shop-detail__product_info">
               <div class="shop-detail__product_name">{{product.name}}</div>
-              <div class="shop-list__product_price" right [innerHtml]="product.price | price"></div>
+              <div class="shop-list__product_price" right [innerHtml]="product.price | price" *ngIf="!product.finalPrice"></div>
+              <div class="shop-list__product_price" right [innerHtml]="product.finalPrice | price" *ngIf="product.finalPrice"></div>
             </div>
           </div>
         </ion-col>

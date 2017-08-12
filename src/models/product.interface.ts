@@ -11,5 +11,7 @@ export interface Product {
   shop?: Shop,
   shopRef: string,
   shopTown?: string,
-  shopName?: string
+  shopName?: string,
+  discount?: number,
+  finalPrice?: number
 }

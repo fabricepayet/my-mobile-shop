@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { Shop } from '../../models/shop.interface';
 import { Profile } from '../../models/profile.interface';
@@ -26,13 +26,19 @@ export class ShopDetailPage {
     private productService: ProductService,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private toastController: ToastController) {
+    private toastController: ToastController,
+    private modalController: ModalController
+  ) {
   }
 
   shopMap() {
     this.navCtrl.push('ShopMapPage', {
       shop: this.shop
     })
+  }
+
+  openAddProductModal(shop) {
+    this.modalController.create('AddProductPage', { shop }).present()
   }
 
   ionViewWillLoad() {
@@ -44,12 +50,6 @@ export class ShopDetailPage {
     this.profile = this.navParams.get('profile');
     console.log('this.profile', this.profile);
     this.productList = this.productService.getProductList(this.shop.$key);
-  }
-
-  addProduct() {
-    this.navCtrl.push('AddProductPage', {
-      shop: this.shop
-    });
   }
 
   navigateToReservationPage() {

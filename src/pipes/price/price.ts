@@ -11,7 +11,11 @@ import { _ } from 'underscore';
   name: 'price',
 })
 export class PricePipe implements PipeTransform {
-  transform(value: string, ...args) {
+  transform(value: any, ...args) {
+    console.log('value', typeof(value), value);
+    if (typeof(value) === 'number') {
+      value = value.toString();
+    }
     let values = value.split('.')
     let res = '<span class="price">' + _.escape(values[0])
     if (values[1]) {

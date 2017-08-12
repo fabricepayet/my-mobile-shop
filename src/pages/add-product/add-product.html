@@ -1,12 +1,3 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle icon-only>
-      <ion-icon name='menu'></ion-icon>
-    </button>
-    <ion-title>NOUVEAU PRODUIT</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
   <form #registerForm="ngForm" novalidate>
     <ion-card>
@@ -35,9 +26,18 @@
           </div>
 
           <ion-item>
-            <ion-label floating>Prix</ion-label>
+            <ion-label floating>Prix courant (en €)</ion-label>
             <ion-input type="number" name="number" [(ngModel)]="product.price" #price="ngModel" required></ion-input>
           </ion-item>
+
+          <ion-item>
+            <ion-label floating>Remise (%)</ion-label>
+            <ion-input type="number" name="number" [(ngModel)]="product.discount" #price="ngModel" required></ion-input>
+          </ion-item>
+
+          <div padding class="" *ngIf="product.price">
+            L'article sera affiché a {{priceDisplayed() | currency:"EUR"}}
+          </div>
 
           <ion-item>
             <button ion-button (click)="takePhoto()" *ngIf="!captureDataUrl">Prendre une photo</button>
