@@ -1,0 +1,4 @@
+<div class="price-component__container">
+  <div class="price-component__product_price" [innerHtml]="product.finalPrice | price" *ngIf="product.finalPrice"></div>
+  <div class="price-component__product_price" [ngClass]="{'price-component__product_price--outdated': product.finalPrice}" [innerHtml]="product.price | price"></div>
+</div>

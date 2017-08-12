@@ -36,8 +36,7 @@
             <ion-icon name="home"></ion-icon> {{(shop | async)?.name | uppercase}}, {{(shop | async)?.town}}
           </div>
         </div>
-        <div class="product-detail__product_price" [innerHtml]="product.price | price" *ngIf="!product.finalPrice"></div>
-        <div class="product-detail__product_price" [innerHtml]="product.finalPrice | price" *ngIf="product.finalPrice"></div>
+        <price-component [product]="product"></price-component>
       </div>
       <div class="product-detail__product_description">{{product.description}}</div>
       <div class="product-detail__product_expiration_date">

@@ -1,0 +1,21 @@
+.price-component__product_price {
+  color: color($colors, secondary, base);
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.price-component__product_price--outdated {
+  color: #bbb;
+  font-weight: normal;
+  font-size: 18px;
+  text-decoration: line-through;
+}
+
+.price-component__container {
+  display: flex;
+}

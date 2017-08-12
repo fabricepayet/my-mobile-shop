@@ -12,17 +12,21 @@ page-product-detail {
 }
 
 .product-detail__product_price {
-  background-color: color($colors, secondary, base);
-  color: white;
-  font-weight: normal;
-  font-size: 16px;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  color: color($colors, secondary, base);
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex: none;
+}
+
+.product-detail__product_price--outdated {
+  color: #bbb;
+  font-weight: normal;
+  font-size: 18px;
+  text-decoration: line-through;
 }
 
 .product-detail__product_name {

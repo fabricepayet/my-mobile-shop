@@ -32,19 +32,6 @@
   width: auto;
 }
 
-.product-list__product_price {
-  background-color: color($colors, secondary, base);
-  color: white;
-  font-weight: normal;
-  font-size: 16px;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .product-list__product_image_container {
   background-color: #efeded;
 }
