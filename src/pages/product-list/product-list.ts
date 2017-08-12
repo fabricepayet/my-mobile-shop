@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FirebaseListObservable } from 'angularfire2/database';
 import { Product } from '../../models/product.interface';
 import { ProductService } from '../../providers/product.service';
 import { ShopService } from '../../providers/shop.service';

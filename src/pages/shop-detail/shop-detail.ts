@@ -5,7 +5,7 @@ import { Shop } from '../../models/shop.interface';
 import { Profile } from '../../models/profile.interface';
 import { ProductService } from '../../providers/product.service';
 import { ShopService } from '../../providers/shop.service';
-import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { FirebaseListObservable } from 'angularfire2/database';
 import { LoadingController, Loading, ToastController } from 'ionic-angular';
 
 @IonicPage()
