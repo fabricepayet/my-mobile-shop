@@ -39,8 +39,8 @@ export class ProductService {
     })
   }
 
-  getProductList(shopKey: string): FirebaseListObservable<Product[]> {
-    return this.database.list(`products/${shopKey}`);
+  getProductList(shopKey: string, query: any = {}): FirebaseListObservable<Product[]> {
+    return this.database.list(`products/${shopKey}`, { query });
   }
 
   getProducts(query = {} as any): any {
@@ -55,7 +55,6 @@ export class ProductService {
     if (query.equalTo) {
       queryOpts.equalTo = query.equalTo;
     }
-    console.log('>> getProduct', queryOpts)
     let list = this.database.list('recent-products', {query: queryOpts})
     return list.map((array) => array.reverse()) as FirebaseListObservable<Product[]>
   }

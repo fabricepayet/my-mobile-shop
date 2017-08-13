@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { Shop } from '../../models/shop.interface';
-import { FirebaseObjectObservable } from 'angularfire2/database';
+import { FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Reservation } from '../../models/reservation.interface';
 import { ProductService } from '../../providers/product.service';
 import { ReservationService } from '../../providers/reservation.service';
@@ -19,6 +19,7 @@ export class ProductDetailPage {
   shop: FirebaseObjectObservable<Shop>;
   private loader: Loading;
   private currentReservation: FirebaseObjectObservable<Reservation>;
+  private relatedProductList: FirebaseListObservable<Product[]>;
   private countdown: number;
 
   constructor(
@@ -45,11 +46,8 @@ export class ProductDetailPage {
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     this.shop = this.productService.getRelatedShop(this.product);
+    this.relatedProductList = this.productService.getProductList(this.product.shopRef, {orderByChild: 'timestamp', limitToLast: 4})
     // this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
-  }
-
-  ionViewDidLoad() {
-
   }
 
   deleteProduct() {
@@ -154,8 +152,8 @@ export class ProductDetailPage {
     })
   }
 
-  visitShop() {
-    this.navCtrl.push('ShopDetailPage', {shop: this.shop});
+  visitShop(shop) {
+    this.navCtrl.push('ShopDetailPage', {shop});
   }
 
   navigateToReservationPage() {
@@ -164,5 +162,11 @@ export class ProductDetailPage {
 
   calculReduction() {
     return this.product.price - this.product.finalPrice;
+  }
+
+  showArticle(product, shop) {
+    this.navCtrl.push('ProductDetailPage', {
+      product, shop
+    })
   }
 }

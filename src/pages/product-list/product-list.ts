@@ -53,7 +53,7 @@ export class ProductListPage {
     })
   }
 
-  gotoProduct(product) {
+  showArticle(product) {
     let shop = product.shop
     delete product.shop;
     this.navCtrl.push('ProductDetailPage', {

@@ -35,20 +35,41 @@
       <div class="product-detail__content_header">
         <div class="product-detail__product_name_container">
           <div class="product-detail__product_name">{{product.name}}</div>
-          <div class="product-detail__product_shop" (click)="visitShop()">
+          <div class="product-detail__product_shop">
             <ion-icon name="home"></ion-icon> {{(shop | async)?.name | uppercase}}, {{(shop | async)?.town}}
           </div>
         </div>
         <price-component [product]="product"></price-component>
       </div>
-      <div class="product-detail__product_reservation" *ngIf="product.finalPrice">
-        Réservez aujourd'hui et économisez <span [innerHtml]="calculReduction() | price"></span> sur votre achat en magasin.
+      <div class="product-detail__discount_container" *ngIf="product.discount">
+        <span class="product-detail__product_discount">-{{ product.discount }}%</span>
       </div>
+    </div>
+    <div class="product-detail__product_reservation" *ngIf="product.finalPrice">
+      Réservez aujourd'hui et économisez <span [innerHtml]="calculReduction() | price"></span> sur votre achat en magasin.
     </div>
 
     <div>
       <button ion-button block (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1">Réserver maintenant</button>
-      <button ion-button block (click)="visitShop()" color="light" class="product-detail__button product-detail__button--cta2">Voir la boutique</button>
+      <button ion-button block (click)="visitShop(shop)" color="light" class="product-detail__button product-detail__button--cta2">Voir la boutique</button>
     </div>
   </div>
+
+  <ion-card class="product-detail__discover_container">
+    <ion-card-title>Découvrez dans la même boutique</ion-card-title>
+    <ion-card-content>
+      <div class="discover_container__product_item" *ngFor="let relatedProduct of relatedProductList | async" [hidden]="relatedProduct.$key == product.$key"
+      (click)="showArticle(relatedProduct, shop)">
+        <div class="discover_container__product_image_container">
+          <img [src]="relatedProduct.image" class="discover_container__product_image"/>
+        </div>
+        <div>
+          <div class="discover_container__product_name">
+            {{relatedProduct.name}}
+          </div>
+          <price-component [product]="relatedProduct"></price-component>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
