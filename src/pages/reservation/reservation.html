@@ -18,7 +18,7 @@
         <div class="reservation__shop_info">
           <ion-icon name="home"></ion-icon> <span class="reservation__shop_name">{{reservation.shop.name}}</span>, {{reservation.shop.town}}
         </div>
-        <div [innerHtml]="reservation.product.price | price"></div>
+        <price-component [product]="reservation.product"></price-component>
       </ion-item>
     </ion-list>
     <span *ngIf='(reservationList | async)?.length === 0'>

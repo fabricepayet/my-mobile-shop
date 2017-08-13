@@ -152,10 +152,6 @@ export class ProductDetailPage {
     })
   }
 
-  visitShop(shop) {
-    this.navCtrl.push('ShopDetailPage', {shop});
-  }
-
   navigateToReservationPage() {
     this.navCtrl.push('ReservationPage')
   }
@@ -168,5 +164,6 @@ export class ProductDetailPage {
     this.navCtrl.push('ProductDetailPage', {
       product, shop
     })
+    this.navCtrl.remove(1);
   }
 }

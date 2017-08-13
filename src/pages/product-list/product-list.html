@@ -45,7 +45,7 @@
       <div class="product-list__card_footer">
         <div class="product-list__product_info">
           <ion-card-title (click)="gotoShop(product)">{{product.name}}</ion-card-title>
-          <div class="product-list__shop_info" (click)="gotoShop(product)">
+          <div class="product-list__shop_info">
             <span><ion-icon name="home"></ion-icon> {{product.shopName | uppercase}}, {{product.shopTown}}</span>
           </div>
         </div>

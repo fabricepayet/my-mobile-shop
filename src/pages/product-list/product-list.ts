@@ -47,12 +47,6 @@ export class ProductListPage {
     })
   }
 
-  gotoShop(product) {
-    this.shopService.getShop(product.shopRef).then(shop => {
-      this.navCtrl.push('ShopDetailPage', {shop})
-    })
-  }
-
   showArticle(product) {
     let shop = product.shop
     delete product.shop;

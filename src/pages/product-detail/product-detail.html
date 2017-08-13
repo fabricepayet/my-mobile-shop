@@ -9,7 +9,7 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>{{(shop | async)?.name | uppercase}}: {{product.name | uppercase}}</ion-title>
+    <ion-title>NamanaShop</ion-title>
     <ion-buttons right>
       <button ion-button icon-only (click)="navigateToReservationPage()">
         <ion-icon name="cart"></ion-icon>
@@ -23,11 +23,6 @@
     <div class="product-detail__product_image_container">
       <img class="product-detail__product_image" [src]="product.image"/>
     </div>
-    <!-- <div class="product-detail__product_thumbnails">
-      <img class="product-detail__product_thumbnail" [src]="product.image"/>
-      <img class="product-detail__product_thumbnail" [src]="product.image"/>
-      <img class="product-detail__product_thumbnail" [src]="product.image"/>
-    </div> -->
     <div class="product-detail__expiration_container">
       Cette vente se termine dans <span class="product-detail__product_expiration_date">{{countdown | countdowntimer}}</span>
     </div>
@@ -46,17 +41,16 @@
       </div>
     </div>
     <div class="product-detail__product_reservation" *ngIf="product.finalPrice">
-      Réservez aujourd'hui et économisez <span [innerHtml]="calculReduction() | price"></span> sur votre achat en magasin.
+      Réservez aujourd'hui et économisez <span [innerHtml]="calculReduction() | price"></span> lors de votre achat en magasin.
     </div>
 
     <div>
       <button ion-button block (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1">Réserver maintenant</button>
-      <button ion-button block (click)="visitShop(shop)" color="light" class="product-detail__button product-detail__button--cta2">Voir la boutique</button>
     </div>
   </div>
 
-  <ion-card class="product-detail__discover_container">
-    <ion-card-title>Découvrez dans la même boutique</ion-card-title>
+  <ion-card class="product-detail__discover_container" *ngIf="(relatedProductList | async)?.length > 1">
+    <ion-card-title>A découvrir dans la même boutique</ion-card-title>
     <ion-card-content>
       <div class="discover_container__product_item" *ngFor="let relatedProduct of relatedProductList | async" [hidden]="relatedProduct.$key == product.$key"
       (click)="showArticle(relatedProduct, shop)">

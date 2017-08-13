@@ -9,10 +9,10 @@
   <ion-content>
     <ion-list>
       <button ion-item (click)="openPage(productPage)">
-        Liste des produits
+        Accueil
       </button>
       <button ion-item (click)="openPage(shopPage)">
-        Liste des boutiques
+        Administration
       </button>
       <button ion-item (click)="openPage(loginPage)" *ngIf="!auth">Se connecter</button>
       <button ion-item (click)="openPage(reservationPage)" *ngIf="auth">
@@ -20,9 +20,6 @@
       </button>
       <button ion-item (click)="logout()" *ngIf="auth">
         Se déconnecter
-      </button>
-      <button ion-item (click)="closeMenu()">
-        Fermer le menu
       </button>
     </ion-list>
   </ion-content>
