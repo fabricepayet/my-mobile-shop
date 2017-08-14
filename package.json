@@ -41,7 +41,6 @@
         "cordova-plugin-file": "^4.3.3",
         "cordova-plugin-filepath": "^1.0.2",
         "cordova-plugin-geolocation": "^2.4.3",
-        "cordova-plugin-googlemaps": "^1.4.1",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.2",
         "cordova-plugin-whitelist": "^1.3.1",
@@ -78,11 +77,7 @@
             "cordova-universal-links-plugin": {},
             "cordova-plugin-buildinfo": {},
             "cordova-plugin-browsertab": {},
-            "cordova-plugin-geolocation": {},
-            "cordova-plugin-googlemaps": {
-                "API_KEY_FOR_ANDROID": "AIzaSyDRZPG1sdCn1UCfAtNPK99ebaox1EBeDTw",
-                "API_KEY_FOR_IOS": "AIzaSyChdyRs1vDFsJV1ds1S6V4bXFZVDa3vqwE"
-            }
+            "cordova-plugin-geolocation": {}
         },
         "platforms": [
             "android",

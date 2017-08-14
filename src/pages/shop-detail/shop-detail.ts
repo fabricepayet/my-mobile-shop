@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ActionSheetController } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { Shop } from '../../models/shop.interface';
 import { Profile } from '../../models/profile.interface';
@@ -27,14 +27,9 @@ export class ShopDetailPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private toastController: ToastController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private actionSheetCtrl: ActionSheetController
   ) {
-  }
-
-  shopMap() {
-    this.navCtrl.push('ShopMapPage', {
-      shop: this.shop
-    })
   }
 
   openAddProductModal(shop) {
@@ -44,16 +39,10 @@ export class ShopDetailPage {
   ionViewWillLoad() {
     this.shop = this.navParams.get('shop');
     if (!this.shop) {
-      console.log('redirection sur ShopListPage')
       return this.navCtrl.setRoot('ShopListPage')
     }
     this.profile = this.navParams.get('profile');
-    console.log('this.profile', this.profile);
     this.productList = this.productService.getProductList(this.shop.$key);
-  }
-
-  navigateToReservationPage() {
-    this.navCtrl.push('ReservationPage')
   }
 
   deleteShop() {
@@ -72,6 +61,35 @@ export class ShopDetailPage {
       product: product,
       shop: this.shop
     });
+  }
+
+  selectProduct(product: Product) {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: product.name,
+      buttons: [
+        {
+          text: 'Voir le produit',
+          handler: () => {
+            this.goToProduct(product)
+          }
+        },
+        {
+          text: 'Marquer comme épuisé',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Voir les réservations',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Annuler',
+          role: 'cancel'
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
   editShop(shop) {

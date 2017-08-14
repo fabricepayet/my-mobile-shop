@@ -3,12 +3,13 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title><ion-icon name="cart"></ion-icon> Vos Réservations</ion-title>
+    <ion-title>NamanaShop</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div class="reservation__backet_container">
+    <div class="reservation__title">Vos réservations en cours</div>
     <ion-list>
       <ion-item *ngFor='let reservation of reservationList | async' (click)="gotoProduct(reservation)">
         <div item-start class="reservation__image_container">

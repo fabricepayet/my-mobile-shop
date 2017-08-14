@@ -11,23 +11,13 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
   font-weight: bold;
 }
 
-.shop-list__product_price {
-  text-align: center;
-  font-size: 10px;
-  width: 32px;
-  height: 32px;
-  background-color: grey;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  white-space: nowrap;
-  background-color: color($colors, secondary, base);
-}
-
 .shop-detail__content_container {
   padding: 12px;
+
+  ion-card-header {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 
 .shop-detail__title {
@@ -36,30 +26,9 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
   text-transform: uppercase;
 }
 
-.shop-detail__product_inner {
-  position: relative;
-  text-align: center;
-  background-color: #eaeaea;
-}
-
-.shop-detail__name_container {
-  width: 148px;
-  height: 80px;
-  margin: auto;
-  position: relative;
-  bottom: 80px;
-  background-color: white;
-  text-align: center;
-  padding: 0;
-}
-
 .shop-detail__shop_image {
   height: 200px;
   width: 100%;
-}
-
-.shop-detail__product_image {
-  height: 106px;
 }
 
 .shop-detail__product_name {
@@ -77,15 +46,25 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
   max-width: 100%;
 }
 
-.shop-detail__product_info {
-  display: flex;
-  padding: 2px 6px 2px 0;
-  position: absolute;
-  bottom: 4px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.6);
-}
-
 .shop-detail__shop_buttons {
   text-align: center;
+}
+
+.shop-detail__shop_name {
+  text-align: center;
+  font-weight: bold;
+  padding: 12px 0;
+  font-size: 22px;
+}
+
+.shop-detail__product_container {
+  border-bottom: 1px solid #eaeaea;
+
+  &:first-child {
+    border-top: 1px solid #eaeaea;
+  }
+
+  .price-component__product_price {
+    font-size: 18px;
+  }
 }

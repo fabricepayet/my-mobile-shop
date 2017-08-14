@@ -24,5 +24,4 @@ export class ReservationModalPage {
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
   }
-
 }

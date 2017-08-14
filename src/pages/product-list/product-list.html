@@ -4,7 +4,7 @@
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>NamanaShop</ion-title>
-    <ion-buttons right>
+    <ion-buttons right *ngIf="auth">
       <button ion-button icon-only (click)="navigateToReservationPage()">
         <ion-icon name="cart"></ion-icon>
       </button>

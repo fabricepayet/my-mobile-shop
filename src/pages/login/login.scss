@@ -38,3 +38,9 @@
 .login-page__register_button {
   height: 48px;
 }
+
+.login__message {
+  padding: 24px 0;
+  color: color($colors, secondary, base);
+  font-size: 18px;
+}

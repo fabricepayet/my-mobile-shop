@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Product } from '../../models/product.interface';
 import { ProductService } from '../../providers/product.service';
 import { ShopService } from '../../providers/shop.service';
+import { AuthService } from '../../providers/auth.service';
 
 @IonicPage()
 @Component({
@@ -14,12 +15,18 @@ export class ProductListPage {
   lastKey: number;
   private a = 3;
   private townFilter: string;
+  private auth;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private productService: ProductService,
-    private shopService: ShopService) {
+    private shopService: ShopService,
+    private authService: AuthService
+  ) {
+    this.authService.getAuthentificateUser().subscribe(auth => {
+      this.auth = auth;
+    })
   }
 
   ionViewWillLoad() {

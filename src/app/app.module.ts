@@ -16,7 +16,6 @@ import { GeolocService } from '../providers/geoloc.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
-import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   declarations: [
@@ -44,8 +43,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     AuthService,
     ReservationService,
     GeolocService,
-    Geolocation,
-    GoogleMaps
+    Geolocation
   ]
 })
 export class AppModule {}

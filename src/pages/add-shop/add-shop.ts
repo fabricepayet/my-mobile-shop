@@ -49,17 +49,10 @@ export class AddShopPage {
   }
 
   addShop() {
-    this.navCtrl.setRoot('ShopListPage')
     this.loader.present();
     this.shopService.addShop(this.shop, this.bannerData, this.logoData).then(() => {
       this.loader.dismiss()
-      this.navCtrl.pop();
-    })
-  }
-
-  loadLogo() {
-    this.imageService.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY).then((imageData) => {
-      this.logoData = imageData;
+      this.navCtrl.push('ShopListPage')
     })
   }
 

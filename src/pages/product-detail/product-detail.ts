@@ -21,6 +21,7 @@ export class ProductDetailPage {
   private currentReservation: FirebaseObjectObservable<Reservation>;
   private relatedProductList: FirebaseListObservable<Product[]>;
   private countdown: number;
+  private auth;
 
   constructor(
     private loading: LoadingController,
@@ -41,6 +42,9 @@ export class ProductDetailPage {
           clearInterval(countdownCount);
         }
       }, 1000);
+      this.authService.getAuthentificateUser().subscribe(auth => {
+        this.auth = auth;
+      })
   }
 
   ionViewWillLoad() {
@@ -142,7 +146,7 @@ export class ProductDetailPage {
       if (!auth) {
         this.modalController.create('LoginPage', {
           message: 'Une authentification est requise',
-          onLogin: this.openReservationModal.bind(this)
+          onLogin: this.openReservationConfirmbox.bind(this)
         }).present();
         authObserver.unsubscribe();
       } else {

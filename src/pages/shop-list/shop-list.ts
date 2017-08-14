@@ -36,10 +36,6 @@ export class ShopListPage {
     this.getShopList();
   }
 
-  navigateToReservationPage() {
-    this.navCtrl.push('ReservationPage')
-  }
-
   goToShop(shop) {
     this.navCtrl.push('ShopDetailPage', {shop, profile: this.profile});
   }

@@ -6,3 +6,12 @@
     left: 0.1em;
   }
 }
+
+.scroll-content {
+  background-color: color($colors, containerBg, base);
+}
+
+ion-card-header {
+  font-weight: bold;
+  font-size: 20px !important;
+}

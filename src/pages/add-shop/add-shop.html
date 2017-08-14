@@ -50,11 +50,6 @@
           </ion-item>
 
           <ion-item>
-            <button ion-button (click)="loadLogo()" *ngIf="!logoData">Charger logo</button>
-            <img [src]="logoData" *ngIf="logoData"/>
-          </ion-item>
-
-          <ion-item>
             <div class="" *ngIf="!shop.latitude || !shop.longitude">
               Impossible de récupérer la position du magasin <br>
               <button ion-button (click)="getPosition()">Réessayez</button>

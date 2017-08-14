@@ -97,10 +97,6 @@
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-filepath" spec="^1.0.2" />
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
-    <plugin name="cordova-plugin-googlemaps" spec="^1.4.1">
-        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDRZPG1sdCn1UCfAtNPK99ebaox1EBeDTw" />
-        <variable name="API_KEY_FOR_IOS" value="AIzaSyChdyRs1vDFsJV1ds1S6V4bXFZVDa3vqwE" />
-    </plugin>
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.2" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />

@@ -11,12 +11,12 @@
       <button ion-item (click)="openPage(productPage)">
         Accueil
       </button>
-      <button ion-item (click)="openPage(shopPage)">
-        Administration
-      </button>
       <button ion-item (click)="openPage(loginPage)" *ngIf="!auth">Se connecter</button>
       <button ion-item (click)="openPage(reservationPage)" *ngIf="auth">
         Mes réservations
+      </button>
+      <button ion-item (click)="openPage(shopPage)" *ngIf="auth">
+        Administration
       </button>
       <button ion-item (click)="logout()" *ngIf="auth">
         Se déconnecter
