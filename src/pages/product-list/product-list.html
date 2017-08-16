@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content padding class="product-list__content">
-  <ion-list class="product-list__filter">
+  <!-- <ion-list class="product-list__filter">
     <ion-item>
       <ion-label text-right>Filter par ville</ion-label>
       <ion-select [(ngModel)]="selectorTown" placeholder="Tout" (ionChange)="filterTownChanged($event)">
@@ -25,7 +25,7 @@
         <ion-option value="all">Tout</ion-option>
       </ion-select>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
   <ion-card *ngFor="let product of productList"  class="product-list__shop_card">
     <ion-card-content>
       <div *ngIf="product.shop" class="product-list__shop_container" (click)="gotoShop(product)">
