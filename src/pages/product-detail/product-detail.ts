@@ -161,7 +161,8 @@ export class ProductDetailPage {
   }
 
   calculReduction() {
-    return this.product.price - this.product.finalPrice;
+    let reduc = this.product.price - this.product.finalPrice;
+    return Math.round(reduc * 100) / 100
   }
 
   showArticle(product, shop) {

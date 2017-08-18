@@ -2,7 +2,8 @@ page-product-detail {
 }
 
 .product-detail__content_container {
-  padding: 12px;
+  padding: 6px 12px;
+  border-top: 1px solid #f3f3f3;
 }
 
 .product-detail__content_header {
@@ -57,8 +58,8 @@ page-product-detail {
 }
 
 .product-detail__product_image_container {
-  background-color: #f3f3f3;
   text-align: center;
+  padding: 6px;
 }
 
 .product-detail__is_reserved {
@@ -145,10 +146,10 @@ page-product-detail {
 .discover_container__product_image_container {
   width: 120px;
   margin-right: 24px;
-  background-color: color($colors, containerBg, base);
 }
 
 .discover_container__product_name {
   font-size: 16px;
+  font-weight: bold;
   text-transform: capitalize;
 }
