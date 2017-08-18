@@ -37,7 +37,7 @@ export class AddProductPage {
       return this.product.price
     }
     let newPrice = this.product.price - (this.product.price * this.product.discount / 100)
-    return Math.round(newPrice * 100) / 100
+    return Math.ceil(newPrice * 10) / 10
   }
 
   ionViewWillLoad() {
