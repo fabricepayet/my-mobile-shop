@@ -12,7 +12,7 @@ page-product-detail {
 }
 
 .product-detail__product_price {
-  color: color($colors, secondary, base);
+  color: color($colors, primary, base);
   font-weight: bold;
   font-size: 24px;
   margin: 0 6px;
@@ -94,7 +94,7 @@ page-product-detail {
 }
 
 .product-detail__product_reservation {
-  color: color($colors, dark, base);
+  // color: color($colors, dark, base);
   font-size: 1.1em;
   padding: 12px;
 }
@@ -107,7 +107,7 @@ page-product-detail {
 }
 
 .product-detail__product_discount {
-  background-color: color($colors, secondary, base);
+  background-color: color($colors, primary, base);
   padding: 0 6px;
   font-size: 18px;
   color: white;

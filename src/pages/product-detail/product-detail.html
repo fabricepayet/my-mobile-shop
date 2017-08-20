@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar>
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>NamanaShop</ion-title>
+    <ion-title><img alt="NamanaShop" height="40" src="assets/logo/namanashop-bold-40.png"></ion-title>
     <ion-buttons right *ngIf="auth">
-      <button ion-button icon-only (click)="navigateToReservationPage()">
+      <button ion-button icon-only (click)="navigateToReservationPage()" color="second">
         <ion-icon name="cart"></ion-icon>
       </button>
     </ion-buttons>
@@ -39,7 +39,7 @@
     </div>
 
     <div>
-      <button ion-button block (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1">Réserver maintenant</button>
+      <button ion-button block (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1" color="second">Réserver maintenant</button>
     </div>
   </div>
 

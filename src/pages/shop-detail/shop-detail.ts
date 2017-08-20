@@ -76,6 +76,7 @@ export class ShopDetailPage {
         {
           text: 'Marquer comme épuisé',
           handler: () => {
+            console.log('mark as epuisé', product)
           }
         },
         {

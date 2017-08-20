@@ -15,3 +15,14 @@ ion-card-header {
   font-weight: bold;
   font-size: 20px !important;
 }
+
+.action-sheet-container {
+  background-color: #f1f1f1;
+}
+
+.action-sheet-md .action-sheet-title {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
