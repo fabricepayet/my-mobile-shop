@@ -90,3 +90,15 @@
 .product-list__content {
   background-color: color($colors, containerBg, base);
 }
+
+.product-list__product_sold_out {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  padding: 4px 24px;
+  background-color: color($colors, secondary, base);
+  border-radius: 6px 0 0 6px;
+  font-size: 14px;
+  opacity: 0.9;
+  font-weight: bold;
+}
