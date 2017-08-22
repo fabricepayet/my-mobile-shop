@@ -41,7 +41,7 @@
       </div>
       <div class="product-list__product_image_container">
         <img src="{{product.image}}" class="product-list__product_image" (click)="showArticle(product)"/>
-        <div class="product-list__product_sold_out">
+        <div class="product-list__product_sold_out" *ngIf="product.soldOut">
           Rupture de stock
         </div>
       </div>

@@ -23,6 +23,10 @@ export class ProductService {
     }
   }
 
+  updateProduct(productRef: string, shopRef: string, productProperties: Object) {
+    this.database.list(`/products/${shopRef}`).update(productRef, productProperties)
+  }
+
   deleteProduct(product: Product) {
     return new Promise((resolve, reject) => {
       //delete data

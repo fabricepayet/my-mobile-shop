@@ -13,5 +13,6 @@ export interface Product {
   shopTown?: string,
   shopName?: string,
   discount?: number,
-  finalPrice?: number
+  finalPrice?: number,
+  soldOut?: boolean,
 }

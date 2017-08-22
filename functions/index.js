@@ -16,3 +16,10 @@ exports.addRecentProducts = functions.database.ref(`/products/{shopId}/{productI
   const productKey = event.data.key
   admin.database().ref(`/recent-products/${productKey}`).set(productValue)
 })
+
+exports.updateRecentProducts = functions.database.ref(`/products/{shopId}/{productId}`)
+.onUpdate(event => {
+  const productValue = event.data.val()
+  const productKey = event.data.key
+  admin.database().ref(`/recent-products/${productId}`).update(productValue)
+})

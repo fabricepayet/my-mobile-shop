@@ -16,6 +16,9 @@
   <div class="product-detail__container">
     <div class="product-detail__product_image_container">
       <img class="product-detail__product_image" [src]="product.image"/>
+      <div class="product-detail__product_sold_out" *ngIf="product.soldOut">
+        Rupture de stock
+      </div>
     </div>
     <!-- <div class="product-detail__expiration_container">
       Cette vente se termine dans <span class="product-detail__product_expiration_date">{{countdown | countdowntimer}}</span>
@@ -39,7 +42,7 @@
     </div>
 
     <div>
-      <button ion-button block (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1" color="second">Réserver maintenant</button>
+      <button ion-button block [attr.disabled]="product.soldOut" (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1" color="second">Réserver maintenant</button>
     </div>
   </div>
 

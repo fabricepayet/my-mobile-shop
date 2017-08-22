@@ -76,7 +76,17 @@ export class ShopDetailPage {
         {
           text: 'Marquer comme épuisé',
           handler: () => {
-            console.log('mark as epuisé', product)
+            this.productService.updateProduct(product.$key, product.shopRef, {
+              soldOut: true
+            })
+          }
+        },
+        {
+          text: 'Marquer comme en stock',
+          handler: () => {
+            this.productService.updateProduct(product.$key, product.shopRef, {
+              soldOut: false
+            })
           }
         },
         {

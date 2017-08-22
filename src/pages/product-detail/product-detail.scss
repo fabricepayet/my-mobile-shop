@@ -153,3 +153,15 @@ page-product-detail {
   font-weight: bold;
   text-transform: capitalize;
 }
+
+.product-detail__product_sold_out {
+  position: absolute;
+  top: 28px;
+  right: 0;
+  padding: 4px 24px;
+  background-color: color($colors, secondary, base);
+  border-radius: 6px 0 0 6px;
+  font-size: 18px;
+  opacity: 0.9;
+  font-weight: bold;
+}
