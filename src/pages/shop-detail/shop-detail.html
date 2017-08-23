@@ -16,7 +16,7 @@
     <ion-card>
       <ion-card-header>Administration</ion-card-header>
       <ion-card-content>
-        <!-- <button ion-button (click)="editShop(shop)">Modifier le magasin</button> -->
+        <button ion-button (click)="editShop(shop)"> <ion-icon name="edit"></ion-icon> Modifier le magasin</button>
         <button ion-button (click)="openAddProductModal(shop)">Ajouter un article</button>
       </ion-card-content>
     </ion-card>
@@ -34,6 +34,12 @@
             </div>
           </ion-item>
         </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>Sur la carte</ion-card-header>
+      <ion-card-content>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center={{shop.latitude}},{{shop.longitude}}&zoom=17&size=400x400&maptype=roadmap&language=fr&markers=color:0xff157d%7Clabel:J%7C{{shop.latitude}},{{shop.longitude}}&key=AIzaSyBy5eY-vOtpySVKcNyzFjx8hWzg7WJax0Y"/>
       </ion-card-content>
     </ion-card>
   </div>
