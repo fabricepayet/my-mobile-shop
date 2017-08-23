@@ -1,9 +1,3 @@
-<!--
-  Generated template for the EditShopPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>EDITION BOUTIQUE</ion-title>
@@ -48,9 +42,30 @@
           </ion-select>
         </ion-item>
 
+        <ion-item>
+          <ion-label>Latitude</ion-label>
+          <ion-input type="number" name="latitude" [(ngModel)]="shop.latitude" #name="ngModel" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Longitude</ion-label>
+          <ion-input type="number" name="longitude" [(ngModel)]="shop.longitude" #name="ngModel" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Téléphone</ion-label>
+          <ion-input type="tel" name="phone" [(ngModel)]="shop.phone" #name="ngModel" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input type="email" name="email" [(ngModel)]="shop.email" #name="ngModel" required></ion-input>
+        </ion-item>
+
       </ion-card-content>
       <ion-row class="register-form__button">
-        <button ion-button right (click)="editShop()" [disabled]="registerForm.invalid">Ajouter</button>
+        <button ion-button (click)="getPosition()">Détecter la position</button>
+        <button ion-button right (click)="editShop()" [disabled]="registerForm.invalid">Modifier</button>
       </ion-row>
     </ion-card>
   </form>

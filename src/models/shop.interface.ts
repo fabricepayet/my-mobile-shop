@@ -6,5 +6,7 @@ export interface Shop {
   image?: string,
   logo?: string,
   longitude?: number,
-  latitude?: number
+  latitude?: number,
+  email?: string,
+  phone?: string,
 }

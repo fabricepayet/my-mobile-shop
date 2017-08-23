@@ -42,5 +42,17 @@
         <img src="https://maps.googleapis.com/maps/api/staticmap?center={{shop.latitude}},{{shop.longitude}}&zoom=17&size=400x400&maptype=roadmap&language=fr&markers=color:0xff157d%7Clabel:J%7C{{shop.latitude}},{{shop.longitude}}&key=AIzaSyBy5eY-vOtpySVKcNyzFjx8hWzg7WJax0Y"/>
       </ion-card-content>
     </ion-card>
+
+    <ion-card>
+      <ion-card-header>Contact</ion-card-header>
+      <ion-card-content>
+        <div>
+          Phone: {{shop.phone}}
+        </div>
+        <div>
+          Email: {{shop.email}}
+        </div>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
