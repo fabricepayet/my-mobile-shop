@@ -46,6 +46,12 @@
     </div>
   </div>
 
+  <!-- <div class="product-detail__shop_name">
+    {{ (shop | async)?.name | uppercase }}
+  </div> -->
+
+  <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&zoom=17&size=400x300&maptype=roadmap&language=fr&markers=color:0xff157d%7Clabel:J%7C{{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&key=AIzaSyBy5eY-vOtpySVKcNyzFjx8hWzg7WJax0Y"/>
+
   <ion-card class="product-detail__discover_container" *ngIf="(relatedProductList | async)?.length > 1">
     <ion-card-title>A découvrir dans la même boutique</ion-card-title>
     <ion-card-content>
@@ -63,4 +69,14 @@
       </div>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-title>Contactez la boutique</ion-card-title>
+    <ion-card-content>
+      <div class="product-detail__shop_phone">
+        <ion-icon name="call"></ion-icon> {{ ( shop | async)?.phone }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

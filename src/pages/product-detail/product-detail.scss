@@ -1,4 +1,9 @@
 page-product-detail {
+  ion-card-title.card-title {
+    font-size: 20px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #f3F3f3;
+  }
 }
 
 .product-detail__content_container {
@@ -118,14 +123,6 @@ page-product-detail {
   padding-bottom: 12px;
 }
 
-.product-detail__discover_container {
-  ion-card-title {
-    font-size: 20px;
-    padding: 8px 12px;
-    border-bottom: 1px solid #f3F3f3;
-  }
-}
-
 .discover_container__product_item {
   display: flex;
   align-items: center;
@@ -164,4 +161,16 @@ page-product-detail {
   font-size: 18px;
   opacity: 0.9;
   font-weight: bold;
+}
+
+.product-detail__shop_name {
+  font-size: 16px;
+  text-align: center;
+  background-color: color($colors, secondary, base);
+  padding: 6px;
+}
+
+.product-detail__shop_phone {
+  font-size: 22px;
+  text-align: center;
 }
