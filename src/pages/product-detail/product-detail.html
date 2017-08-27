@@ -15,8 +15,8 @@
 <ion-content padding>
   <div class="product-detail__container">
     <div class="product-detail__product_image_container">
-      <img class="product-detail__product_image" [src]="product.image"/>
-      <div class="product-detail__product_sold_out" *ngIf="product.soldOut">
+      <img class="product-detail__product_image" [src]="product?.image"/>
+      <div class="product-detail__product_sold_out" *ngIf="product?.soldOut">
         Rupture de stock
       </div>
     </div>
@@ -26,23 +26,25 @@
     <div class="product-detail__content_container">
       <div class="product-detail__content_header">
         <div class="product-detail__product_name_container">
-          <div class="product-detail__product_name">{{product.name}}</div>
+          <div class="product-detail__product_name">
+            {{product?.name}}
+          </div>
           <div class="product-detail__product_shop">
             <ion-icon name="home"></ion-icon> {{(shop | async)?.name | uppercase}}, {{(shop | async)?.town}}
           </div>
         </div>
         <price-component [product]="product"></price-component>
       </div>
-      <div class="product-detail__discount_container" *ngIf="product.discount">
-        <span class="product-detail__product_discount">-{{ product.discount }}%</span>
+      <div class="product-detail__discount_container" *ngIf="product?.discount">
+        <span class="product-detail__product_discount">-{{ product?.discount }}%</span>
       </div>
     </div>
-    <div class="product-detail__product_reservation" *ngIf="product.finalPrice">
+    <div class="product-detail__product_reservation" *ngIf="product?.finalPrice">
       Réservez aujourd'hui et économisez <span [innerHtml]="calculReduction() | price"></span> lors de votre achat en magasin.
     </div>
 
     <div>
-      <button ion-button block [attr.disabled]="product.soldOut" (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1" color="second">Réserver maintenant</button>
+      <button ion-button block [attr.disabled]="product?.soldOut" (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1" color="second">Réserver maintenant</button>
     </div>
   </div>
 
@@ -50,12 +52,12 @@
     {{ (shop | async)?.name | uppercase }}
   </div> -->
 
-  <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&zoom=17&size=400x300&maptype=roadmap&language=fr&markers=color:0xff157d%7Clabel:J%7C{{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&key=AIzaSyBy5eY-vOtpySVKcNyzFjx8hWzg7WJax0Y"/>
+
 
   <ion-card class="product-detail__discover_container" *ngIf="(relatedProductList | async)?.length > 1">
     <ion-card-title>A découvrir dans la même boutique</ion-card-title>
     <ion-card-content>
-      <div class="discover_container__product_item" *ngFor="let relatedProduct of relatedProductList | async" [hidden]="relatedProduct.$key == product.$key"
+      <div class="discover_container__product_item" *ngFor="let relatedProduct of relatedProductList | async" [hidden]="relatedProduct.$key == product?.$key"
       (click)="showArticle(relatedProduct, shop)">
         <div class="discover_container__product_image_container">
           <img [src]="relatedProduct.image" class="discover_container__product_image"/>
@@ -70,13 +72,18 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
-    <ion-card-title>Contactez la boutique</ion-card-title>
+  <ion-card *ngIf="( shop | async)?.phone">
+    <ion-card-title>Infos boutique</ion-card-title>
     <ion-card-content>
+      <img src="assets/icon/location-pin.png" class="cp-shop-info__icon" alt="location pin" height="16px"/>
+      {{ ( shop | async)?.name | uppercase }}, {{ ( shop | async)?.town }}
       <div class="product-detail__shop_phone">
         <ion-icon name="call"></ion-icon> {{ ( shop | async)?.phone }}
       </div>
     </ion-card-content>
   </ion-card>
+
+  <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&zoom=17&size=400x300&maptype=roadmap&language=fr&markers=color:0xff157d%7Clabel:J%7C{{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&key=AIzaSyBy5eY-vOtpySVKcNyzFjx8hWzg7WJax0Y"/>
+
 
 </ion-content>

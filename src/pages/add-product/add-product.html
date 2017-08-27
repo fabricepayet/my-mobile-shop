@@ -17,12 +17,14 @@
             <ion-label floating>
               Description
             </ion-label>
-            <ion-textarea [(ngModel)]="product.description" name="description" #description="ngModel" required>
+            <ion-textarea [(ngModel)]="product.description" name="description" #description="ngModel">
             </ion-textarea>
           </ion-item>
 
           <div padding *ngIf="description.invalid && description.dirty">
-            <span class="global__input-error">La description de la boutique doit faire minimum 120 caractères.</span>
+            <span class="global__input-error">
+              La description de la boutique doit faire minimum 120 caractères.
+            </span>
           </div>
 
           <ion-item>

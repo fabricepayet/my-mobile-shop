@@ -6,7 +6,7 @@ import { Profile } from '../../models/profile.interface';
 import { ProductService } from '../../providers/product.service';
 import { ShopService } from '../../providers/shop.service';
 import { FirebaseListObservable } from 'angularfire2/database';
-import { LoadingController, Loading, ToastController } from 'ionic-angular';
+import { LoadingController, Loading, ToastController, AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -28,7 +28,8 @@ export class ShopDetailPage {
     public navParams: NavParams,
     private toastController: ToastController,
     private modalController: ModalController,
-    private actionSheetCtrl: ActionSheetController
+    private actionSheetCtrl: ActionSheetController,
+    private alertController: AlertController,
   ) {
   }
 
@@ -92,6 +93,27 @@ export class ShopDetailPage {
         {
           text: 'Voir les réservations',
           handler: () => {
+          }
+        },
+        {
+          text: 'Supprimer le produit',
+          handler: () => {
+            this.alertController.create({
+              title: 'Suppression définitive',
+              message: 'Êtes-vous sûr de vouloir supprimer définitivement cet article ?',
+              buttons: [
+                {
+                  text: 'Annuler',
+                  handler: () => {
+                  }
+                },
+                {
+                  text: 'Supprimer',
+                  handler: () => {
+                    this.productService.deleteProduct(product)
+                  }
+                }]
+            }).present();
           }
         },
         {

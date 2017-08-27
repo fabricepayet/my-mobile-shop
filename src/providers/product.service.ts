@@ -6,7 +6,10 @@ import firebase from 'firebase';
 
 @Injectable()
 export class ProductService {
-  constructor(private database: AngularFireDatabase, private imageService: ImageService) {
+  constructor(
+    private database: AngularFireDatabase,
+    private imageService: ImageService
+  ) {
   }
 
   async addProduct(product: Product, captureData: string) {
@@ -28,19 +31,12 @@ export class ProductService {
   }
 
   deleteProduct(product: Product) {
-    return new Promise((resolve, reject) => {
-      //delete data
-      let removeRef = firebase.database().ref(`products/${product.shopRef}`).child(product.$key);
-      removeRef.remove()
-      // delete image
-      let storageRef = firebase.storage().ref();
-      var imageRef = storageRef.child(`images/shops/${product.shopRef}/products/${product.$key}.jpg`);
-      imageRef.delete().then(function() {
-        resolve(true)
-      }).catch(function(error) {
-        reject(error)
-      });
-    })
+    // delete data
+    this.database.object(`products/${product.shopRef}/${product.$key}`).remove()
+    // delete image
+    // FIX: this ref doesnt exist, check addProduct to get the right ref or add the ref in the product
+    // let storageRef = firebase.storage().ref();
+    // storageRef.child(`images/shops/${product.shopRef}/products/${product.$key}.jpg`).delete()
   }
 
   getProductList(shopKey: string, query: any = {}): FirebaseListObservable<Product[]> {
@@ -51,7 +47,7 @@ export class ProductService {
     let queryOpts: any = {
       preserveSnapshot: true,
       orderByChild: query.orderByChild || 'timestamp',
-      limitToLast: query.limitToLast || 3
+      limitToLast: query.limitToLast || 10
     }
     if (query.endAt) {
       queryOpts.endAt = query.endAt;

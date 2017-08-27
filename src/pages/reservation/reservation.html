@@ -10,7 +10,7 @@
 <ion-content padding>
   <div class="reservation__backet_container">
     <div class="reservation__title">Vos réservations en cours</div>
-    <ion-list>
+    <ion-list *ngIf='(reservationList | async)?.length'>
       <ion-item *ngFor='let reservation of reservationList | async' (click)="gotoProduct(reservation)">
         <div item-start class="reservation__image_container">
           <img class="reservation__image" src="{{reservation.product.image}}">
@@ -22,8 +22,10 @@
         <price-component [product]="reservation.product"></price-component>
       </ion-item>
     </ion-list>
-    <span *ngIf='(reservationList | async)?.length === 0'>
-      Vous n'avez pas encore de réservation.
-    </span>
+    <div *ngIf='!(reservationList | async)?.length'>
+      <span>Vous n'avez pas encore de réservation.</span>
+
+      <button ion-button block (click)="gotoProductList()">Découvrir les articles</button>
+    </div>
   </div>
 </ion-content>

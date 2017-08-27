@@ -20,6 +20,10 @@ exports.addRecentProducts = functions.database.ref(`/products/{shopId}/{productI
 exports.updateRecentProducts = functions.database.ref(`/products/{shopId}/{productId}`)
 .onUpdate(event => {
   const productValue = event.data.val()
-  const productKey = event.data.key
   admin.database().ref(`/recent-products/${productId}`).update(productValue)
+})
+
+exports.removeRecentProducts = functions.database.ref(`/products/{shopId}/{productId}`)
+.onDelete(event => {
+  admin.database().ref(`/recent-products/${productId}`).remove()
 })

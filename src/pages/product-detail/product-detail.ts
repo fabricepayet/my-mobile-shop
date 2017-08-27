@@ -9,7 +9,9 @@ import { ReservationService } from '../../providers/reservation.service';
 import { AuthService } from '../../providers/auth.service';
 import { LoadingController, Loading, AlertController, ToastController } from 'ionic-angular';
 
-@IonicPage()
+@IonicPage({
+  segment: 'products/:shopId/:productId'
+})
 @Component({
   selector: 'page-product-detail',
   templateUrl: 'product-detail.html',
@@ -47,40 +49,22 @@ export class ProductDetailPage {
       })
   }
 
+
+
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
-    this.shop = this.productService.getRelatedShop(this.product);
-    this.relatedProductList = this.productService.getProductList(this.product.shopRef, {orderByChild: 'timestamp', limitToLast: 4})
-    // this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
-  }
+    if (!this.product) {
+      console.log('product nexits pas');
+      this.navCtrl.setRoot('ProductListPage').catch(e => console.log(e))
+      return false
+    }
 
-  deleteProduct() {
-    let confirm = this.alertController.create({
-      title: 'Suppression article',
-      message: 'Êtes-vous sûr de vouloir supprimer cet article ?',
-      buttons: [
-        {
-          text: 'Annuler',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'Supprimer',
-          handler: () => {
-            this.loader = this.loading.create({
-              content: 'Suppression du produit...'
-            })
-            this.loader.present();
-            this.productService.deleteProduct(this.product).then(() => {
-              this.loader.dismiss()
-              this.navCtrl.push('ShopDetailPage', {shop: this.shop})
-            })
-          }
-        }
-      ]
-    });
-    confirm.present();
+    this.shop = this.productService.getRelatedShop(this.product);
+    this.relatedProductList = this.productService.getProductList(this.product.shopRef, {
+      orderByChild: 'timestamp',
+      limitToLast: 4
+    })
+    // this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
   }
 
   reserve() {

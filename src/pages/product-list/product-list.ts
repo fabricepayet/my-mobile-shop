@@ -5,7 +5,9 @@ import { ProductService } from '../../providers/product.service';
 import { ShopService } from '../../providers/shop.service';
 import { AuthService } from '../../providers/auth.service';
 
-@IonicPage()
+@IonicPage({
+  segment: 'products'
+})
 @Component({
   selector: 'page-product-list',
   templateUrl: 'product-list.html',
@@ -13,9 +15,9 @@ import { AuthService } from '../../providers/auth.service';
 export class ProductListPage {
   productList: Product[] = [];
   lastKey: number;
-  private a = 3;
   private townFilter: string;
   private auth;
+  private loadComplete:boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -30,17 +32,28 @@ export class ProductListPage {
   }
 
   ionViewWillLoad() {
-    this.loadRecentProducts(this.lastKey);
+    // TODO: subscribe for new product to let them reactive
+    // search subject rxjs
+    // this.productService.getProducts({limitToLast: 1}).subscribe(products => {
+    //   products.forEach (product => {
+    //     this.productList.unshift(product);
+    //   })
+    // })
+    this.loadOlderProducts();
   }
 
-  addProduct(products) {
+  addProduct(products, opts:any = {}) {
+    this.lastKey = products[products.length - 1].timestamp
     products.forEach(product => {
       this.productList.push(product);
-      this.lastKey = product.timestamp;
     })
+    // we already load all the products all the client
+    if (products.length < 10) {
+      this.loadComplete = true;
+    }
   }
 
-  loadRecentProducts(lastKey: number = null) {
+  loadOlderProducts(lastKey: number = null) {
     let query: any = {};
     if (this.townFilter) {
       query.orderByChild = 'shopTown';
@@ -49,8 +62,9 @@ export class ProductListPage {
     if (lastKey) {
       query.endAt = lastKey - 1;
     }
-    this.productService.getProducts(query).subscribe(snapshots => {
+    let lastProductsSubscription = this.productService.getProducts(query).subscribe(snapshots => {
       this.addProduct(snapshots);
+      lastProductsSubscription.unsubscribe()
     })
   }
 
@@ -58,7 +72,10 @@ export class ProductListPage {
     let shop = product.shop
     delete product.shop;
     this.navCtrl.push('ProductDetailPage', {
-      shop, product
+      shop,
+      product,
+      productId: product.$key,
+      shopId: product.shopRef,
     })
   }
 
@@ -82,10 +99,12 @@ export class ProductListPage {
   }
 
   doInfinite(infiniteScroll) {
-    this.loadRecentProducts(this.lastKey);
+    this.loadOlderProducts(this.lastKey);
     setTimeout(() => {
-      this.a += 1;
       infiniteScroll.complete();
-    }, 500);
+      if (this.loadComplete) {
+        infiniteScroll.enable(false);
+      }
+    }, 300);
   }
 }

@@ -2,7 +2,7 @@ import { Shop } from './shop.interface';
 
 export interface Product {
   name: string,
-  description: string,
+  description?: string,
   photo: string,
   price: number,
   $key?: string,

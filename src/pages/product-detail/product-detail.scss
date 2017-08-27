@@ -35,7 +35,7 @@ page-product-detail {
 }
 
 .product-detail__product_name {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-transform: capitalize;
 }
@@ -171,6 +171,12 @@ page-product-detail {
 }
 
 .product-detail__shop_phone {
-  font-size: 22px;
+  font-size: 16px;
   text-align: center;
+}
+
+.cp-shop-info__icon {
+  height: 16px;
+  width: 16px;
+  display: inline;
 }
