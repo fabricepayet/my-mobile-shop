@@ -21,14 +21,9 @@
         </div>
 
         <ion-item>
-          <ion-label>Secteur</ion-label>
-          <ion-select [(ngModel)]="shop.activity" name="activity">
-            <ion-option value="Vêtement de soirée" selected=true>Vêtement de soirée</ion-option>
-            <ion-option value="Vêtement de ville">Vêtement de ville</ion-option>
-            <ion-option value="Chaussures">Chaussures</ion-option>
-            <ion-option value="Bijoux">Bijoux</ion-option>
-            <ion-option value="Maroquinerie">Maroquinerie</ion-option>
-          </ion-select>
+          <ion-label>Description du magasin</ion-label><br />
+          <ion-textarea [(ngModel)]="shop.description" name="description" #description="ngModel">
+          </ion-textarea>
         </ion-item>
 
         <ion-item>

@@ -32,7 +32,7 @@ export class EditShopPage {
   editShop() {
     this.shopService.editShop(this.shop.$key, {
       name: this.shop.name,
-      activity: this.shop.activity,
+      description: this.shop.description,
       town: this.shop.town,
       longitude: this.shop.longitude,
       latitude: this.shop.latitude,

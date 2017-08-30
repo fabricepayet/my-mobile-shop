@@ -58,14 +58,14 @@
 <discover-products-component [product]="product" [type]="'shop'"></discover-products-component>
 <discover-products-component [product]="product" [type]="'category'"></discover-products-component>
 
-  <ion-card *ngIf="( shop | async)?.phone">
+  <ion-card>
     <ion-card-title>Infos boutique</ion-card-title>
     <ion-card-content>
       <div class="product-detail__shop_name">{{ ( shop | async)?.name | uppercase }}</div>
       <img src="assets/icon/location-pin.png" class="cp-shop-info__icon" alt="location pin" height="16px"/>
       {{ ( shop | async)?.town }}
       <div class="product-detail__shop_description">
-        {{(shop | async).description}}
+        {{(shop | async)?.description}}
       </div>
       <div class="product-detail__shop_phone">
         <ion-icon name="call"></ion-icon> {{ ( shop | async)?.phone }}
