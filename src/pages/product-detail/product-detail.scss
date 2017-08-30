@@ -123,34 +123,6 @@ page-product-detail {
   padding-bottom: 12px;
 }
 
-.discover_container__product_item {
-  display: flex;
-  align-items: center;
-  height: 100px;
-  margin-top: 10px;
-
-  &:first-child {
-    margin-top: 0;
-  }
-}
-
-.discover_container__product_image {
-  height: 100px;
-  width: auto;
-  margin: auto;
-}
-
-.discover_container__product_image_container {
-  width: 120px;
-  margin-right: 24px;
-}
-
-.discover_container__product_name {
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: capitalize;
-}
-
 .product-detail__product_sold_out {
   position: absolute;
   top: 28px;

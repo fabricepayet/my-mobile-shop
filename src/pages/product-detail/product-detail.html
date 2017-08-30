@@ -52,25 +52,8 @@
     {{ (shop | async)?.name | uppercase }}
   </div> -->
 
-
-
-  <ion-card class="product-detail__discover_container" *ngIf="(relatedProductList | async)?.length > 1">
-    <ion-card-title>A découvrir dans la même boutique</ion-card-title>
-    <ion-card-content>
-      <div class="discover_container__product_item" *ngFor="let relatedProduct of relatedProductList | async" [hidden]="relatedProduct.$key == product?.$key"
-      (click)="showArticle(relatedProduct, shop)">
-        <div class="discover_container__product_image_container">
-          <img [src]="relatedProduct.image" class="discover_container__product_image"/>
-        </div>
-        <div>
-          <div class="discover_container__product_name">
-            {{relatedProduct.name}}
-          </div>
-          <price-component [product]="relatedProduct"></price-component>
-        </div>
-      </div>
-    </ion-card-content>
-  </ion-card>
+<discover-products-component [product]="product" [type]="'shop'"></discover-products-component>
+<discover-products-component [product]="product" [type]="'category'"></discover-products-component>
 
   <ion-card *ngIf="( shop | async)?.phone">
     <ion-card-title>Infos boutique</ion-card-title>

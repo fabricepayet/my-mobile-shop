@@ -43,7 +43,7 @@ export class ShopDetailPage {
       return this.navCtrl.setRoot('ShopListPage')
     }
     this.profile = this.navParams.get('profile');
-    this.productList = this.productService.getProductList(this.shop.$key);
+    this.productList = this.productService.getProductsListForShop(this.shop.$key);
   }
 
   deleteShop() {

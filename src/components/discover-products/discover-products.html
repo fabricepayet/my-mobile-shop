@@ -1,0 +1,17 @@
+<ion-card class="cp-discover-products__container" *ngIf="(relatedProductList | async)?.length > 1">
+  <ion-card-title>{{title}}</ion-card-title>
+  <ion-card-content>
+    <div class="cp-discover-products__product_item" *ngFor="let relatedProduct of relatedProductList | async" [hidden]="relatedProduct.$key == product?.$key"
+    (click)="showArticle(relatedProduct)">
+      <div class="cp-discover-products__image_container">
+        <img [src]="relatedProduct.image" class="cp-discover-products__image"/>
+      </div>
+      <div>
+        <div class="cp-discover-products__name">
+          {{relatedProduct.name}}
+        </div>
+        <price-component [product]="relatedProduct"></price-component>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>

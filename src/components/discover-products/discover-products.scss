@@ -1,0 +1,27 @@
+.cp-discover-products__product_item {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  margin-top: 10px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.cp-discover-products__image {
+  height: 100px;
+  width: auto;
+  margin: auto;
+}
+
+.cp-discover-products__image_container {
+  width: 120px;
+  margin-right: 24px;
+}
+
+.cp-discover-products__name {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: capitalize;
+}

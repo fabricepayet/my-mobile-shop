@@ -21,7 +21,6 @@ export class ProductDetailPage {
   shop: FirebaseObjectObservable<Shop>;
   private loader: Loading;
   private currentReservation: FirebaseObjectObservable<Reservation>;
-  private relatedProductList: FirebaseListObservable<Product[]>;
   private countdown: number;
   private auth;
 
@@ -49,8 +48,6 @@ export class ProductDetailPage {
       })
   }
 
-
-
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     if (!this.product) {
@@ -60,10 +57,6 @@ export class ProductDetailPage {
     }
 
     this.shop = this.productService.getRelatedShop(this.product);
-    this.relatedProductList = this.productService.getProductList(this.product.shopRef, {
-      orderByChild: 'timestamp',
-      limitToLast: 4
-    })
     // this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
   }
 
@@ -147,12 +140,5 @@ export class ProductDetailPage {
   calculReduction() {
     let reduc = this.product.price - this.product.finalPrice;
     return Math.round(reduc * 100) / 100
-  }
-
-  showArticle(product, shop) {
-    this.navCtrl.push('ProductDetailPage', {
-      product, shop
-    })
-    this.navCtrl.remove(1);
   }
 }

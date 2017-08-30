@@ -15,4 +15,5 @@ export interface Product {
   discount?: number,
   finalPrice?: number,
   soldOut?: boolean,
+  category?: string
 }

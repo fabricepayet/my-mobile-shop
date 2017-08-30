@@ -39,7 +39,7 @@ export class ProductService {
     // storageRef.child(`images/shops/${product.shopRef}/products/${product.$key}.jpg`).delete()
   }
 
-  getProductList(shopKey: string, query: any = {}): FirebaseListObservable<Product[]> {
+  getProductsListForShop(shopKey: string, query: any = {}): FirebaseListObservable<Product[]> {
     return this.database.list(`products/${shopKey}`, { query });
   }
 
