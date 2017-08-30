@@ -136,19 +136,22 @@ page-product-detail {
 }
 
 .product-detail__shop_name {
-  font-size: 16px;
-  text-align: center;
-  background-color: color($colors, secondary, base);
-  padding: 6px;
+  font-size: 20px;
+  padding: 6px 0;
+  font-weight: bold;
 }
 
 .product-detail__shop_phone {
   font-size: 16px;
-  text-align: center;
 }
 
 .cp-shop-info__icon {
   height: 16px;
   width: 16px;
   display: inline;
+}
+
+.product-detail__shop_description {
+  padding: 24px 12px;
+  font-size: 16px;
 }

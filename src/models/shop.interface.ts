@@ -9,4 +9,5 @@ export interface Shop {
   latitude?: number,
   email?: string,
   phone?: string,
+  description?: string,
 }
