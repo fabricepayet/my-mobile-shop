@@ -13,12 +13,15 @@
 </ion-header>
 
 <ion-content padding>
+  <div class="product-detail__reserved_block" *ngIf="(currentReservation | async)?.user">
+    <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Vous avez réservé ce produit depuis le 19/10/2017
+  </div>
+  <div class="product-detail__product_sold_out" *ngIf="product?.soldOut">
+    <ion-icon name="alert"></ion-icon>&nbsp;Ce produit est en rupture de stock
+  </div>
   <div class="product-detail__container">
     <div class="product-detail__product_image_container">
       <img class="product-detail__product_image" [src]="product?.image"/>
-      <div class="product-detail__product_sold_out" *ngIf="product?.soldOut">
-        Rupture de stock
-      </div>
     </div>
     <!-- <div class="product-detail__expiration_container">
       Cette vente se termine dans <span class="product-detail__product_expiration_date">{{countdown | countdowntimer}}</span>
@@ -42,20 +45,16 @@
         </div>
       </div>
     </div>
-    <div class="product-detail__product_reservation" *ngIf="product?.finalPrice">
-      Réservez aujourd'hui et économisez <span [innerHtml]="calculReduction() | price"></span> lors de votre achat en magasin.
-    </div>
-
-    <div>
-      <button ion-button block [attr.disabled]="product?.soldOut" (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1" color="second">Réserver maintenant</button>
+    <div *ngIf="!(currentReservation | async)?.user && !product?.soldOut">
+      <div class="product-detail__product_reservation" >
+        Réservez aujourd'hui et économisez <span [innerHtml]="calculReduction() | price"></span> lors de votre achat en magasin.
+      </div>
+      <div>
+        <button ion-button block [attr.disabled]="product?.soldOut" (click)="reserveThisProduct()" class="product-detail__button product-detail__button--cta1" color="second">Réserver maintenant</button>
+      </div>
     </div>
   </div>
 
-  <!-- <div class="product-detail__shop_name">
-    {{ (shop | async)?.name | uppercase }}
-  </div> -->
-
-<discover-products-component [product]="product" [type]="'shop'"></discover-products-component>
 <discover-products-component [product]="product" [type]="'category'"></discover-products-component>
 
   <ion-card>
@@ -72,6 +71,8 @@
       </div>
     </ion-card-content>
   </ion-card>
+
+<discover-products-component [product]="product" [type]="'shop'"></discover-products-component>
 
   <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&zoom=17&size=600x450&maptype=roadmap&language=fr&markers=color:0xff157d%7Clabel:J%7C{{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&key=AIzaSyBy5eY-vOtpySVKcNyzFjx8hWzg7WJax0Y"/>
 

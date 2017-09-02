@@ -43,6 +43,9 @@ export class ProductListPage {
   }
 
   addProduct(products, opts:any = {}) {
+    if (!products.length) {
+      return
+    }
     this.lastKey = products[products.length - 1].timestamp
     products.forEach(product => {
       this.productList.push(product);

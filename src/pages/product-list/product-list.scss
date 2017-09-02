@@ -96,9 +96,10 @@
   top: 12px;
   right: 0;
   padding: 4px 24px;
-  background-color: color($colors, secondary, base);
+  background-color: color($colors, warningBg, base);
+  color: color($colors, warning, base);
   border-radius: 6px 0 0 6px;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.9;
   font-weight: bold;
 }

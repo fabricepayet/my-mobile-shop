@@ -10,7 +10,8 @@ import firebase from 'firebase';
 export class ReservationService {
   constructor(
     private database: AngularFireDatabase,
-    private authService: AuthService) {
+    private authService: AuthService
+  ) {
   }
 
   async createUserReservation(product: Product) {
@@ -23,7 +24,8 @@ export class ReservationService {
         shop: snapshot.val(),
         state: 'pending',
         productRef: product.$key,
-        shopRef: product.shopRef
+        shopRef: product.shopRef,
+        timestamp: Date.now(),
       }
       this.database.object(`/user-reservations/${userId}/${product.$key}`)
       .set(reservation)
@@ -37,6 +39,7 @@ export class ReservationService {
 
   getReservationForProductForCurrentUser(product) {
     var userId = firebase.auth().currentUser.uid;
+    console.log('Récuperation', `/user-reservations/${userId}/${product.$key}/`)
     return this.database.object(`/user-reservations/${userId}/${product.$key}/`)
   }
 }

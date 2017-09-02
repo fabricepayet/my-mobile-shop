@@ -64,7 +64,6 @@ page-product-detail {
 
 .product-detail__product_image_container {
   text-align: center;
-  padding: 6px;
 }
 
 .product-detail__is_reserved {
@@ -123,18 +122,6 @@ page-product-detail {
   padding-bottom: 12px;
 }
 
-.product-detail__product_sold_out {
-  position: absolute;
-  top: 28px;
-  right: 0;
-  padding: 4px 24px;
-  background-color: color($colors, secondary, base);
-  border-radius: 6px 0 0 6px;
-  font-size: 18px;
-  opacity: 0.9;
-  font-weight: bold;
-}
-
 .product-detail__shop_name {
   font-size: 20px;
   padding: 6px 0;
@@ -154,4 +141,17 @@ page-product-detail {
 .product-detail__shop_description {
   padding: 24px 12px;
   font-size: 16px;
+}
+
+.product-detail__reserved_block {
+  padding: 12px 24px;
+  background-color: #5AEACE;
+  color: #009175;
+  font-size: 13px;
+}
+
+.product-detail__product_sold_out {
+  padding: 12px 24px;
+  background-color: color($colors, warningBg, base);
+  color: color($colors, warning, base);
 }

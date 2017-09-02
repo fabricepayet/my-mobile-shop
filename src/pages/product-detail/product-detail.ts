@@ -51,13 +51,12 @@ export class ProductDetailPage {
   ionViewWillLoad() {
     this.product = this.navParams.get('product');
     if (!this.product) {
-      console.log('product nexits pas');
       this.navCtrl.setRoot('ProductListPage').catch(e => console.log(e))
       return false
     }
 
     this.shop = this.productService.getRelatedShop(this.product);
-    // this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
+    this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
   }
 
   reserve() {
