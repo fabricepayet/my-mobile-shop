@@ -30,11 +30,15 @@ export class ReservationPage {
     let product = reservation.product
     shop.$key = reservation.shopRef
     product.$key = reservation.productRef
-    this.navCtrl.push('ProductDetailPage', {shop, product})
+    this.navCtrl.push('ProductDetailPage', {
+      shop,
+      product,
+      productId: product.$key,
+      shopId: shop.$key,
+    })
   }
 
   gotoProductList() {
-    console.log('reditecy productList')
     this.navCtrl.push('ProductListPage')
   }
 }

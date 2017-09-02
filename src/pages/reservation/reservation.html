@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <div class="reservation__backet_container">
-    <div class="reservation__title">Vos réservations en cours</div>
+    <div class="reservation__title">Votre panier</div>
     <ion-list *ngIf='(reservationList | async)?.length'>
       <ion-item *ngFor='let reservation of reservationList | async' (click)="gotoProduct(reservation)">
         <div item-start class="reservation__image_container">
