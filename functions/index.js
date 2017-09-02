@@ -5,9 +5,20 @@ admin.initializeApp(functions.config().firebase)
 
 exports.addReservations = functions.database.ref(`/user-reservations/{userId}/{productId}`)
 .onWrite(event => {
-  const reservationValue = event.data.val()
-  admin.database().ref(`/reservations/${reservationValue.shopRef}/${reservationValue.productRef}`)
-  .set(reservationValue)
+  const {
+    userRef,
+    userEmail,
+    userName,
+    timestamp,
+    shopRef,
+    productRef,
+  } = event.data.val()
+  admin.database().ref(`/reservations/${shopRef}/${productRef}/reservations/${userRef}`)
+  .set({
+    userEmail,
+    userName,
+    timestamp,
+  })
 })
 
 exports.addRecentProducts = functions.database.ref(`/products/{shopId}/{productId}`)
@@ -27,3 +38,8 @@ exports.removeRecentProducts = functions.database.ref(`/products/{shopId}/{produ
 .onDelete(event => {
   admin.database().ref(`/recent-products/${productId}`).remove()
 })
+
+exports.countReservations = functions.database.ref(`/reservations/{shopId}/{productId}/reservations`)
+.onWrite(event => {
+  return event.data.ref.parent.child('count').set(event.data.numChildren());
+});

@@ -38,7 +38,6 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
   text-transform: capitalize;
   display: flex;
   align-items: center;
-  padding-left: 6px;
 }
 
 .shop-detail__shop_logo {
@@ -67,4 +66,8 @@ ion-app.md [padding], ion-app.md [padding] .scroll-content {
   .price-component__product_price {
     font-size: 18px;
   }
+}
+
+.shop-detail__product_reservation_count {
+  font-size: 14px;
 }

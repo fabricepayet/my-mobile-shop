@@ -15,31 +15,34 @@ export class ReservationService {
   }
 
   async createUserReservation(product: Product) {
-    var userId = firebase.auth().currentUser.uid;
+    let { uid, displayName, email } = firebase.auth().currentUser;
     this.database.object(`/shops/${product.shopRef}`, {preserveSnapshot: true})
     .subscribe(snapshot => {
-      let reservation = {
-        user: userId,
+      let reservation: Reservation = {
+        userRef: uid,
         product: product,
         shop: snapshot.val(),
-        state: 'pending',
         productRef: product.$key,
         shopRef: product.shopRef,
         timestamp: Date.now(),
+        userName: displayName,
+        userEmail: email,
       }
-      this.database.object(`/user-reservations/${userId}/${product.$key}`)
-      .set(reservation)
+      this.database.object(`/user-reservations/${uid}/${product.$key}`).set(reservation)
     })
   }
 
   getReservationsForCurrentUser(): FirebaseListObservable<Reservation[]> {
-    var userId = firebase.auth().currentUser.uid;
-    return this.database.list(`/user-reservations/${userId}/`);
+    let { uid } = firebase.auth().currentUser;
+    return this.database.list(`/user-reservations/${uid}/`);
   }
 
-  getReservationForProductForCurrentUser(product) {
-    var userId = firebase.auth().currentUser.uid;
-    console.log('Récuperation', `/user-reservations/${userId}/${product.$key}/`)
-    return this.database.object(`/user-reservations/${userId}/${product.$key}/`)
+  getReservationForProductForCurrentUser(product: Product) {
+    let { uid } = firebase.auth().currentUser;
+    return this.database.object(`/user-reservations/${uid}/${product.$key}/`)
+  }
+
+  getReservationCountForProduct(product: Product) {
+    return this.database.object(`/reservations/${product.shopRef}/${product.$key}/count`);
   }
 }

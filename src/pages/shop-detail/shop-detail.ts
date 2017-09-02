@@ -7,6 +7,7 @@ import { ProductService } from '../../providers/product.service';
 import { ShopService } from '../../providers/shop.service';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { LoadingController, Loading, ToastController, AlertController } from 'ionic-angular';
+import { ReservationService } from '../../providers/reservation.service';
 
 @IonicPage()
 @Component({
@@ -30,6 +31,7 @@ export class ShopDetailPage {
     private modalController: ModalController,
     private actionSheetCtrl: ActionSheetController,
     private alertController: AlertController,
+    private reservationService: ReservationService,
   ) {
   }
 
@@ -62,6 +64,10 @@ export class ShopDetailPage {
       product: product,
       shop: this.shop
     });
+  }
+
+  getReservationCount(product: Product) {
+    return this.reservationService.getReservationCountForProduct(product);
   }
 
   selectProduct(product: Product) {
