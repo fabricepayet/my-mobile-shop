@@ -1,0 +1,21 @@
+<div class="cp-shop-info__container">
+  <div class="cp-shop-info__header_container">
+    <div class="cp-shop-info__name_container">
+      <div class="cp-shop-info__name">
+        {{ (shop | async)?.name | uppercase }}
+      </div>
+      <div class="cp-shop-info__town">
+        <img src="assets/icon/location-pin.png" class="cp-shop-info__icon" alt="location pin" height="16px"/>&nbsp;{{ (shop | async)?.town }}
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="cp-shop-info__description">
+      {{(shop | async)?.description}}
+    </div>
+  </div>
+
+
+  <img class="cp-shop-info__map" src="https://maps.googleapis.com/maps/api/staticmap?center={{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&zoom=17&size=600x450&maptype=roadmap&language=fr&markers=color:0xff157d%7Clabel:J%7C{{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&key=AIzaSyBy5eY-vOtpySVKcNyzFjx8hWzg7WJax0Y"/>
+</div>

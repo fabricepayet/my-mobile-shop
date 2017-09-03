@@ -1,5 +1,5 @@
 import  { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Shop } from '../models/shop.interface';
 import firebase from 'firebase';
 import { ImageService } from './image.service';
@@ -58,16 +58,8 @@ export class ShopService {
     })
   }
 
-  getShop(shopKey) {
-    return new Promise((resolve, reject) => {
-      firebase.database().ref('/shops/' + shopKey).once('value').then((snapshot) => {
-        let shop = snapshot.val()
-        shop.$key = snapshot.key
-        resolve(shop)
-      }, (err) => {
-        reject(err);
-      })
-    })
+  getShop(shopKey): FirebaseObjectObservable<Shop> {
+    return this.database.object(`/shops/${shopKey}`)
   }
 
   getShopList(): FirebaseListObservable<Shop[]> {

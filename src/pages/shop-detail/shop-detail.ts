@@ -110,11 +110,6 @@ export class ShopDetailPage {
           }
         },
         {
-          text: 'Voir les réservations',
-          handler: () => {
-          }
-        },
-        {
           text: 'Supprimer le produit',
           handler: () => {
             this.alertController.create({

@@ -32,9 +32,6 @@
           <div class="product-detail__product_name">
             {{product?.name}}
           </div>
-          <div class="product-detail__product_shop">
-            <ion-icon name="home"></ion-icon> {{(shop | async)?.name | uppercase}}, {{(shop | async)?.town}}
-          </div>
         </div>
         <price-component [product]="product"></price-component>
       </div>
@@ -55,25 +52,10 @@
     </div>
   </div>
 
-<discover-products-component [product]="product" [type]="'category'"></discover-products-component>
-
-  <ion-card>
-    <ion-card-title>Infos boutique</ion-card-title>
-    <ion-card-content>
-      <div class="product-detail__shop_name">{{ ( shop | async)?.name | uppercase }}</div>
-      <img src="assets/icon/location-pin.png" class="cp-shop-info__icon" alt="location pin" height="16px"/>
-      {{ ( shop | async)?.town }}
-      <div class="product-detail__shop_description">
-        {{(shop | async)?.description}}
-      </div>
-      <div class="product-detail__shop_phone">
-        <ion-icon name="call"></ion-icon> {{ ( shop | async)?.phone }}
-      </div>
-    </ion-card-content>
-  </ion-card>
-
 <discover-products-component [product]="product" [type]="'shop'"></discover-products-component>
-
-  <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&zoom=17&size=600x450&maptype=roadmap&language=fr&markers=color:0xff157d%7Clabel:J%7C{{ (shop | async)?.latitude }},{{ (shop | async)?.longitude }}&key=AIzaSyBy5eY-vOtpySVKcNyzFjx8hWzg7WJax0Y"/>
+<div class="product-detail__proposed_by">
+  Cette offre vous est proposé par
+</div>
+<shop-info-component [shopId]="product.shopRef"></shop-info-component>
 
 </ion-content>

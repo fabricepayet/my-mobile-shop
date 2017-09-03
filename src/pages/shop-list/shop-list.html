@@ -16,7 +16,7 @@
     </ion-card-content>
   </ion-card>
   <ion-card>
-    <ion-card-header>Liste des boutiques</ion-card-header>
+    <ion-card-header>Liste des boutiques ({{ (shopList | async)?.length }})</ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let shop of shopList | async" (click)="goToShop(shop)">

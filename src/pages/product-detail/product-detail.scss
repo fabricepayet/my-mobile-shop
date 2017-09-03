@@ -128,25 +128,16 @@ page-product-detail {
   font-weight: bold;
 }
 
-.product-detail__shop_phone {
-  font-size: 16px;
-}
-
 .cp-shop-info__icon {
   height: 16px;
   width: 16px;
   display: inline;
 }
 
-.product-detail__shop_description {
-  padding: 24px 12px;
-  font-size: 16px;
-}
-
 .product-detail__reserved_block {
   padding: 12px 24px;
-  background-color: #5AEACE;
-  color: #009175;
+  background-color: color($colors, sucessBg, base);
+  color: color($colors, sucess, base);
   font-size: 13px;
 }
 
@@ -154,4 +145,11 @@ page-product-detail {
   padding: 12px 24px;
   background-color: color($colors, warningBg, base);
   color: color($colors, warning, base);
+}
+
+.product-detail__proposed_by {
+  padding: 6px;
+  color: color($colors, sucess, base);
+  background-color: color($colors, sucessBg, base);
+  text-align: center;
 }
