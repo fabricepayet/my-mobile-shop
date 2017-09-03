@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="product-detail__reserved_block" *ngIf="(currentReservation | async)">
+  <div class="product-detail__reserved_block" *ngIf="(currentReservation | async)?.timestamp">
     <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Vous avez réservé ce produit depuis le {{(currentReservation | async)?.timestamp | date: 'dd/MM/yyyy'}}
   </div>
   <div class="product-detail__product_sold_out" *ngIf="product?.soldOut">
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!(currentReservation | async) && !product?.soldOut">
+    <div *ngIf="!(currentReservation | async)?.timestamp && !product?.soldOut">
       <div class="product-detail__product_reservation" >
         Réservez aujourd'hui et économisez <span [innerHtml]="calculReduction() | price"></span> lors de votre achat en magasin.
       </div>

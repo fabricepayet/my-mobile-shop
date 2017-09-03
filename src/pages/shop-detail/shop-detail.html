@@ -31,7 +31,7 @@
             <div class="shop-detail__product_info">
               <div class="shop-detail__product_name">{{product.name}}</div>
               <price-component [product]="product"></price-component>
-              <div class="shop-detail__product_reservation_count">{{ getReservationCount(product) | async }} réservation(s)</div>  
+              <div class="shop-detail__product_reservation_count">{{reservationsList[product.$key]?.count || 0}} réservation(s)</div>
             </div>
           </ion-item>
         </ion-list>

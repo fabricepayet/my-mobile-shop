@@ -17,6 +17,7 @@ import { ReservationService } from '../../providers/reservation.service';
 export class ShopDetailPage {
   shop: Shop;
   productList: FirebaseListObservable<Product[]>;
+  reservationsList = [];
   shopPhotoUrl: string;
   private loader: Loading;
   private profile: Profile;
@@ -46,6 +47,22 @@ export class ShopDetailPage {
     }
     this.profile = this.navParams.get('profile');
     this.productList = this.productService.getProductsListForShop(this.shop.$key);
+    this.reservationService.getReservationsForShop(this.shop.$key).subscribe(snapshots => {
+      this.reservationsList = snapshots
+      snapshots.forEach(snapshot => {
+        this.reservationsList[snapshot.$key] = snapshot
+      })
+    })
+    // this.reservationsList = this.reservationService.getReservationsForShop(this.shop.$key);
+  }
+
+  getReservationsCountForProduct(product) {
+    let productReservations = this.reservationsList[product.$key]
+    if (productReservations) {
+      return productReservations.count
+    } else {
+      return 0
+    }
   }
 
   deleteShop() {
@@ -64,10 +81,6 @@ export class ShopDetailPage {
       product: product,
       shop: this.shop
     });
-  }
-
-  getReservationCount(product: Product) {
-    return this.reservationService.getReservationCountForProduct(product);
   }
 
   selectProduct(product: Product) {

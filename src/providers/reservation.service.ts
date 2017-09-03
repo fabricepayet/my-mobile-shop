@@ -42,7 +42,7 @@ export class ReservationService {
     return this.database.object(`/user-reservations/${uid}/${product.$key}/`)
   }
 
-  getReservationCountForProduct(product: Product) {
-    return this.database.object(`/reservations/${product.shopRef}/${product.$key}/count`);
+  getReservationsForShop(shopId: string): FirebaseListObservable<any[]> {
+    return this.database.list(`/reservations/${shopId}`);
   }
 }
