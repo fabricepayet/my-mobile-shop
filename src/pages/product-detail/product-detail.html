@@ -52,10 +52,12 @@
     </div>
   </div>
 
+<ion-card>
+  <!-- <div class="product-detail__proposed_by">
+    Ces offres vous sont proposées par
+  </div> -->
+  <shop-info-component [shopId]="product.shopRef"></shop-info-component>
+</ion-card>
 <discover-products-component [product]="product" [type]="'shop'"></discover-products-component>
-<div class="product-detail__proposed_by">
-  Cette offre vous est proposé par
-</div>
-<shop-info-component [shopId]="product.shopRef"></shop-info-component>
 
 </ion-content>

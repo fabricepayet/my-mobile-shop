@@ -26,8 +26,7 @@ export class DiscoverProductsComponent implements OnInit {
     if (this.type === 'shop') {
       this.title = 'A découvrir dans la même boutique'
       this.relatedProductList = this.productService.getProductsListForShop(this.product.shopRef, {
-        orderByChild: 'soldOut',
-        equalTo: {value: true, key: 'soldOut'},
+        orderByChild: 'timestamp',
         limitToLast: 4,
       })
     // } else if (this.type === 'category') {

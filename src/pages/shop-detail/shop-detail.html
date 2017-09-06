@@ -9,9 +9,7 @@
 
 <ion-content padding>
   <ion-img width="100%" height="200" [src]="shop?.image" class="shop-detail__shop_image"></ion-img>
-  <div class="shop-detail__shop_name">
-    {{shop?.name | uppercase}}
-  </div>
+  <shop-info-component [shopId]="shop.$key"></shop-info-component>
   <div class="shop-detail__content_container">
     <ion-card>
       <ion-card-header>Administration</ion-card-header>
@@ -35,24 +33,6 @@
             </div>
           </ion-item>
         </ion-list>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>Sur la carte</ion-card-header>
-      <ion-card-content>
-        <img src="https://maps.googleapis.com/maps/api/staticmap?center={{shop.latitude}},{{shop.longitude}}&zoom=17&size=400x400&maptype=roadmap&language=fr&markers=color:0xff157d%7Clabel:J%7C{{shop.latitude}},{{shop.longitude}}&key=AIzaSyBy5eY-vOtpySVKcNyzFjx8hWzg7WJax0Y"/>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>Contact</ion-card-header>
-      <ion-card-content>
-        <div>
-          Phone: {{shop.phone}}
-        </div>
-        <div>
-          Email: {{shop.email}}
-        </div>
       </ion-card-content>
     </ion-card>
   </div>

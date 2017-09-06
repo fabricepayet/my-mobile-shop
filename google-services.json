@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:863575710520:android:d3be84613ef8f0ba",
         "android_client_info": {
-          "package_name": "com.friendshop.app"
+          "package_name": "net.flashmvp.shopping974"
         }
       },
       "oauth_client": [
@@ -41,7 +41,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:863575710520:android:4797168bc02c7d01",
         "android_client_info": {
-          "package_name": "com.namanashop.app"
+          "package_name": "net.flashmvp.shopping974"
         }
       },
       "oauth_client": [

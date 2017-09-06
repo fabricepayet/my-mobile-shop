@@ -1,8 +1,7 @@
 {
     "name": "NamanaShop",
-    "version": "0.4.1",
-    "author": "Fabrice Payet",
-    "homepage": "http://namana.shop",
+    "version": "0.5.0",
+    "author": "FlashMVP",
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",
