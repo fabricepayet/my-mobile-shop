@@ -15,6 +15,9 @@
   flex-direction: column;
   justify-content: center;
   font-weight: normal;
+  color: #848484;
+  display: block;
+  font-size: 13px;
 }
 
 .product-list__shop_name {
@@ -43,16 +46,8 @@
   ion-card-title {
     padding-left: 12px;
     text-transform: capitalize;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
-  }
-}
-
-.product-list__shop_info {
-  color: color($colors, town, base);
-
-  ion-icon {
-    display: inline-block;
   }
 }
 
@@ -101,4 +96,9 @@
   font-size: 14px;
   opacity: 0.9;
   font-weight: bold;
+}
+
+.product-list__shop_name {
+  font-size: 16px;
+  color: color($colors, town, base);
 }

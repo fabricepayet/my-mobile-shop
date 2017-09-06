@@ -10,10 +10,11 @@
 .cp-shop-info__name {
   font-weight: bold;
   font-size: 18px;
+  color: color($colors, town, base);
 }
 
 .cp-shop-info__town {
-  color: #bbb;
+  color: #424242;
   font-size: 14px;
 }
 
