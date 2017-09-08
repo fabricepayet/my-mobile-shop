@@ -15,7 +15,7 @@
       <button ion-item (click)="openPage(reservationPage)" *ngIf="auth">
         Mes réservations
       </button>
-      <button ion-item (click)="openPage(shopPage)" *ngIf="auth">
+      <button ion-item (click)="openPage(shopPage)" *ngIf="isAdmin">
         Administration
       </button>
       <button ion-item (click)="logout()" *ngIf="auth">

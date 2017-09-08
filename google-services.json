@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:863575710520:android:d3be84613ef8f0ba",
+        "mobilesdk_app_id": "1:863575710520:android:4797168bc02c7d01",
         "android_client_info": {
           "package_name": "net.flashmvp.shopping974"
         }
@@ -39,7 +39,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:863575710520:android:4797168bc02c7d01",
+        "mobilesdk_app_id": "1:863575710520:android:b80ea645e98fe030",
         "android_client_info": {
           "package_name": "net.flashmvp.shopping974"
         }

@@ -15,6 +15,7 @@ export class MyApp {
   private loginPage;
   private shopPage;
   private reservationPage;
+  private isAdmin: boolean = false;
 
   constructor(
     platform: Platform,
@@ -30,6 +31,13 @@ export class MyApp {
     this.reservationPage = 'ReservationPage';
     this.authService.getAuthentificateUser().subscribe(auth => {
       this.auth = auth;
+      if (this.auth.uid) {
+        this.authService.getProfile(this.auth.uid).subscribe(profile => {
+          if (profile.role === 'admin') {
+            this.isAdmin = true
+          }
+        })
+      }
     })
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

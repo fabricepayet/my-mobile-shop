@@ -56,7 +56,6 @@ export class AuthService {
   }
 
   getProfile(userId) {
-    console.log('getProfile', userId);
     return this.database.object(`/users/${userId}`)
   }
 }

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="danger">
+  <ion-navbar color="primary">
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
@@ -11,7 +11,7 @@
   <ion-card>
     <ion-card-header>Administration</ion-card-header>
     <ion-card-content>
-      <button ion-button (click)='addShop()' color="danger">Nouvelle boutique</button>
+      <button ion-button (click)='addShop()' color="town">Nouvelle boutique</button>
 
     </ion-card-content>
   </ion-card>
@@ -20,10 +20,10 @@
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let shop of shopList | async" (click)="goToShop(shop)">
-          <div item-start class="shop-list__shop_logo">
-            <img *ngIf="!shop.logo" src="assets/icon/default-shop.png">
-            <img *ngIf="shop.logo" [src]="shop.logo">
-          </div>
+          <ion-avatar item-start class="shop-list__shop_logo">
+            <img *ngIf="!shop.image" src="assets/icon/default-shop.png">
+            <img *ngIf="shop.image" [src]="shop.image">
+          </ion-avatar>
           <div class="shop-list__shop_name">{{shop.name | uppercase}}</div>
           <p class="shop-list__shop_town"><ion-icon name="home"></ion-icon>  {{shop.town}}</p>
           <p class="shop-list__shop_activity">{{shop.activity}}</p>
