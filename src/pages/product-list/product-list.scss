@@ -44,7 +44,7 @@
   }
 
   ion-card-title {
-    padding-left: 12px;
+    padding: 0;
     text-transform: capitalize;
     font-size: 22px;
     font-weight: bold;
@@ -52,14 +52,13 @@
 }
 
 .product-list__card_footer {
-  display: flex;
-  align-items: center;
   font-weight: bold;
   padding: 6px 12px;
   width: 100%;
 }
 
 .product-list__product_info {
+  display: flex;
   flex: 1 1 auto;
 
   ion-card-title {

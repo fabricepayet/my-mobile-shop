@@ -14,7 +14,7 @@
 
 <ion-content padding>
   <div class="product-detail__reserved_block" *ngIf="(currentReservation | async)?.timestamp">
-    <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Ce produit est dans votre liste de souhait depuis le {{(currentReservation | async)?.timestamp | date: 'dd/MM/yyyy'}}
+    <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Ajouté à votre liste de souhait depuis le {{(currentReservation | async)?.timestamp | date: 'dd/MM/yyyy'}}
   </div>
   <div class="product-detail__product_sold_out" *ngIf="product?.soldOut">
     <ion-icon name="alert"></ion-icon>&nbsp;Ce produit est en rupture de stock

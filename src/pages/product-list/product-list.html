@@ -46,13 +46,16 @@
         </div>
       </div>
       <div class="product-list__card_footer">
+        <ion-card-title (click)="gotoShop(product)">{{product.name}}</ion-card-title>
         <div class="product-list__product_info">
-          <ion-card-title (click)="gotoShop(product)">{{product.name}}</ion-card-title>
           <div class="product-list__shop_info">
-            <span class="product-list__shop_name">{{product.shopName | uppercase}}</span>, {{product.shopTown}}
+            <div class="product-list__shop_name">{{product.shopName | uppercase}}</div>
+            <div>
+              <img src="assets/icon/location-pin.png" class="cp-shop-info__icon" alt="location pin" height="16px"/>&nbsp;{{product.shopTown}}
+            </div>
           </div>
+          <price-component [product]="product"></price-component>
         </div>
-        <price-component [product]="product"></price-component>
       </div>
     </ion-card-content>
   </ion-card>
