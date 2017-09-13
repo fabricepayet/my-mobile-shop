@@ -61,8 +61,8 @@ export class ProductDetailPage {
 
   reserve() {
     let confirm = this.alertController.create({
-      title: 'Réservation',
-      message: 'Êtes-vous sûr de vouloir réserver cet article ?',
+      title: 'Votre liste de souhait',
+      message: 'Êtes-vous sûr de vouloir ajouter cet article à votre liste de souhait ?',
       buttons: [
         {
           text: 'Annuler',
@@ -76,7 +76,7 @@ export class ProductDetailPage {
             this.reservationService.createUserReservation(this.product)
             .then(() => {
               this.toastController.create({
-                message: 'Super ! Votre réservation a bien été enregistrée.',
+                message: 'Super ! Cet article a été ajouté à votre liste de souhait.',
                 duration: 3000
               }).present()
               this.navCtrl.push('ReservationPage');
@@ -94,19 +94,19 @@ export class ProductDetailPage {
 
   openReservationConfirmbox() {
     let confirm = this.alertController.create({
-      title: 'Réservation',
-      message: 'Êtes-vous sûr de vouloir réserver cet article ?',
+      title: 'Votre liste de souhait',
+      message: 'Êtes-vous sûr de vouloir ajouter cet article à votre liste de souhait ?',
       buttons: [
         {
           text: 'Annuler'
         },
         {
-          text: 'Réserver',
+          text: 'Ajouter',
           handler: () => {
             this.reservationService.createUserReservation(this.product)
             .then(() => {
               this.toastController.create({
-                message: 'Super ! Votre réservation a bien été enregistrée.',
+                message: 'Super ! Cet article a été ajouté à votre liste de souhait.',
                 duration: 3000
               }).present()
               this.navCtrl.push('ReservationPage');
