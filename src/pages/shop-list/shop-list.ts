@@ -20,7 +20,7 @@ export class ShopListPage {
     private shopService: ShopService,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
   }
 
@@ -45,6 +45,8 @@ export class ShopListPage {
   }
 
   getShopList() {
-    this.shopList = this.shopService.getShopList()
+    this.shopList = this.shopService.getShopList({
+      orderByChild: 'name'
+    })
   }
 }

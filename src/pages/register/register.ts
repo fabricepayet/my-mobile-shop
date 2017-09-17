@@ -40,4 +40,8 @@ export class RegisterPage {
       this.errorMessage = result.error.message;
     }
   }
+
+  navigateToConnexionPage() {
+    this.navCtrl.setRoot('LoginPage')
+  }
 }

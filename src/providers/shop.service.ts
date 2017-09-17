@@ -62,7 +62,7 @@ export class ShopService {
     return this.database.object(`/shops/${shopKey}`)
   }
 
-  getShopList(): FirebaseListObservable<Shop[]> {
-    return this.database.list('shops').map((array) => array.reverse()) as FirebaseListObservable<Shop[]>;
+  getShopList(query: any = {}): FirebaseListObservable<Shop[]> {
+    return this.database.list('shops', {query})
   }
 }

@@ -1,8 +1,13 @@
 <ion-content padding>
   <div class="register-page">
     <div class="" style="text-align:center; margin:24px;">
-      <img src="" alt="" style="height:100px; width:100px; margin:auto">
+      <img alt="logo-shopping974" src="assets/logo/logo.png" style="height:100px; width:100px; margin:auto">
     </div>
+
+    <div text-center class="login__message">
+      {{message}}
+    </div>
+
     <form #loginForm="ngForm" novalidate style="margin:0 12px;" class="login-page__form">
       <ion-item>
         <ion-label floating>
@@ -37,7 +42,7 @@
     </form>
 
     <div class="login-page__register">
-      <button ion-button block (click)="navigateToRegisterPage()" color="secondary" class="login-page__register_button">Se connecter</button>
+      <button ion-button block (click)="navigateToConnexionPage()" color="button" class="login-page__register_button">Se connecter</button>
     </div>
   </div>
 </ion-content>

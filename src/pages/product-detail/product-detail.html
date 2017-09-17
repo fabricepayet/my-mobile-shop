@@ -3,7 +3,9 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title><img alt="logo-shopping974" height="40" src="assets/logo/logo-long.png"></ion-title>
+    <ion-title>
+      <img alt="logo-shopping974" height="40" src="assets/logo/logo-long.png">
+    </ion-title>
     <ion-buttons right *ngIf="auth">
       <button ion-button icon-only (click)="navigateToReservationPage()" color="second">
         <ion-icon name="cart"></ion-icon>
@@ -14,7 +16,7 @@
 
 <ion-content padding>
   <div class="product-detail__reserved_block" *ngIf="(currentReservation | async)?.timestamp">
-    <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Ajouté à votre liste de souhait depuis le {{(currentReservation | async)?.timestamp | date: 'dd/MM/yyyy'}}
+    <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Ajouté à votre liste de souhait le {{(currentReservation | async)?.timestamp | date: 'dd/MM/yyyy'}}
   </div>
   <div class="product-detail__product_sold_out" *ngIf="product?.soldOut">
     <ion-icon name="alert"></ion-icon>&nbsp;Ce produit est en rupture de stock
@@ -36,7 +38,7 @@
         <price-component [product]="product"></price-component>
       </div>
       <div class="product-detail__discount_container" *ngIf="product?.discount">
-        <span class="product-detail__product_discount">-{{ product?.discount }}%</span>
+        <!-- <span class="product-detail__product_discount">-{{ product?.discount }}%</span> -->
         <div class="product-detail__product_description">
           {{ product.description }}
         </div>

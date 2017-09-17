@@ -1,6 +1,6 @@
 {
     "name": "NamanaShop",
-    "version": "0.6.1",
+    "version": "0.6.2",
     "author": "FlashMVP",
     "private": true,
     "scripts": {
@@ -59,7 +59,7 @@
         "ionic": "3.9.2",
         "typescript": "2.3.3"
     },
-    "description": "NamanaShop: les magasins de proximité",
+    "description": "Shopping974: les commercants enfin connectés",
     "cordova": {
         "plugins": {
             "cordova-plugin-console": {},

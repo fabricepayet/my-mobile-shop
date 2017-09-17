@@ -13,4 +13,5 @@ import { RegisterPage } from './register';
     RegisterPage
   ]
 })
+
 export class RegisterPageModule {}

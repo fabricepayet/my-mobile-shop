@@ -30,12 +30,14 @@ export class MyApp {
     this.shopPage = 'ShopListPage';
     this.reservationPage = 'ReservationPage';
     this.authService.getAuthentificateUser().subscribe(auth => {
+      console.log('auth detected', auth)
       this.auth = auth;
-      if (this.auth.uid) {
-        this.authService.getProfile(this.auth.uid).subscribe(profile => {
+      if (this.auth) {
+        let profileSub = this.authService.getProfile(this.auth.uid).subscribe(profile => {
           if (profile.role === 'admin') {
             this.isAdmin = true
           }
+          profileSub.unsubscribe()
         })
       }
     })
