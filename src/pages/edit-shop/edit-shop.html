@@ -21,7 +21,6 @@
         </div>
 
         <ion-item>
-          <ion-label>Description du magasin</ion-label><br />
           <ion-textarea [(ngModel)]="shop.description" name="description" #description="ngModel">
           </ion-textarea>
         </ion-item>
@@ -55,6 +54,11 @@
         <ion-item>
           <ion-label>Email</ion-label>
           <ion-input type="email" name="email" [(ngModel)]="shop.email" #name="ngModel"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <button ion-button (click)="takePhoto()" *ngIf="!bannerData">Ajouter une photo</button>
+          <img [src]="bannerData" *ngIf="bannerData"/>
         </ion-item>
 
       </ion-card-content>

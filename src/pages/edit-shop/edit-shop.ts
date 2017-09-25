@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ActionSheetController } from 'ionic-angular';
 import { Shop } from '../../models/shop.interface';
 import { ShopService } from '../../providers/shop.service'
 import { GeolocService } from '../../providers/geoloc.service'
+import { ImageService } from '../../providers/image.service';
+import { Camera } from '@ionic-native/camera';
 
-/**
- * Generated class for the EditShopPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-edit-shop',
@@ -18,6 +14,7 @@ import { GeolocService } from '../../providers/geoloc.service'
 export class EditShopPage {
 
   shop: Shop;
+  bannerData: string;
 
   constructor(
     public navCtrl: NavController,
@@ -25,20 +22,38 @@ export class EditShopPage {
     private shopService: ShopService,
     private toastController: ToastController,
     private geolocService: GeolocService,
+    public actionSheetCtrl: ActionSheetController,
+    private imageService: ImageService,
+    private camera: Camera,
   ) {
     this.shop = this.navParams.get('shop');
   }
 
   editShop() {
-    this.shopService.editShop(this.shop.$key, {
+    let newShop: Shop = {
       name: this.shop.name,
-      description: this.shop.description,
       town: this.shop.town,
-      longitude: this.shop.longitude,
-      latitude: this.shop.latitude,
-      phone: this.shop.phone,
-      email: this.shop.email,
-    })
+    }
+    if (this.shop.description) {
+      newShop.description = this.shop.description
+    }
+    if (this.shop.longitude) {
+      newShop.longitude = this.shop.longitude
+    }
+    if (this.shop.latitude) {
+      newShop.latitude = this.shop.latitude
+    }
+    if (this.shop.phone) {
+      newShop.phone = this.shop.phone
+    }
+    if (this.shop.email) {
+      newShop.email = this.shop.email
+    }
+    if (this.bannerData) {
+      this.shopService.editShop(this.shop.$key, newShop, this.bannerData)
+    } else {
+      this.shopService.editShop(this.shop.$key, newShop)
+    }
     this.navCtrl.pop()
   }
 
@@ -56,5 +71,34 @@ export class EditShopPage {
         duration: 3000
       }).present()
     })
+  }
+
+  takePhoto() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Ajouter une photo',
+      buttons: [
+        {
+          text: 'Depuis la Gallerie',
+          handler: () => {
+            this.imageService.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY).then((imageData) => {
+              this.bannerData = imageData;
+            })
+          }
+        },
+        {
+          text: 'Utiliser la Camera',
+          handler: () => {
+            this.imageService.takePicture(this.camera.PictureSourceType.CAMERA).then((imageData) => {
+              this.bannerData = imageData;
+            })
+          }
+        },
+        {
+          text: 'Annuler',
+          role: 'cancel'
+        }
+      ]
+    });
+    actionSheet.present();
   }
 }

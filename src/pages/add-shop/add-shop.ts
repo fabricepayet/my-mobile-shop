@@ -29,7 +29,8 @@ export class AddShopPage {
   public navParams: NavParams,
   public actionSheetCtrl: ActionSheetController,
   private geolocService: GeolocService,
-  private toastController: ToastController) {
+  private toastController: ToastController,
+) {
     this.loader = this.loading.create({
       content: 'Création de la boutique...'
     })

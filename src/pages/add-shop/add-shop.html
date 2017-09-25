@@ -23,7 +23,6 @@
           </div>
 
           <ion-item>
-            <ion-label>Description du magasin</ion-label><br>
             <ion-textarea [(ngModel)]="shop.description" name="description" #description="ngModel">
             </ion-textarea>
           </ion-item>
@@ -40,19 +39,33 @@
           </ion-item>
 
           <ion-item>
-            <button ion-button (click)="takePhoto()" *ngIf="!bannerData">Ajouter une bannière</button>
-            <img [src]="bannerData" *ngIf="bannerData"/>
+            <ion-label>Latitude</ion-label>
+            <ion-input type="number" name="latitude" [(ngModel)]="shop.latitude" #name="ngModel" required></ion-input>
           </ion-item>
 
           <ion-item>
-            <div class="" *ngIf="!shop.latitude || !shop.longitude">
-              Impossible de récupérer la position du magasin <br>
-              <button ion-button (click)="getPosition()">Réessayez</button>
-            </div>
+            <ion-label>Longitude</ion-label>
+            <ion-input type="number" name="longitude" [(ngModel)]="shop.longitude" #name="ngModel" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Téléphone</ion-label>
+            <ion-input type="tel" name="phone" [(ngModel)]="shop.phone" #name="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Email</ion-label>
+            <ion-input type="email" name="email" [(ngModel)]="shop.email" #name="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <button ion-button (click)="takePhoto()" *ngIf="!bannerData">Ajouter une photo</button>
+            <img [src]="bannerData" *ngIf="bannerData"/>
           </ion-item>
 
         </ion-card-content>
       <ion-row class="register-form__button">
+        <button ion-button (click)="getPosition()">Détecter la position</button>
         <button ion-button right (click)="addShop()" [disabled]="registerForm.invalid">Ajouter</button>
       </ion-row>
     </ion-card>

@@ -28,7 +28,7 @@
   </ion-list> -->
   <ion-card *ngFor="let product of productList"  class="product-list__shop_card">
     <ion-card-content>
-      <div *ngIf="product.shop" class="product-list__shop_container" (click)="gotoShop(product)">
+      <div *ngIf="product.shop" class="product-list__shop_container">
         <img class="product-list__shop_logo" src="assets/icon/default-shop.png" alt="{{product.shop.name}}">
         <div class="product-list__shop_info">
           <div class="product-list__shop_name">
@@ -46,7 +46,7 @@
         </div>
       </div>
       <div class="product-list__card_footer">
-        <ion-card-title (click)="gotoShop(product)">{{product.name}}</ion-card-title>
+        <ion-card-title>{{product.name}}</ion-card-title>
         <div class="product-list__product_info">
           <div class="product-list__shop_info">
             <div class="product-list__shop_name">{{product.shopName | uppercase}}</div>

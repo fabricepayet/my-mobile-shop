@@ -20,21 +20,24 @@ export class ShopService {
         if (snapshot) {
           shop.image = snapshot.downloadURL;
         }
-        let logoSrc = `images/shops/${newShopKey}/logo.jpg`;
-        this.imageService.uploadImage(logoSrc, logoData).then((snapshot: any) => {
-          if (snapshot) {
-            shop.logo = snapshot.downloadURL;
-          }
-          this.database.object(`/shops/${newShopKey}`).set(shop)
-          resolve(true)
-        })
       })
     })
   }
 
-  editShop(shopRef: string, shop: Object) {
+  editShop(shopRef: string, shop: Shop, bannerData: string = null) {
     const shops = this.database.list('/shops')
-    shops.update(shopRef, shop)
+    if (bannerData) {
+      let bannerSrc = `images/shops/${shopRef}/banner.jpg`;
+      this.imageService.uploadImage(bannerSrc, bannerData)
+      .then((snapshot: any) => {
+        if (snapshot) {
+          shop.image = snapshot.downloadURL;
+          shops.update(shopRef, shop)
+        }
+      })
+    } else {
+      shops.update(shopRef, shop);
+    }
   }
 
   deleteShop(shopKey: string) {

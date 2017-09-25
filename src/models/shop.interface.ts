@@ -3,7 +3,6 @@ export interface Shop {
   name: string,
   town: string,
   image?: string,
-  logo?: string,
   longitude?: number,
   latitude?: number,
   email?: string,
