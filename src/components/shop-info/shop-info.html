@@ -20,6 +20,10 @@
     <div class="cp-shop-info__description">
       {{(shop | async)?.description}}
     </div>
+
+    <div *ngIf="(shop | async)?.phone">
+      Tel: {{(shop | async)?.phone}}
+    </div>
   </div>
 
 
