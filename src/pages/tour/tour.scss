@@ -1,0 +1,18 @@
+page-tour {
+  background-color: white !important;
+
+  .scroll-content {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .toolbar-background-md {
+    background-color: white;
+  }
+
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+    height: 0;
+  }
+}

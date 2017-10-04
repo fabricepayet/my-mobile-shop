@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, IonicApp, NavController } from 'ionic-angular';
+import { Platform, MenuController, IonicApp, NavController, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../providers/auth.service';
@@ -23,7 +23,8 @@ export class MyApp {
     splashScreen: SplashScreen,
     public app: IonicApp,
     private authService: AuthService,
-    private menuController: MenuController
+    private menuController: MenuController,
+    private modalCtrl: ModalController,
   ) {
     this.productPage = 'ProductListPage';
     this.loginPage = 'LoginPage';
@@ -46,6 +47,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      this.modalCtrl.create('TourPage').present();
     });
   }
 
