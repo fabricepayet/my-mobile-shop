@@ -54,7 +54,6 @@ export class ProductDetailPage {
       this.navCtrl.setRoot('ProductListPage').catch(e => console.log(e))
       return false
     }
-
     this.shop = this.productService.getRelatedShop(this.product);
     this.currentReservation = this.reservationService.getReservationForProductForCurrentUser(this.product)
   }

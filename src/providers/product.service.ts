@@ -49,6 +49,9 @@ export class ProductService {
       orderByChild: query.orderByChild || 'timestamp',
       limitToLast: query.limitToLast || 10
     }
+    // if(query.orderByChild) {
+    //   queryOpts.orderByChild = query.orderByChild
+    // }
     if (query.endAt) {
       queryOpts.endAt = query.endAt;
     }

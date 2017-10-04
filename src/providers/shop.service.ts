@@ -9,7 +9,8 @@ import "rxjs/add/operator/map";
 export class ShopService {
   constructor(
     private database: AngularFireDatabase,
-    private imageService: ImageService) {
+    private imageService: ImageService,
+  ) {
   }
 
   addShop(shop: Shop, bannerData: string, logoData: string): Promise<any> {

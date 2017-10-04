@@ -33,11 +33,17 @@ export class ReservationService {
   }
 
   getReservationsForCurrentUser(): FirebaseListObservable<Reservation[]> {
+    if (!firebase.auth().currentUser) {
+      return;
+    }
     let { uid } = firebase.auth().currentUser;
     return this.database.list(`/user-reservations/${uid}/`);
   }
 
   getReservationForProductForCurrentUser(product: Product) {
+    if (!firebase.auth().currentUser) {
+      return;
+    }
     let { uid } = firebase.auth().currentUser;
     return this.database.object(`/user-reservations/${uid}/${product.$key}/`)
   }
