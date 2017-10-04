@@ -1,0 +1,34 @@
+{
+  "rules": {
+    "products": {
+      ".indexOn": "timestamp",
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('role').val() == 'admin'"
+    },
+    "recent-products": {
+      ".indexOn": "timestamp",
+      ".read": true,
+      ".write": false
+    },
+    "reservations": {
+      ".read": "root.child('users').child(auth.uid).child('role').val() == 'admin'",
+      ".write": false
+    },
+    "shops": {
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('role').val() == 'admin'"
+    },
+    "user-reservations": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+      	".write": "$uid === auth.uid"
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid"
+      },
+      ".write": false
+    }
+  }
+}
