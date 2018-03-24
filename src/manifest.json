@@ -1,13 +1,15 @@
 {
-  "name": "Shopping974",
-  "short_name": "Shopping974",
+  "name": "Mobile Shop",
+  "short_name": "My-Movile-Shop",
   "start_url": "index.html",
   "display": "standalone",
-  "icons": [{
-    "src": "assets/logo/logo.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }],
+  "icons": [
+    {
+      "src": "assets/logo/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
   "background_color": "#ff157d",
   "theme_color": "#ff157d"
 }
