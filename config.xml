@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="net.flashmvp.shopping974" version="0.7.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Shopping974</name>
-    <description>Vos petits commerces sont enfin connectés à la Réunion</description>
-    <author email="flashmvp@protonmail.com">FlashMVP</author>
+<widget id="net.flashmvp.shopping974" version="0.7.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MobileShop</name>
+    <description>Vos petits commerces sont enfin connectés</description>
+    <author email="hello@fabricepayet.fr">Fabrice Payet</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
@@ -82,10 +82,10 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
     <universal-links>
-      <host name="https://e93fp.app.goo.gl/" scheme="https" />
-      <host name="instashop-38538.firebaseapp.com" scheme="https">
-        <path url="/__/auth/callback" />
-      </host>
+        <host name="https://e93fp.app.goo.gl/" scheme="https" />
+        <host name="instashop-38538.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
     </universal-links>
     <engine name="android" spec="^6.2.3" />
     <engine name="browser" spec="^4.1.0" />
